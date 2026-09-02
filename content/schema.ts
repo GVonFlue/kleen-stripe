@@ -1,0 +1,451 @@
+/**
+ * Kleen Stripe content schema.
+ *
+ * Single source of truth. The site renders this and nothing else. No copy in JSX.
+ * This file also enforces the ProyTech Website Build Doctrine at parse time, so a
+ * doctrine violation is a build failure rather than something somebody notices on
+ * launch day.
+ *
+ * Two modes:
+ *   parseContent(raw, "draft")   dev and client review. Pending facts render with a badge.
+ *   parseContent(raw, "launch")  production. Throws while any fact is unconfirmed.
+ */
+
+import { z } from "zod";
+
+/* ------------------------------------------------------------------ *
+ * Doctrine enforcement primitives
+ * ------------------------------------------------------------------ */
+
+/** Doctrine section 5. Prohibited in every string that reaches a page. */
+const EM_DASH = /[—–]/;
+
+/** Doctrine section 5. Superlatives without evidence, plus the client's never_say list. */
+const BANNED_WORDS = [
+  "cheap",
+  "affordable",
+  "best",
+  "leading",
+  "premier",
+  "world-class",
+  "passionate",
+  "dedicated to excellence",
+  "committed to your success",
+  "proven system",
+  "next level",
+  "one stop shop",
+  "one-stop shop",
+  "cutting edge",
+  "state of the art",
+];
+
+/** Doctrine section 8. Forbidden until endpoints.booking_url exists. */
+const BOOKING_CLAIMS = ["booked", "confirmed", "scheduled", "held", "on the calendar"];
+
+/** Doctrine hard stop 2. Placeholders that have shipped to real client sites in this market. */
+const PLACEHOLDER_PATTERNS = [
+  /555[-.\s]?555[-.\s]?5555/,
+  /email@mymailservice\.com/i,
+  /lorem ipsum/i,
+  /your company name/i,
+  /example\.com/i,
+  /\bTBD\b/,
+  /\bXXXX\b/,
+];
+
+/**
+ * Doctrine section 3. Buttons state the outcome, never the mechanism.
+ */
+const BANNED_CTA_LABELS = ["submit", "send", "click here", "learn more", "read more", "go"];
+
+export type BuildMode = "draft" | "launch";
+
+/* ------------------------------------------------------------------ *
+ * Field types
+ * ------------------------------------------------------------------ */
+
+/**
+ * Any string that can reach rendered HTML. Rejects em-dashes and unevidenced
+ * superlatives. Use this instead of z.string() for every piece of copy.
+ */
+export const copy = (max = 2000) =>
+  z
+    .string()
+    .max(max)
+    .refine((s) => !EM_DASH.test(s), {
+      message: "Em-dash or en-dash found. Doctrine section 5 prohibits both. Use a comma, a period, or restructure.",
+    })
+    .refine(
+      (s) => !BANNED_WORDS.some((w) => new RegExp(`\\b${w.replace(/[.*+?^${}()|[\]\\]/g, "\\$&")}\\b`, "i").test(s)),
+      { message: "Banned word. Doctrine section 5, superlatives without evidence and the client never_say list." },
+    )
+    .refine((s) => !PLACEHOLDER_PATTERNS.some((p) => p.test(s)), {
+      message: "Placeholder text. Doctrine hard stop 2. A placeholder never reaches a live page.",
+    });
+
+/** A fact we either have or do not. Never a plausible guess. Doctrine hard stop 1. */
+const fact = <T extends z.ZodTypeAny>(inner: T) => inner.nullable();
+
+const ctaSchema = z.object({
+  label: copy(60).refine((s) => !BANNED_CTA_LABELS.includes(s.trim().toLowerCase()), {
+    message: "Button states the mechanism, not the outcome. Doctrine section 3. Nothing we build says Submit.",
+  }),
+  href: z.string().min(1),
+  source_tag: z.string().min(1).optional(),
+  principle: z.string().optional(),
+});
+
+const phone = z.string().regex(/^\d{10}$/, "Store the raw 10 digits. Formatting is a render concern.");
+
+/* ------------------------------------------------------------------ *
+ * Sections
+ * ------------------------------------------------------------------ */
+
+export const businessSchema = z.object({
+  name: z.string().min(1),
+  legal_name: fact(z.string()),
+  owner_name: z.string().min(1),
+  founder_name: fact(z.string()),
+  founded_year: fact(z.number().int().min(1900).max(2026)),
+  owner_since: fact(z.number().int().min(1900).max(2026)),
+  generation: fact(z.number().int().min(1).max(6)),
+  phone_primary: phone,
+  phone_display: z.string().min(1),
+  sms_enabled: z.boolean(),
+  email: z.string().email(),
+  street_address: fact(z.string()),
+  city: z.string().min(1),
+  state: z.string().length(2),
+  postal_code: fact(z.string()),
+  address_display: z.enum(["full", "service_area_only"]),
+  hours: fact(z.record(z.string(), z.string())),
+  after_hours_work: fact(z.boolean()),
+  license_number: fact(z.string()),
+  insured: fact(z.boolean()),
+  quote_turnaround: fact(z.string()),
+  schedule_turnaround: fact(z.string()),
+  warranty: fact(z.string()),
+  minimum_job: fact(z.string()),
+  crew_size: fact(z.number().int()),
+  residential_work: fact(z.boolean()),
+  contact_preference: z.array(z.enum(["call", "text", "email", "form"])).min(1),
+  service_area_statement: copy(400),
+  domains: z.object({
+    primary: z.string(),
+    secondary: z.string().nullable(),
+    secondary_disposition: z.string(),
+  }),
+  social: z.object({
+    facebook: fact(z.string().url()),
+    google_business_profile: fact(z.string().url()),
+  }),
+});
+
+export const brandSchema = z.object({
+  colors: z.object({
+    ink: z.string(),
+    surface: z.string(),
+    subtle: z.string(),
+    line: z.string(),
+    accent: z.string(),
+    accent_ink: z.string(),
+    ada: z.string(),
+  }),
+  color_rules: z.array(z.string()),
+  voice: z.array(z.string()),
+  reference_sites: z.array(z.string()),
+  reference_axis: z.string(),
+  signature_element: z.string(),
+  never_say: z.array(z.string()),
+  ai_tells_checked: z.array(z.string()).length(6),
+});
+
+export const serviceSchema = z.object({
+  slug: z.string().regex(/^[a-z0-9-]+$/),
+  name: copy(80),
+  money_page: z.boolean().optional(),
+  priority: z.number().int().optional(),
+  title: copy(70),
+  meta_description: copy(165),
+  h1: copy(120),
+  lede: copy(600),
+  body: z.array(copy(1200)).optional(),
+  scope: z.array(copy(200)).min(1),
+  faqs: z
+    .array(
+      z.object({
+        q: copy(200),
+        /** null means the honest answer needs a fact we do not have. The FAQ withholds itself. */
+        a: fact(copy(1200)),
+        needs: z.string().optional(),
+      }),
+    )
+    .default([]),
+  faqs_pending: z.array(z.string()).optional(),
+  compliance_note: z.string().optional(),
+  why_own_page: z.string().optional(),
+  source_tag: z.string().min(1),
+  schema_type: z.literal("Service"),
+  buyers: z.array(z.string()),
+});
+
+export const buyerSchema = z.object({
+  slug: z.string().regex(/^[a-z0-9-]+$/),
+  label: copy(80),
+  title: copy(70),
+  meta_description: copy(165),
+  h1: copy(120),
+  pain: copy(600),
+  body: z.array(copy(1200)),
+  proof_needed: z.array(z.string()).optional(),
+  price_position_note: z.string().optional(),
+  cta: ctaSchema,
+  principle: z.string(),
+});
+
+export const areaSchema = z.object({
+  city: z.string(),
+  state: z.string().length(2),
+  slug: z.string().nullable(),
+  page: z.boolean(),
+  primary: z.boolean().optional(),
+  travel_market: z.boolean().optional(),
+  note: z.string().optional(),
+});
+
+/** Doctrine hard stop 3 and section 9. Nothing publishes without permission. */
+export const reviewSchema = z.object({
+  name: z.string().min(1),
+  date: z.string(),
+  rating: z.number().min(1).max(5),
+  /** Never edited. Not spellchecked, not tidied, not shortened. */
+  text: z.string().min(1),
+  source: z.string(),
+  consent: z.boolean(),
+  note: z.string().optional(),
+});
+
+export const workPairSchema = z.object({
+  pair_id: z.string(),
+  lot_type: z.enum(["Retail", "Apartments", "Warehouse", "Industrial", "Small business", "ADA"]),
+  before: z.object({ src: z.string(), alt: copy(200) }),
+  after: z.object({ src: z.string(), alt: copy(200) }),
+  caption: fact(copy(300)),
+  city: fact(z.string()),
+  consent: z.boolean(),
+});
+
+export const clientSchema = z.object({
+  name: z.string(),
+  /** False means the name never reaches rendered HTML, in text or as a logo. */
+  publishable: z.boolean(),
+});
+
+export const leadMagnetSchema = z.object({
+  title: copy(120),
+  subtitle: copy(200),
+  file: fact(z.string()),
+  /** Doctrine section 3. Six items beats one sentence. */
+  value_stack: z.array(copy(220)).length(6),
+  cta: ctaSchema,
+  consent_line: copy(300),
+  content_gate: z.string().optional(),
+});
+
+const blockSchema = z.record(z.string(), z.any());
+
+export const pageSchema = z.object({
+  type: z.string(),
+  title: copy(70),
+  meta_description: fact(copy(165)),
+  h1: copy(160),
+  lede: fact(copy(800)).optional(),
+  body: z.union([z.array(copy(1500)), copy(1500)]).optional(),
+  blocks: z.array(blockSchema).optional(),
+  indexable: z.boolean().optional(),
+  filters: z.array(z.string()).optional(),
+  empty_state: copy(400).optional(),
+  cta: ctaSchema.optional(),
+  form_source_tag: z.string().optional(),
+  consent_line: copy(300).optional(),
+  note: z.string().optional(),
+  travel_note: z.string().optional(),
+  requires: z.array(z.string()).optional(),
+  pricing_note: z.any().optional(),
+  response_expectation: z.any().optional(),
+  source_tag: z.string().optional(),
+});
+
+export const provenanceSchema = z.object({
+  confirmed_by_client: z.array(z.string()),
+  pending_confirmation: z.array(
+    z.object({
+      path: z.string(),
+      value: z.any(),
+      source: z.string(),
+      note: z.string(),
+    }),
+  ),
+  conflicts_to_resolve: z.array(
+    z.object({
+      field: z.string(),
+      values: z.array(z.string()),
+      resolution: z.string(),
+    }),
+  ),
+});
+
+export const contentSchema = z.object({
+  _meta: z.object({
+    client: z.string(),
+    version: z.string(),
+    generated: z.string(),
+    doctrine: z.string(),
+    rule: z.string(),
+  }),
+  provenance: provenanceSchema,
+  business: businessSchema,
+  brand: brandSchema,
+  positioning: z.any(),
+  endpoints: z.object({
+    form_endpoint: z.string(),
+    booking_url: fact(z.string()),
+    sheet_id: fact(z.string()),
+    crm_webhook: fact(z.string()),
+  }),
+  nav: z.object({
+    primary: z.array(z.object({ label: copy(40), href: z.string() })),
+    cta: ctaSchema,
+    note: z.string().optional(),
+  }),
+  pages: z.record(z.string(), pageSchema),
+  services: z.array(serviceSchema).min(1),
+  buyers: z.array(buyerSchema).min(1),
+  areas: z.array(areaSchema).min(1),
+  clients: z.array(clientSchema),
+  clients_note: z.string().optional(),
+  reviews: z.array(reviewSchema),
+  work: z.array(workPairSchema),
+  work_shot_list: z.array(z.string()).optional(),
+  lead_magnet: leadMagnetSchema,
+  source_tags: z.array(z.string()),
+});
+
+export type Content = z.infer<typeof contentSchema>;
+
+/* ------------------------------------------------------------------ *
+ * Cross-cutting doctrine checks
+ * ------------------------------------------------------------------ */
+
+function walkStrings(node: unknown, path: string, visit: (s: string, p: string) => void) {
+  if (typeof node === "string") return visit(node, path);
+  if (Array.isArray(node)) return node.forEach((v, i) => walkStrings(v, `${path}[${i}]`, visit));
+  if (node && typeof node === "object") {
+    for (const [k, v] of Object.entries(node as Record<string, unknown>)) {
+      // Internal annotation fields never render, so they are exempt from copy rules.
+      if (["note", "needs", "resolution", "source", "content_gate", "compliance_note", "why_own_page",
+           "scope_flag", "fallback_note", "price_position_note", "rule", "doctrine",
+           "reference_axis", "signature_element", "positioning"].includes(k)) continue;
+      walkStrings(v, `${path}.${k}`, visit);
+    }
+  }
+}
+
+function resolvePath(content: any, path: string): unknown {
+  return path
+    .replace(/\[(\d+)\]/g, ".$1")
+    .split(".")
+    .reduce((acc: any, key) => (acc == null ? acc : acc[key]), content);
+}
+
+export function auditContent(content: Content, mode: BuildMode): string[] {
+  const errors: string[] = [];
+
+  // Doctrine section 8. No booking language without a booking URL.
+  if (!content.endpoints.booking_url) {
+    walkStrings(content, "content", (s, p) => {
+      const hit = BOOKING_CLAIMS.find((c) => new RegExp(`\\b${c}\\b`, "i").test(s));
+      if (hit) errors.push(`${p}: says "${hit}" with no endpoints.booking_url. Doctrine section 8.`);
+    });
+  }
+
+  // Doctrine hard stop 3. Consent gate.
+  content.reviews.forEach((r, i) => {
+    if (!r.consent && mode === "launch") {
+      errors.push(`reviews[${i}] (${r.name}): consent is false. It must not render. Filter it, or get permission.`);
+    }
+  });
+
+  // Every source tag used must be declared, so nothing lands in the CRM unattributed.
+  const declared = new Set(content.source_tags);
+  const used: string[] = [];
+  content.services.forEach((s) => used.push(s.source_tag));
+  content.buyers.forEach((b) => b.cta.source_tag && used.push(b.cta.source_tag));
+  used.forEach((t) => {
+    if (!declared.has(t)) errors.push(`source_tag "${t}" is used but not declared in source_tags.`);
+  });
+
+  // Doctrine section 10. Unique title and meta description per route.
+  const titles = new Map<string, string>();
+  const metas = new Map<string, string>();
+  const register = (route: string, title: string, meta: string | null) => {
+    if (titles.has(title)) errors.push(`Duplicate title on ${route} and ${titles.get(title)}.`);
+    titles.set(title, route);
+    if (meta) {
+      if (metas.has(meta)) errors.push(`Duplicate meta description on ${route} and ${metas.get(meta)}.`);
+      metas.set(meta, route);
+    }
+  };
+  Object.entries(content.pages).forEach(([route, p]) => register(route, p.title, p.meta_description));
+  content.services.forEach((s) => register(`/${s.slug}/`, s.title, s.meta_description));
+  content.buyers.forEach((b) => register(`/${b.slug}/`, b.title, b.meta_description));
+
+  // Doctrine section 11. A pending fact renders in draft and blocks a launch.
+  if (mode === "launch") {
+    content.provenance.pending_confirmation.forEach((p) => {
+      errors.push(
+        `LAUNCH BLOCKED. ${p.path} is unconfirmed. Source: ${p.source}. ${p.note} ` +
+          `Get Devin's answer, then remove it from provenance.pending_confirmation.`,
+      );
+    });
+    content.provenance.conflicts_to_resolve.forEach((c) => {
+      errors.push(`LAUNCH BLOCKED. Unresolved conflict on "${c.field}": ${c.values.join(" vs ")}. ${c.resolution}`);
+    });
+    if (content.work.length === 0) {
+      errors.push("LAUNCH BLOCKED. work[] is empty. No stock photography, so /work/ stays noindex and out of the sitemap.");
+    }
+    if (!content.lead_magnet.file) {
+      errors.push("LAUNCH BLOCKED. lead_magnet.file is null. The give is the homepage's primary reciprocity path.");
+    }
+  }
+
+  // A pending fact must actually have a value, otherwise it should just be null.
+  content.provenance.pending_confirmation.forEach((p) => {
+    if (p.path.includes("[") === false && resolvePath(content, p.path) == null) {
+      errors.push(`provenance lists ${p.path} as pending but the value is null. Remove it from provenance or supply the value.`);
+    }
+  });
+
+  return errors;
+}
+
+export function parseContent(raw: unknown, mode: BuildMode = "draft"): Content {
+  const parsed = contentSchema.parse(raw);
+  const errors = auditContent(parsed, mode);
+  if (errors.length) {
+    throw new Error(
+      `Content audit failed (${mode} mode), ${errors.length} problem(s):\n\n` + errors.map((e) => `  - ${e}`).join("\n"),
+    );
+  }
+  return parsed;
+}
+
+/** Render helpers that enforce the withholding rules rather than leaving them to a component. */
+export const publishableClients = (c: Content) => c.clients.filter((x) => x.publishable);
+export const publishableReviews = (c: Content) => c.reviews.filter((x) => x.consent);
+export const publishableWork = (c: Content) => c.work.filter((x) => x.consent);
+export const answeredFaqs = <T extends { a: string | null }>(faqs: T[]) => faqs.filter((f) => f.a !== null);
+export const yearsInBusiness = (c: Content) =>
+  c.business.founded_year === null ? null : new Date().getFullYear() - c.business.founded_year;
+export const isPending = (c: Content, path: string) =>
+  c.provenance.pending_confirmation.some((p) => p.path === path);

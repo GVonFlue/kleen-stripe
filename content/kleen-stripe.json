@@ -1,0 +1,734 @@
+{
+  "_meta": {
+    "client": "Kleen Stripe",
+    "version": "v1-phase0-handoff",
+    "generated": "2026-09-02",
+    "doctrine": "ProyTech Website Build Doctrine, sections 1 through 12",
+    "rule": "A null means unverified. The section withholds itself. Do not fill a null with a plausible guess. Any value listed in provenance.pending_confirmation renders in DRAFT builds only and blocks a LAUNCH build until Devin confirms it."
+  },
+
+  "provenance": {
+    "confirmed_by_client": [
+      "business.owner_name",
+      "business.phone_primary",
+      "business.email",
+      "business.domains",
+      "business.service_area_statement",
+      "business.contact_preference",
+      "services[].name",
+      "buyers[]",
+      "brand.colors",
+      "brand.voice"
+    ],
+    "pending_confirmation": [
+      {
+        "path": "business.founded_year",
+        "value": 1979,
+        "source": "kleenstripereviews.com About page, the client's own current site",
+        "note": "That same page also says 45+ years, which would be 1981. Doctrine hard stop 6. Two facts from the client conflict, so stop and ask. This value renders in DRAFT and blocks LAUNCH."
+      },
+      {
+        "path": "business.founder_name",
+        "value": "Max Dyer",
+        "source": "kleenstripereviews.com About page",
+        "note": "Needs Devin's permission to name him publicly, and confirmation of how he wants him referred to."
+      },
+      {
+        "path": "business.owner_since",
+        "value": 2017,
+        "source": "kleenstripereviews.com About page",
+        "note": "Confirm the year."
+      },
+      {
+        "path": "business.generation",
+        "value": 3,
+        "source": "Derived from the client's own site stating founder Max Dyer and grandson Devin",
+        "note": "This is the single most valuable claim on the site. It must come out of Devin's mouth before it goes on a live page."
+      },
+      {
+        "path": "clients[].name",
+        "value": "15 named accounts",
+        "source": "kleenstripereviews.com Home page",
+        "note": "All are stored with publishable false. Several national accounts contractually prohibit vendor name and logo use. Nothing renders until Devin confirms per account."
+      },
+      {
+        "path": "reviews[0]",
+        "value": "Gary Moore, 8/12/2022",
+        "source": "kleenstripereviews.com Testimonials page",
+        "note": "consent is false. Doctrine hard stop 3. No testimonial publishes without permission and nobody edits the words."
+      }
+    ],
+    "conflicts_to_resolve": [
+      {
+        "field": "phone",
+        "values": ["(316) 617-0352 from the onboarding form", "(316) 993-7347 on YellowPages", "(316) 409-4829 on YellowPages"],
+        "resolution": "Only the onboarding number is in content. Ask whether the other two still ring. If they are dead they are costing him calls and the listings need fixing."
+      },
+      {
+        "field": "address",
+        "values": ["Haysville, KS 67060 on his own site and on Yelp", "2203 S Hydraulic St, Wichita, KS 67211 on YellowPages"],
+        "resolution": "street_address is null and the site ships service-area-only. Two cities in public is a top-tier local ranking problem."
+      },
+      {
+        "field": "years_in_business",
+        "values": ["Founded 1979, which is 47 years", "45+ years stated on the same page, which is 1981"],
+        "resolution": "years_in_business is never stored. It is always computed from founded_year so the number cannot drift."
+      }
+    ]
+  },
+
+  "business": {
+    "name": "Kleen Stripe",
+    "legal_name": null,
+    "owner_name": "Devin Hammann",
+    "founder_name": "Max Dyer",
+    "founded_year": 1979,
+    "owner_since": 2017,
+    "generation": 3,
+    "phone_primary": "3166170352",
+    "phone_display": "(316) 617-0352",
+    "sms_enabled": true,
+    "email": "kleenstripewichita@gmail.com",
+    "street_address": null,
+    "city": "Wichita",
+    "state": "KS",
+    "postal_code": null,
+    "address_display": "service_area_only",
+    "hours": null,
+    "after_hours_work": null,
+    "license_number": null,
+    "insured": null,
+    "quote_turnaround": null,
+    "schedule_turnaround": null,
+    "warranty": null,
+    "minimum_job": null,
+    "crew_size": null,
+    "residential_work": null,
+    "contact_preference": ["call", "text"],
+    "service_area_statement": "Wichita and all of Kansas, and we travel to Tulsa, Kansas City, Oklahoma City and the areas around them.",
+    "domains": {
+      "primary": "kleenstripe.com",
+      "secondary": "kleenstripereviews.com",
+      "secondary_disposition": "301 to /reviews/ pending decision 1 in the Phase 0 report"
+    },
+    "social": {
+      "facebook": null,
+      "google_business_profile": null
+    }
+  },
+
+  "brand": {
+    "colors": {
+      "ink": "#111111",
+      "surface": "#FFFFFF",
+      "subtle": "#F5F5F5",
+      "line": "#DDDDDD",
+      "accent": "#FFD400",
+      "accent_ink": "#111111",
+      "ada": "#1B54C8"
+    },
+    "color_rules": [
+      "Accent yellow is reserved for the primary action. It never appears on decoration, borders, icons or headings.",
+      "Every yellow surface carries ink text. Never white on yellow and never yellow on white. Both fail WCAG AA.",
+      "Blue means ADA and nothing else. On a real lot the blue stall is the accessible stall, so the site uses blue the same way the pavement does.",
+      "Exact accent hex is provisional until the logo vector arrives. If the logo specifies a yellow, the logo wins."
+    ],
+    "voice": ["straight-talking", "professional", "a little funny", "family-run"],
+    "reference_sites": ["1800striper.com", "pmpstriping.com"],
+    "reference_axis": "From 1-800-STRIPER, the flat service grid where ADA sits at equal weight instead of buried, plus a quantified turnaround promise. From PMP, the client logo wall and the rating shown as a number. Both are structure, not look. Doctrine section 6, Rung 1 takes the axis and not the aesthetic.",
+    "signature_element": "A hand authored SVG of a real lot layout, stalls filling as the page scrolls, with the ADA stall and its access aisle in the blue. It doubles as the section progress indicator. It is meaningless for a competitor who is not leading on ADA, which is the test.",
+    "never_say": ["cheap", "best", "leading", "premier", "#1", "affordable", "passionate", "dedicated to excellence", "committed to your success", "proven system", "next level", "one stop shop"],
+    "ai_tells_checked": [
+      "No cream #F4F1EA background with high contrast serif and terracotta #D97757 accent",
+      "No near black background with a single acid green or vermilion accent",
+      "No broadsheet layout, hairline rules, zero radius dense columns",
+      "No 01 / 02 / 03 markers on anything that is not genuinely sequential",
+      "No gradient on a big number hero stat",
+      "No scattered decorative motion"
+    ]
+  },
+
+  "positioning": {
+    "decision_status": "pending Devin, decision 2 in the Phase 0 report",
+    "recommended": "Lead on tenure and family. Handle price as a promise, not a position.",
+    "rejected": "Cheap. He listed it on the onboarding form. His buyer is a property manager approving work that has to survive an ADA complaint, and his real competitor in Wichita is EverLine Coatings, a franchise with route density and buying power. Price is the one axis a franchise wins. Forty seven years and a family name is the one they structurally cannot buy.",
+    "price_promise": "Straight pricing. The number on the quote is the number on the invoice.",
+    "competitor_watch": [
+      {"name": "EverLine Coatings Wichita", "url": "https://everlinecoatings.com/us/ks/wichita/", "note": "Franchise, already in market. Leads on being the number one line striping team in Wichita, 4.9 rating, licensed and insured, trademarked quality system, national awards, 700+ sites. This is the site to beat."},
+      {"name": "1-800-STRIPER", "url": "https://www.1800striper.com/", "note": "National franchise, no Wichita location found. Flat 12 service grid, ADA at equal weight, 24 hour estimates and 7 day turnaround stated as numbers."},
+      {"name": "PMP Striping", "url": "https://pmpstriping.com/", "note": "DFW. Four item nav, 5.0 from 39 reviews shown as a number, 54 client logos. No ADA page, which is the gap Kleen Stripe takes."}
+    ]
+  },
+
+  "endpoints": {
+    "form_endpoint": "/api/lead",
+    "booking_url": null,
+    "sheet_id": null,
+    "crm_webhook": null
+  },
+
+  "nav": {
+    "primary": [
+      {"label": "Services", "href": "/services/"},
+      {"label": "ADA Compliance", "href": "/ada-parking-compliance-kansas/"},
+      {"label": "Work", "href": "/work/"},
+      {"label": "Service Area", "href": "/service-areas/"},
+      {"label": "About", "href": "/about/"}
+    ],
+    "cta": {"label": "Get a quote", "href": "/contact/"},
+    "note": "One CTA in the header. Doctrine check 1, Hick's Law. The tappable phone sits beside it as a tel link, not as a second accent button."
+  },
+
+  "pages": {
+    "/": {
+      "type": "home",
+      "title": "Parking Lot Striping & Sealcoating, Wichita KS | Kleen Stripe",
+      "meta_description": "Commercial parking lot striping, sealcoating, ADA layouts and repairs in Wichita and across Kansas. A family crew that has been striping these lots since 1979.",
+      "h1": "Fresh lines on your lot, from the Wichita family that has been striping them since 1979.",
+      "blocks": [
+        {
+          "id": "hero",
+          "eyebrow": "Wichita, Kansas",
+          "headline": "{{h1}}",
+          "requires": ["business.founded_year"],
+          "fallback_headline": "Fresh lines on your lot, from a Wichita family crew that does this and nothing else.",
+          "sub": "Devin Hammann runs the crew his grandfather started. Striping, sealcoating, ADA layouts, crack sealing and repairs on commercial lots across Kansas, and he travels for the right job.",
+          "requires_sub": ["business.founder_name", "business.owner_name"],
+          "fallback_sub": "Striping, sealcoating, ADA layouts, crack sealing and repairs on commercial lots across Kansas.",
+          "cta_primary": {"label": "Get a quote on your lot", "href": "/contact/", "source_tag": "Kleen Stripe - Homepage Quote"},
+          "cta_secondary": {"label": "Send me the ADA checklist", "href": "/ada-striping-checklist/"},
+          "image_slot": "hero_before_after",
+          "scope_flag": "Doctrine section 4 puts the give as the homepage primary CTA on reciprocity grounds. Logan's signed brief puts the quote request first. The scope wins and the conflict is flagged, per the doctrine preamble."
+        },
+        {
+          "id": "doors",
+          "kind": "pick_your_door",
+          "heading": "Which one are you?",
+          "lanes": [
+            {"label": "I manage property", "line": "Multiple lots, one invoice, work that does not close your tenants down.", "href": "/commercial-property-managers/"},
+            {"label": "I'm a paving contractor", "line": "You laid it. He'll stripe it, on your schedule, without you chasing him.", "href": "/paving-and-construction-contractors/"},
+            {"label": "I run a warehouse", "line": "Aisles, racking lines, safety zones and dock markings, inside.", "href": "/warehouse-and-interior-striping-wichita/"},
+            {"label": "I own a small business", "line": "A dozen stalls out front that have not been touched in years.", "href": "/small-business-lots/"}
+          ]
+        },
+        {
+          "id": "numbers",
+          "kind": "numbers_strip",
+          "render_if_min_items": 2,
+          "items": [
+            {"figure": "{{business.founded_year}}", "label": "Striping Wichita lots since", "requires": ["business.founded_year"]}
+          ],
+          "note": "One verified figure is not a strip. This block withholds itself until Devin supplies two more real numbers. Question 12. Doctrine section 2 check 6 says omit a weak number rather than inflate it."
+        },
+        {
+          "id": "before_after",
+          "kind": "before_after_feature",
+          "heading": "Same lot, four hours apart.",
+          "body": "The photographs on this page are lots the crew actually striped. Nothing here was bought from a stock library, which is worth saying because most of the sites you are comparing did buy theirs.",
+          "requires": ["work[0]"],
+          "fallback_note": "DRAFT ONLY. Withholds until Devin's photos land."
+        },
+        {
+          "id": "what_he_does",
+          "heading": "What gets done on your lot",
+          "body": "Striping is the part people see. The rest of it is what decides whether you are calling somebody about this lot again in two years or in ten.",
+          "kind": "service_grid",
+          "source": "services[]"
+        },
+        {
+          "id": "cost_of_inaction",
+          "heading": "The cheapest thing on your property is the paint",
+          "body": "Sealcoat and paint cost a fraction of the asphalt underneath them, and every season you skip is a season water gets down into the cracks. The crack you seal this year is the pothole you patch next year, and the pothole you skip is the section you replace the year after. That is the whole argument for maintenance and it is the reason this crew would rather sell you a plan than a rescue.",
+          "arithmetic_block": {
+            "requires": ["pricing.sealcoat_per_sqft", "pricing.replacement_per_sqft"],
+            "template": "Sealcoat runs about {{pricing.sealcoat_per_sqft}} a square foot. Tearing out and replacing that same square foot runs about {{pricing.replacement_per_sqft}}. On a 20,000 foot lot that is the difference between a line item and a capital request.",
+            "note": "Doctrine section 2 check 2 wants the cost stated as arithmetic. Both figures must come from Devin. Do not estimate them and do not source them from the internet."
+          }
+        },
+        {
+          "id": "trust",
+          "heading": "Three generations, one trade",
+          "body": "Max Dyer started this with one truck and one striping machine in Wichita in 1979. His grandson Devin took it over in 2017 and it still runs the same way, which is to say the person who quotes your lot is the person standing on it while the work happens.",
+          "requires": ["business.founder_name", "business.founded_year", "business.owner_since"],
+          "fallback": "The person who quotes your lot is the person standing on it while the work happens. That is the whole difference between a family crew and a call center.",
+          "image_slot": "devin_and_crew"
+        },
+        {
+          "id": "lead_magnet",
+          "kind": "conversion_block",
+          "source": "lead_magnet"
+        },
+        {
+          "id": "proof",
+          "kind": "reviews",
+          "heading": "What people say afterward",
+          "source": "reviews[]",
+          "render_if_min_items": 1,
+          "cta_beside_each": {"label": "Get a quote on your lot", "href": "/contact/"},
+          "note": "Consent gated. Nothing here renders until Devin confirms permission per review. Doctrine hard stop 3."
+        },
+        {
+          "id": "closing",
+          "kind": "closing_cta",
+          "heading": "Send a photo of your lot and get a number back.",
+          "body": "You do not need a site walk to start. Text a picture and the address, and you will get a real number instead of a range.",
+          "cta_primary": {"label": "Text a photo of your lot", "href": "sms:+13166170352"},
+          "cta_secondary": {"label": "Call Devin", "href": "tel:+13166170352"}
+        }
+      ]
+    },
+
+    "/services/": {
+      "type": "hub",
+      "title": "Parking Lot Services in Wichita, KS | Kleen Stripe",
+      "meta_description": "Striping, ADA layouts, sealcoating, crack and pothole repair, signage, warehouse striping and power washing for commercial lots in Wichita and across Kansas.",
+      "h1": "Everything that happens on a commercial lot",
+      "lede": "Nine things, and they are all the same trade. If your lot needs four of them, you are dealing with one crew and one invoice instead of four contractors blaming each other.",
+      "pricing_note": {
+        "requires": ["pricing.published"],
+        "note": "Doctrine section 2 check 7 puts pricing on the page the nav calls Services. Question 18 asks Devin whether he wants a starting-at per stall or a minimum charge published. Until he answers, this block does not exist."
+      }
+    },
+
+    "/about/": {
+      "type": "about",
+      "title": "About Kleen Stripe | Family-Run Striping in Wichita Since 1979",
+      "meta_description": "Max Dyer started Kleen Stripe in Wichita in 1979 with one truck. His grandson Devin runs it now. Parking lot striping and maintenance across Kansas.",
+      "h1": "One truck, one striping machine, and a phone book",
+      "requires": ["business.founded_year", "business.founder_name", "business.owner_since", "business.generation"],
+      "body": [
+        "Max Dyer started Kleen Stripe in Wichita in 1979 with one truck and one striping machine. There was no marketing to it. He striped a lot, the property manager next door saw it, and that was the next job.",
+        "Devin took it over in 2017. He is the third generation on the machine, and he still quotes the work himself, which means the person who tells you what it costs is the person who has to stand on the lot and do it. That arrangement keeps everybody honest.",
+        "The trade has changed in the ways that matter. ADA requirements got teeth, warehouses started wanting floors marked to the inch, and national franchises showed up in Wichita with call centers. What has not changed is that a lot either has straight lines on it or it does not, and you can see which from the street."
+      ],
+      "cta": {"label": "Call Devin", "href": "tel:+13166170352", "principle": "Trust is a person. Doctrine section 4."}
+    },
+
+    "/reviews/": {
+      "type": "reviews",
+      "title": "Kleen Stripe Reviews | Wichita Parking Lot Striping",
+      "meta_description": "Reviews from Wichita property managers, contractors and business owners who have had their lots striped, sealed and repaired by Kleen Stripe.",
+      "h1": "What people say after the crew leaves",
+      "lede": null,
+      "empty_state": "This page is live but the reviews are not on it yet, because none of them are published without the customer saying yes first.",
+      "note": "kleenstripereviews.com 301s here if decision 1 lands on option A."
+    },
+
+    "/contact/": {
+      "type": "contact",
+      "title": "Get a Quote | Kleen Stripe, Wichita KS",
+      "meta_description": "Call or text (316) 617-0352 for a parking lot striping, sealcoating or ADA compliance quote in Wichita and across Kansas. Send a photo and get a real number.",
+      "h1": "Get a number on your lot",
+      "lede": "Call it, text it, or fill the form. A photo of the lot and the address gets you further than a paragraph describing it.",
+      "form_source_tag": "Kleen Stripe - Contact Page Quote",
+      "consent_line": "Sending this asks for one quote on one lot. It does not sign you up for anything.",
+      "response_expectation": {
+        "requires": ["business.quote_turnaround"],
+        "note": "Doctrine section 5. Success states never invent a response time. Question 14. Until Devin gives a number he stands behind, the success message says what arrives and not how fast."
+      }
+    },
+
+    "/service-areas/": {
+      "type": "areas_hub",
+      "title": "Service Area | Parking Lot Striping Across Kansas | Kleen Stripe",
+      "meta_description": "Wichita, Derby, Andover, Haysville, Newton and all of Kansas. Kleen Stripe travels to Tulsa, Kansas City and Oklahoma City for commercial lot work.",
+      "h1": "Where the truck goes",
+      "lede": "Wichita and the towns around it are the day to day. The rest of Kansas is a normal week. Tulsa, Kansas City and Oklahoma City are a phone call, and whether it makes sense depends on the size of the lot, so ask.",
+      "travel_note": "Out of state markets are listed here rather than given their own pages. A city page with no finished jobs and no photographs behind it is thin content, and it drags down the Wichita pages that actually earn. They get real pages when there is real work to put on them."
+    },
+
+    "/work/": {
+      "type": "gallery",
+      "title": "Our Work | Parking Lot Striping Photos | Kleen Stripe",
+      "meta_description": "Before and after photographs of parking lots striped, sealed and repaired by Kleen Stripe in Wichita and across Kansas.",
+      "h1": "Before and after, same lot, same angle",
+      "lede": "Every photograph on this page is a lot this crew worked on. None of it is stock.",
+      "filters": ["Retail", "Apartments", "Warehouse", "Industrial", "Small business", "ADA"],
+      "indexable": false,
+      "note": "Ships noindex and out of the sitemap until real photographs exist. Same pattern as the Level Up gallery."
+    },
+
+    "/ada-striping-checklist/": {
+      "type": "lead_magnet_landing",
+      "title": "Free ADA Parking Checklist | Kansas | Kleen Stripe",
+      "meta_description": "A one page ADA parking walk-around for Kansas property managers. Stall counts, van accessible dimensions, signage, slope and the route to the door.",
+      "h1": "The ADA walk-around, on one page",
+      "source_tag": "Kleen Stripe - ADA Checklist Download"
+    },
+
+    "/thank-you/": {
+      "type": "thank_you",
+      "title": "Thanks, that came through | Kleen Stripe",
+      "meta_description": null,
+      "h1": "That came through",
+      "body": "Devin gets these himself rather than an office passing them along. If it is urgent, call or text (316) 617-0352 and you will get him or the crew.",
+      "indexable": false
+    },
+
+    "/404.html": {
+      "type": "not_found",
+      "title": "That page moved | Kleen Stripe",
+      "meta_description": null,
+      "h1": "Nothing striped here",
+      "body": "That page is not where it used to be. The services are through here, and the phone works no matter what.",
+      "indexable": false
+    }
+  },
+
+  "services": [
+    {
+      "slug": "parking-lot-striping-wichita",
+      "name": "Parking Lot Striping",
+      "money_page": true,
+      "title": "Parking Lot Striping in Wichita, KS | Kleen Stripe",
+      "meta_description": "Commercial parking lot striping in Wichita and across Kansas. Layouts, restripes, ADA stalls, fire lanes and custom stencils by a family crew since 1979.",
+      "h1": "Parking lot striping in Wichita",
+      "lede": "You get straight lines, square corners, and stalls that line up with the ones beside them. That sounds like a low bar until you have paid somebody who could not clear it.",
+      "scope": [
+        "Standard stall striping, single and double line",
+        "Layouts on new asphalt or concrete",
+        "Restripes over existing lines",
+        "ADA stalls, access aisles and signage",
+        "Fire lanes and no parking zones",
+        "Arrows, crosswalks, stop bars and directional markings",
+        "Numbered, reserved and visitor stalls",
+        "Custom stencils"
+      ],
+      "faqs": [
+        {"q": "Do you have to close the whole lot?", "a": "No. Most jobs get done in sections so your tenants and customers keep parking. Each section needs to stay clear while the paint sets, and the crew works the sequence out with you before anybody puts a cone down."},
+        {"q": "Can you stripe over the old lines or does it need sealing first?", "a": "Either works. Striping over existing lines is the cheaper job and it looks fine when the asphalt underneath is sound. If the surface is oxidised and grey, the paint sits on top of loose material and it comes up early, so sealcoating first is the call. Devin tells you which one your lot is when he looks at it, and he will say so if the cheaper one is the right one."}
+      ],
+      "faqs_pending": ["How long does the paint last, and does that change with traffic volume? Needs Devin's real answer, question 15.", "Paint or thermoplastic? Question 15."],
+      "source_tag": "Kleen Stripe - Parking Lot Striping Quote",
+      "schema_type": "Service",
+      "buyers": ["commercial-property-managers", "small-business-lots", "paving-and-construction-contractors"]
+    },
+    {
+      "slug": "ada-parking-compliance-kansas",
+      "name": "ADA Compliance",
+      "money_page": true,
+      "priority": 1,
+      "title": "ADA Parking Compliance in Kansas | Kleen Stripe",
+      "meta_description": "ADA parking stalls, access aisles, signage and layouts for Kansas commercial properties. Get your lot walked and brought into compliance by Kleen Stripe.",
+      "h1": "ADA parking compliance in Kansas",
+      "lede": "If you are on this page you are either coming off an inspection or you have a feeling about one. Either way, the lot is the part of an ADA complaint that is cheapest to fix and easiest to see from the parking area, which is why it is the part that gets cited.",
+      "body": [
+        "Compliance is not just the blue paint. It is how many accessible stalls your total stall count requires, how wide the access aisle beside them is, whether one of them is van accessible, where the signs sit and how high they mount, the slope of the stall and the aisle, and whether somebody can get from that stall to your front door without leaving the accessible route.",
+        "Most lots that fail do not fail on the stall. They fail on the aisle, the sign height, or the route to the door. Those are the three the crew checks first."
+      ],
+      "scope": [
+        "Accessible stall and access aisle layout to current standards",
+        "Van accessible stalls and the wider aisle they need",
+        "Accessible route from stall to entrance",
+        "ADA signage, supplied and installed at correct mounting height",
+        "Restriping existing accessible stalls that have faded or drifted",
+        "Walk the lot and tell you what is out, before you commit to anything"
+      ],
+      "compliance_note": "COPY GATE. Every dimension, ratio, slope figure and penalty amount on this page must be checked against the 2010 ADA Standards for Accessible Design and any Kansas requirement before it is written. Do not write a number from memory and do not source one from a competitor's blog. DOJ civil penalty maximums adjust annually, so a figure without a current citation and date does not go on the page. Doctrine hard stop 1.",
+      "faqs": [
+        {"q": "How many accessible stalls does my lot need?", "a": null, "needs": "Requires the current ADA stall count table, verified against the 2010 Standards before this answer is written."},
+        {"q": "Can you tell me if my lot is out of compliance before I commit to anything?", "a": "Yes, and that is the usual way it starts. Devin walks it, tells you what is out and what it takes to fix, and you decide from there. There is no charge for being told your lot is fine."}
+      ],
+      "source_tag": "Kleen Stripe - ADA Compliance Quote",
+      "schema_type": "Service",
+      "buyers": ["commercial-property-managers", "small-business-lots"],
+      "why_own_page": "Highest commercial intent term on the list, and the only one where the buyer is not shopping, they are exposed. PMP has no ADA page. EverLine handles it as a bullet inside a FAQ. This is the gap."
+    },
+    {
+      "slug": "parking-lot-sealcoating-wichita",
+      "name": "Sealcoating",
+      "money_page": true,
+      "title": "Asphalt Sealcoating in Wichita, KS | Kleen Stripe",
+      "meta_description": "Commercial asphalt sealcoating in Wichita and across Kansas. Protect the asphalt you already paid for before water gets into it. Quotes from Kleen Stripe.",
+      "h1": "Sealcoating in Wichita",
+      "lede": "Asphalt fails from the top down and from the inside out at the same time. Sun oxidises the surface, water gets into what the sun opened up, and Kansas freezes it. Sealcoat is the layer that keeps that sequence from starting.",
+      "scope": [
+        "Commercial lot sealcoating",
+        "Surface cleaning and prep before seal goes down",
+        "Oil spot priming",
+        "Crack sealing ahead of the seal coat",
+        "Restriping after the seal cures"
+      ],
+      "faqs": [
+        {"q": "How long does the lot need to stay closed?", "a": null, "needs": "Devin's real cure window, question 14. Do not write a number here."},
+        {"q": "Do I need to restripe after sealcoating?", "a": "Yes. Seal goes over everything, so the lines go down again afterward. That is why the two get quoted together, and it is also the moment to fix a layout that was never right in the first place."}
+      ],
+      "faqs_pending": ["What product line does he use, and is there a warranty on it? Question 16."],
+      "source_tag": "Kleen Stripe - Sealcoating Quote",
+      "schema_type": "Service",
+      "buyers": ["commercial-property-managers", "small-business-lots"]
+    },
+    {
+      "slug": "crack-sealing-and-pothole-repair-wichita",
+      "name": "Crack Sealing and Pothole Repair",
+      "money_page": true,
+      "title": "Crack Sealing & Pothole Repair, Wichita KS | Kleen Stripe",
+      "meta_description": "Asphalt crack sealing and pothole repair for commercial lots in Wichita and across Kansas. Stop water getting under your asphalt. Kleen Stripe quotes.",
+      "h1": "Crack sealing and pothole repair",
+      "lede": "A crack is not a cosmetic problem, it is a door. Water goes through it, sits under the asphalt, freezes, and lifts the section from underneath. By the time you can see a pothole the damage happened a year earlier.",
+      "scope": [
+        "Hot pour crack sealing",
+        "Pothole cut out and patch",
+        "Failed section repair",
+        "Concrete repair",
+        "Assessment of what needs sealing now and what can wait a season"
+      ],
+      "faqs": [
+        {"q": "Is patching worth it or should I just replace the section?", "a": "Depends what is under it. If the base is sound, a patch holds and you have bought years for a fraction of the cost. If the base has gone, a patch is a way of spending money twice. Devin will tell you which one you have, including when the answer is the expensive one."}
+      ],
+      "source_tag": "Kleen Stripe - Crack Sealing Quote",
+      "schema_type": "Service",
+      "buyers": ["commercial-property-managers", "paving-and-construction-contractors"]
+    },
+    {
+      "slug": "restriping-and-new-layouts",
+      "name": "Restriping and New Layouts",
+      "title": "Parking Lot Restriping & New Layouts | Wichita | Kleen Stripe",
+      "meta_description": "Restripe a faded lot or lay out a new one. Maximise stall count, fix traffic flow and bring the ADA stalls up to standard. Kleen Stripe, Wichita KS.",
+      "h1": "Restriping and new layouts",
+      "lede": "A restripe puts back what was there. A new layout asks whether what was there was ever right. On a lot that has been repainted over the same lines for twenty years, that question is usually worth asking.",
+      "scope": [
+        "Restripe over existing layout",
+        "New layout on fresh asphalt or concrete",
+        "Redesign for stall count, traffic flow or truck access",
+        "Bring an existing layout up to current ADA standards",
+        "Layout drawings before anybody paints anything"
+      ],
+      "faqs": [
+        {"q": "Can you fit more stalls on my lot?", "a": "Sometimes, and it is worth asking. Older lots were often laid out generously, and the ADA stalls were added later by whoever had a brush. Devin measures it and tells you what the lot will actually hold, including when the answer is that it already holds it."}
+      ],
+      "source_tag": "Kleen Stripe - Restriping Quote",
+      "schema_type": "Service",
+      "buyers": ["commercial-property-managers", "paving-and-construction-contractors"]
+    },
+    {
+      "slug": "warehouse-and-interior-striping-wichita",
+      "name": "Warehouse and Interior Striping",
+      "money_page": true,
+      "title": "Warehouse & Interior Floor Striping, Wichita KS | Kleen Stripe",
+      "meta_description": "Warehouse aisle marking, safety zones, dock lines and machine shop floor striping in Wichita and across Kansas. Interior layout work by Kleen Stripe.",
+      "h1": "Warehouse and interior striping",
+      "lede": "Inside is a different job. The tolerance is tighter, the paint has to survive forklift traffic instead of weather, and the lines are doing safety work rather than parking work. Same crew, different machine.",
+      "scope": [
+        "Aisle and travel lane marking",
+        "Racking and staging area layout",
+        "Safety zones, keep clear areas and hatching",
+        "Dock and door approach markings",
+        "Machine shop and production floor layout",
+        "Line removal and relayout when the floor plan changes"
+      ],
+      "faqs": [
+        {"q": "Can you work around our operation?", "a": "Usually, and it comes down to sectioning and scheduling. Most interior jobs get done in zones or outside production hours so the floor keeps running. Tell Devin what your hours look like when you call and he will scope it that way."}
+      ],
+      "faqs_pending": ["Does he do epoxy or slip resistant coatings? EverLine lists both. Question 15."],
+      "source_tag": "Kleen Stripe - Warehouse Striping Quote",
+      "schema_type": "Service",
+      "buyers": ["commercial-property-managers"]
+    },
+    {
+      "slug": "parking-lot-signage-and-bumper-blocks",
+      "name": "Signage and Bumper Blocks",
+      "title": "Parking Signs & Bumper Blocks, Wichita KS | Kleen Stripe",
+      "meta_description": "ADA signs, no parking, reserved and directional signage plus bumper block supply and installation for commercial lots in Wichita and across Kansas.",
+      "h1": "Signs, bumper blocks and the rest of the hardware",
+      "lede": "The paint is half of a compliant stall. The sign is the other half, and it has a height it has to sit at. Kleen Stripe supplies and installs both so you are not coordinating a sign company against a striping crew.",
+      "scope": [
+        "ADA and van accessible signage, supplied and installed",
+        "No parking, fire lane and tow away signage",
+        "Reserved, visitor and numbered stall signs",
+        "Directional and speed signage",
+        "Bumper block supply and installation",
+        "Bollard installation and bollard covers",
+        "Replacing signs that were knocked down or faded out"
+      ],
+      "faqs": [],
+      "source_tag": "Kleen Stripe - Signage Quote",
+      "schema_type": "Service",
+      "buyers": ["commercial-property-managers", "small-business-lots"]
+    },
+    {
+      "slug": "commercial-power-washing-wichita",
+      "name": "Power Washing",
+      "title": "Commercial Power Washing in Wichita, KS | Kleen Stripe",
+      "meta_description": "Commercial pressure washing for parking lots, sidewalks, storefronts and drive-thrus in Wichita and across Kansas. Kleen Stripe.",
+      "h1": "Power washing",
+      "lede": "The lot is the first thing your customer stands on and the sidewalk is the second. Both of them are usually filthy and nobody notices until they are not.",
+      "scope": [
+        "Parking lot and drive lane washing",
+        "Sidewalk and walkway cleaning",
+        "Storefront and entry cleaning",
+        "Drive-thru lanes and dumpster pads",
+        "Gum, oil and stain removal",
+        "Surface prep ahead of sealcoating"
+      ],
+      "faqs": [],
+      "source_tag": "Kleen Stripe - Power Washing Quote",
+      "schema_type": "Service",
+      "buyers": ["commercial-property-managers", "small-business-lots"]
+    },
+    {
+      "slug": "parking-lot-maintenance-programs",
+      "name": "Maintenance Programs",
+      "title": "Parking Lot Maintenance Programs | Wichita KS | Kleen Stripe",
+      "meta_description": "A maintenance plan on a cycle for one lot or a whole portfolio. Sealing, crack repair and restriping before any of it becomes an emergency. Kleen Stripe, Wichita.",
+      "h1": "Maintenance on a schedule instead of an emergency",
+      "lede": "Every lot is on a maintenance schedule whether anybody wrote one down or not. The only question is whether you set the schedule or the weather does.",
+      "body": [
+        "A program means the lot gets looked at on a cycle, the cracks get sealed while they are still cracks, and the striping gets refreshed before somebody complains about it. For a portfolio it also means one contact, one schedule and one invoice instead of four vendors and a spreadsheet.",
+        "This is the one to ask about if you manage more than one property. It is also the one that costs the least over ten years, which is not a coincidence."
+      ],
+      "scope": [
+        "Annual or multi-year maintenance schedule per property",
+        "Portfolio scheduling across multiple lots",
+        "Condition assessment and a plan for what needs doing when",
+        "Budget figures you can take into a capital planning meeting",
+        "One point of contact and one invoice"
+      ],
+      "faqs": [],
+      "source_tag": "Kleen Stripe - Maintenance Program Quote",
+      "schema_type": "Service",
+      "buyers": ["commercial-property-managers"]
+    }
+  ],
+
+  "buyers": [
+    {
+      "slug": "commercial-property-managers",
+      "label": "Property managers and owners",
+      "title": "Parking Lot Striping for Property Managers | Wichita KS",
+      "meta_description": "Multi-property parking lot striping, sealcoating and ADA compliance in Wichita and across Kansas. One crew, one schedule, one invoice. Kleen Stripe.",
+      "h1": "For the person who has to answer for the lot",
+      "pain": "You are not buying striping. You are buying a lot that does not generate a complaint, a tenant call or an ADA letter, on a budget you already submitted.",
+      "body": [
+        "Most of what makes a striping vendor painful has nothing to do with the paint. It is the crew that shows up on a Tuesday when you told your tenants Thursday, the quote that grows on the invoice, and the phone that nobody answers when a section needs to reopen early.",
+        "Kleen Stripe is a family crew and the owner quotes the work, which means there is one person to call and he already knows your property. For a portfolio, the maintenance program puts every lot on a cycle with figures you can carry into a budget meeting."
+      ],
+      "proof_needed": ["Multi-property experience, question 12", "Licensed and insured status, question 10", "Whether he works nights, question 13"],
+      "cta": {"label": "Get a plan for your properties", "href": "/contact/", "source_tag": "Kleen Stripe - Property Manager Quote"},
+      "principle": "Authority through specificity."
+    },
+    {
+      "slug": "paving-and-construction-contractors",
+      "label": "Paving and construction contractors",
+      "title": "Subcontract Parking Lot Striping | Wichita KS | Kleen Stripe",
+      "meta_description": "Striping subcontractor for asphalt and concrete paving contractors and new construction in Wichita and across Kansas. On your schedule. Kleen Stripe.",
+      "h1": "You laid it. He'll stripe it.",
+      "pain": "Your striping sub is on the critical path at the exact point where everybody has already used up the float. What you need is somebody who shows up on the day and does not have to be chased.",
+      "body": [
+        "Kleen Stripe subs striping to asphalt and concrete paving contractors and to new construction across Kansas. Layout from your drawings, ADA stalls to standard, fire lanes, and the markings the inspector is going to look for.",
+        "Send the plan and the date. If the date moves, say so and it moves."
+      ],
+      "proof_needed": ["Existing contractor relationships. Holland Paving and Wildcat Construction appear on his current site but need permission before they are named, question 11."],
+      "cta": {"label": "Send a plan and a date", "href": "/contact/", "source_tag": "Kleen Stripe - Contractor Bid Request"},
+      "principle": "Speed. They are on a deadline."
+    },
+    {
+      "slug": "small-business-lots",
+      "label": "Small business owners",
+      "title": "Small Business Parking Lot Striping | Wichita KS | Kleen Stripe",
+      "meta_description": "Striping and sealcoating for small commercial lots in Wichita. A dozen stalls, a clear price and one day of work. Text a photo to Kleen Stripe for a number.",
+      "h1": "A dozen stalls out front that nobody has touched in years",
+      "pain": "You do not need a proposal. You need somebody to tell you what it costs to make the front of your business look like somebody owns it.",
+      "body": [
+        "Small lots are a one day job and they are quoted the same way. Text a photograph and the address and you get a number, not a range and not a site visit you have to schedule around.",
+        "It is also the cheapest thing you will ever do to the outside of your building, which is worth knowing before you price a sign."
+      ],
+      "price_position_note": "This is the one page where price-forward framing is defensible, per decision 2 option C. It stays off the homepage.",
+      "cta": {"label": "Text a photo and get a number", "href": "sms:+13166170352", "source_tag": "Kleen Stripe - Small Business Quote"},
+      "principle": "Lowest possible friction."
+    }
+  ],
+
+  "areas": [
+    {"city": "Wichita", "state": "KS", "slug": "parking-lot-striping-wichita-ks", "page": false, "primary": true, "note": "Home page and the service pages carry Wichita. No separate city page for the home market, that would cannibalise."},
+    {"city": "Derby", "state": "KS", "slug": "parking-lot-striping-derby-ks", "page": true},
+    {"city": "Andover", "state": "KS", "slug": "parking-lot-striping-andover-ks", "page": true},
+    {"city": "Haysville", "state": "KS", "slug": "parking-lot-striping-haysville-ks", "page": true},
+    {"city": "Newton", "state": "KS", "slug": "parking-lot-striping-newton-ks", "page": true},
+    {"city": "Tulsa", "state": "OK", "slug": null, "page": false, "travel_market": true},
+    {"city": "Kansas City", "state": "MO", "slug": null, "page": false, "travel_market": true},
+    {"city": "Oklahoma City", "state": "OK", "slug": null, "page": false, "travel_market": true}
+  ],
+
+  "clients": [
+    {"name": "Boeing", "publishable": false},
+    {"name": "Kroger", "publishable": false},
+    {"name": "Walmart", "publishable": false},
+    {"name": "Target", "publishable": false},
+    {"name": "Lowe's", "publishable": false},
+    {"name": "Home Depot", "publishable": false},
+    {"name": "FedEx", "publishable": false},
+    {"name": "QuikTrip", "publishable": false},
+    {"name": "Rusty Eck Ford", "publishable": false},
+    {"name": "Bank of the West", "publishable": false},
+    {"name": "Joe Self Chevrolet", "publishable": false},
+    {"name": "Kwik Shop", "publishable": false},
+    {"name": "Davis Moore Chevrolet", "publishable": false},
+    {"name": "Holland Paving", "publishable": false},
+    {"name": "Wildcat Construction", "publishable": false}
+  ],
+  "clients_note": "Sourced from the client's own current site. All publishable false until Devin confirms per account. Several national accounts prohibit vendors from using their name or mark. A logo wall needs written permission, a text mention usually needs less, and a generic line naming no one needs none. Question 11.",
+
+  "reviews": [
+    {
+      "name": "Gary Moore",
+      "date": "2022-08-12",
+      "rating": 5,
+      "text": "Great company Top quality highly recommended",
+      "source": "kleenstripereviews.com testimonials page",
+      "consent": false,
+      "note": "Four words and four years old. Not enough to carry a reviews page. Nobody edits the words and nothing publishes without permission. Doctrine hard stop 3."
+    }
+  ],
+
+  "work": [],
+  "work_shot_list": [
+    "A large retail lot, wide angle, before and after from the same standing position",
+    "An apartment complex lot",
+    "A warehouse floor with aisles and safety zones",
+    "An ADA stall with its access aisle and the sign in frame",
+    "A fresh sealcoat, edge visible against untreated asphalt",
+    "A crack seal or pothole patch, before and after",
+    "A machine shop or production floor",
+    "Devin and the crew with a truck and the striping machine"
+  ],
+
+  "lead_magnet": {
+    "title": "The ADA parking walk-around",
+    "subtitle": "One page. Take it outside and look at your own lot.",
+    "file": null,
+    "value_stack": [
+      "The number of accessible stalls your total stall count actually requires, in a table you can read in one pass",
+      "Van accessible stall and access aisle dimensions, with the mistakes that show up most often",
+      "Where the signs go, how high they mount and which ones your lot needs",
+      "Slope limits, and why a lot that passed ten years ago can fail today",
+      "The route from the accessible stall to your front door, which is where most lots actually fail",
+      "A walk-around you can hand to whoever opens the building in the morning"
+    ],
+    "cta": {"label": "Send me the checklist", "href": "#", "source_tag": "Kleen Stripe - ADA Checklist Download"},
+    "consent_line": "One checklist, sent once. It is not a subscription.",
+    "content_gate": "file is null. The PDF does not exist yet and the site withholds the block until it does. Every figure in it must be verified against the 2010 ADA Standards for Accessible Design before it is written. Doctrine hard stop 1."
+  },
+
+  "source_tags": [
+    "Kleen Stripe - Homepage Quote",
+    "Kleen Stripe - Contact Page Quote",
+    "Kleen Stripe - ADA Checklist Download",
+    "Kleen Stripe - Parking Lot Striping Quote",
+    "Kleen Stripe - ADA Compliance Quote",
+    "Kleen Stripe - Sealcoating Quote",
+    "Kleen Stripe - Crack Sealing Quote",
+    "Kleen Stripe - Restriping Quote",
+    "Kleen Stripe - Warehouse Striping Quote",
+    "Kleen Stripe - Signage Quote",
+    "Kleen Stripe - Power Washing Quote",
+    "Kleen Stripe - Maintenance Program Quote",
+    "Kleen Stripe - Property Manager Quote",
+    "Kleen Stripe - Contractor Bid Request",
+    "Kleen Stripe - Small Business Quote",
+    "Kleen Stripe - Derby Quote",
+    "Kleen Stripe - Andover Quote",
+    "Kleen Stripe - Haysville Quote",
+    "Kleen Stripe - Newton Quote"
+  ]
+}

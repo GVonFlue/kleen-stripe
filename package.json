@@ -1,0 +1,33 @@
+{
+  "name": "kleen-stripe",
+  "private": true,
+  "version": "1.0.0",
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "build:launch": "LAUNCH=1 next build",
+    "start": "next start",
+    "lint": "next lint",
+    "content:verify": "tsx content/schema.verify.ts",
+    "content:selftest": "tsx content/schema.selftest.ts",
+    "audit": "node scripts/audit.mjs",
+    "audit:selftest": "node scripts/audit.selftest.mjs",
+    "check:render": "node scripts/check-render.mjs"
+  },
+  "dependencies": {
+    "next": "^16.3.4",
+    "react": "^19.2.8",
+    "react-dom": "^19.2.8",
+    "zod": "^4.5.4"
+  },
+  "devDependencies": {
+    "@tailwindcss/postcss": "^4.3.3",
+    "@types/node": "^26.4.1",
+    "@types/react": "^19.2.18",
+    "@types/react-dom": "^19.2.5",
+    "postcss": "^8.5.26",
+    "tailwindcss": "^4.3.3",
+    "tsx": "^4.23.13",
+    "typescript": "^7.0.2"
+  }
+}
