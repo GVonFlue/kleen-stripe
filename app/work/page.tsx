@@ -1,8 +1,8 @@
 import type { Metadata } from "next";
-import Image from "next/image";
 import { content } from "@/lib/content";
 import { publishableWork, publishableGallery, isWorkIndexable } from "@/content/schema";
 import ClosingBar from "@/components/ClosingBar";
+import GalleryPhoto from "@/components/GalleryPhoto";
 
 const page = content.pages["/work/"];
 
@@ -48,20 +48,19 @@ export default function WorkPage() {
             {gallery.length > 0 && (
               <div className="mt-8 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
                 {gallery.map((photo, i) => (
-                  <div key={photo.id} className="relative aspect-[4/3] overflow-hidden rounded-md">
-                    <Image
-                      src={photo.src}
-                      alt={photo.alt}
-                      fill
-                      // The first tile is above the fold on every viewport this site
-                      // supports, so it gets eager/priority loading instead of lazy,
-                      // the same LCP reasoning as the homepage hero.
-                      priority={i === 0}
-                      loading={i === 0 ? undefined : "lazy"}
-                      sizes="(min-width: 1024px) 33vw, (min-width: 640px) 50vw, 100vw"
-                      className="object-cover"
-                    />
-                  </div>
+                  <GalleryPhoto
+                    key={photo.id}
+                    id={photo.id}
+                    fallbackSlot={photo.id}
+                    aspect="aspect-[4/3]"
+                    sizes="(min-width: 1024px) 33vw, (min-width: 640px) 50vw, 100vw"
+                    // The first tile is above the fold on every viewport this site
+                    // supports, so it loads eagerly instead of lazily, same LCP
+                    // reasoning as the homepage hero. Every tile, first or not,
+                    // carries its blur placeholder so a fast scroll never lands on
+                    // blank white waiting for the rest to load in.
+                    eager={i === 0}
+                  />
                 ))}
               </div>
             )}

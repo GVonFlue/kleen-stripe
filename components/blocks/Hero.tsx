@@ -44,7 +44,7 @@ export default function Hero({ block }: { block: any }) {
             fallbackSlot={block.image_slot}
             aspect="aspect-[16/9]"
             sizes="(min-width: 1152px) 1152px, 100vw"
-            priority
+            eager
           />
         ) : (
           <PhotoSlot slot={block.image_slot} aspect="aspect-[16/9]" />

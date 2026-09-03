@@ -293,6 +293,10 @@ export const gallerySchema = z.object({
   lot_type: z.enum(["Retail", "Apartments", "Warehouse", "Industrial", "Small business", "ADA"]),
   caption: fact(copy(300)),
   consent: z.boolean(),
+  /** A ~24px data URI, so a scroll or a slow connection never lands on blank
+   *  white while the real photo loads. Optional so a hand-added gallery entry
+   *  without one still renders (a solid tone, not a void, is the fallback). */
+  blur: z.string().optional(),
 });
 
 /** Which gallery photo, if any, fills the hero and trust image slots. Null leaves

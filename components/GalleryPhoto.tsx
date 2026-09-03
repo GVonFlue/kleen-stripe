@@ -9,29 +9,31 @@ type GalleryPhotoProps = {
   fallbackSlot: string;
   aspect?: string;
   sizes?: string;
-  priority?: boolean;
+  /** The LCP candidate only (the hero photo). Next 16 deprecated `priority` in
+   *  favor of naming the three things it used to bundle explicitly: preload the
+   *  resource, load it eagerly, and mark the fetch high-priority. Passing only
+   *  the old `priority` prop on this version silently drops the eager/fetchPriority
+   *  half, which is exactly the bug Lighthouse's LCP-discovery check caught. */
+  eager?: boolean;
   className?: string;
 };
 
-/**
- * Renders one real photo from content.gallery[] by id. next/image handles the
- * AVIF/WebP negotiation and, unless `priority` is set, lazy-loads below the fold
- * per the work order. `priority` is for the hero image only: it must be in the DOM
- * and painted first for LCP, with any reveal animation layered on as enhancement.
- */
-export default function GalleryPhoto({ id, fallbackSlot, aspect = "aspect-[4/3]", sizes = "100vw", priority = false, className = "" }: GalleryPhotoProps) {
+export default function GalleryPhoto({ id, fallbackSlot, aspect = "aspect-[4/3]", sizes = "100vw", eager = false, className = "" }: GalleryPhotoProps) {
   const photo = content.gallery.find((g) => g.id === id);
   if (!photo) return <PhotoSlot slot={fallbackSlot} aspect={aspect} className={className} />;
 
   return (
-    <div className={`relative w-full overflow-hidden rounded-md ${aspect} ${className}`}>
+    <div className={`relative w-full overflow-hidden rounded-md bg-[var(--subtle)] ${aspect} ${className}`}>
       <Image
         src={photo.src}
         alt={photo.alt}
         fill
         sizes={sizes}
-        priority={priority}
-        loading={priority ? undefined : "lazy"}
+        preload={eager}
+        loading={eager ? "eager" : "lazy"}
+        fetchPriority={eager ? "high" : undefined}
+        placeholder={photo.blur ? "blur" : "empty"}
+        blurDataURL={photo.blur}
         className="object-cover"
       />
     </div>
