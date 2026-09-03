@@ -62,4 +62,14 @@ export function smsHref(phone: string): string {
   return `sms:+1${phone}`;
 }
 
+/**
+ * Separate from LAUNCH on purpose. LAUNCH governs whether the build refuses to
+ * compile while facts are unconfirmed; it says nothing about whether the visible
+ * "pending Devin's confirmation" badges should show on a build someone is actually
+ * looking at. Devin reviewing the site should see a clean page, not QA annotations,
+ * so those badges are opt-in via DRAFT_BADGES=1 rather than on by default whenever
+ * the build merely isn't LAUNCH.
+ */
+export const showDraftBadges = process.env.DRAFT_BADGES === "1";
+
 export { isPending, buildMode };

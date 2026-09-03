@@ -39,7 +39,13 @@ export default function Hero({ block }: { block: any }) {
 
       <div className="mt-10">
         {content.photo_assignments.hero ? (
-          <GalleryPhoto id={content.photo_assignments.hero} aspect="aspect-[16/9]" sizes="(min-width: 1152px) 1152px, 100vw" priority />
+          <GalleryPhoto
+            id={content.photo_assignments.hero}
+            fallbackSlot={block.image_slot}
+            aspect="aspect-[16/9]"
+            sizes="(min-width: 1152px) 1152px, 100vw"
+            priority
+          />
         ) : (
           <PhotoSlot slot={block.image_slot} aspect="aspect-[16/9]" />
         )}

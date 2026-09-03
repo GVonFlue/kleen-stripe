@@ -1,17 +1,18 @@
 import { content } from "@/lib/content";
-import { buildMode, isPending } from "@/lib/render";
+import { isPending, showDraftBadges } from "@/lib/render";
 
 type PendingNoteProps = { paths: string[] };
 
 /**
  * A visible flag on any fact still sitting in provenance.pending_confirmation.
- * Draft mode only, since a launch build already refuses to compile while one of
- * these exists. This is a review aid for Devin and Logan, not visitor copy, which
- * is why its text is authored here rather than pulled from the content file.
- * README, "those render in draft with a badge."
+ * Gated on DRAFT_BADGES, not on draft mode itself: a client-review build should
+ * render clean by default, and LAUNCH=1 already refuses to compile while one of
+ * these exists regardless of this flag. This is a review aid for Devin and Logan
+ * to opt into, not visitor copy, which is why its text is authored here rather
+ * than pulled from the content file.
  */
 export default function PendingNote({ paths }: PendingNoteProps) {
-  if (buildMode !== "draft") return null;
+  if (!showDraftBadges) return null;
   const pending = paths.filter((p) => isPending(content, p));
   if (pending.length === 0) return null;
 

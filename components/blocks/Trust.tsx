@@ -25,7 +25,7 @@ export default function Trust({ block }: { block: any }) {
           <p className="mt-3 max-w-xl text-[var(--ink)]/80">{body}</p>
         </div>
         {trustPhotoId ? (
-          <GalleryPhoto id={trustPhotoId} aspect="aspect-[4/3]" sizes="(min-width: 640px) 50vw, 100vw" />
+          <GalleryPhoto id={trustPhotoId} fallbackSlot={block.image_slot} aspect="aspect-[4/3]" sizes="(min-width: 640px) 50vw, 100vw" />
         ) : (
           <PhotoSlot slot={block.image_slot} aspect="aspect-[4/3]" />
         )}
