@@ -5,6 +5,7 @@ import Cta from "@/components/Cta";
 import ClosingBar from "@/components/ClosingBar";
 import PhotoSlot from "@/components/PhotoSlot";
 import PendingNote from "@/components/PendingNote";
+import PaintedLine from "@/components/PaintedLine";
 
 const page = content.pages["/about/"];
 
@@ -22,6 +23,7 @@ export default function AboutPage() {
       <article className="mx-auto max-w-3xl px-4 py-10 sm:py-14">
         <PendingNote paths={page.requires ?? []} />
         <h1 className="text-[length:var(--text-h1)] font-extrabold text-[var(--ink)]">{page.h1}</h1>
+        <PaintedLine className="mt-3 w-16" />
         <div className="mt-8">
           <PhotoSlot slot="devin_and_crew_about" aspect="aspect-[16/9]" />
         </div>

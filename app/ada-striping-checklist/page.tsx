@@ -3,6 +3,7 @@ import { content } from "@/lib/content";
 import { telHref, smsHref } from "@/lib/render";
 import Cta from "@/components/Cta";
 import ClosingBar from "@/components/ClosingBar";
+import PaintedLine from "@/components/PaintedLine";
 
 const page = content.pages["/ada-striping-checklist/"];
 const { lead_magnet } = content;
@@ -25,6 +26,7 @@ export default function AdaChecklistPage() {
     <>
       <article className="mx-auto max-w-2xl px-4 py-10 sm:py-14">
         <h1 className="text-[length:var(--text-h1)] font-extrabold text-[var(--ink)]">{page.h1}</h1>
+        <PaintedLine className="mt-3 w-16" />
         <p className="mt-4 text-[length:var(--text-lede)] text-[var(--ink)]/80">{lead_magnet.subtitle}</p>
 
         <ul className="mt-8 flex flex-col gap-3">

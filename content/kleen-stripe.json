@@ -323,7 +323,8 @@
             },
             {
               "step": "Lines go down",
-              "body": "The crew works it in sections so your lot keeps running."
+              "body": "The crew works it in sections so your lot keeps running.",
+              "gallery_id": "striper-dusk-shopping-center"
             },
             {
               "step": "Walk it back",
@@ -402,6 +403,13 @@
             }
           ],
           "note": "New band, added at checkpoint 1. Replaces Garrett's third column, which sold ProyTech, with an operating promise true of Kleen Stripe. Column 1 restates already-confirmed trust facts, column 2 restates the ADA and no-call-center themes already established elsewhere in this file, column 3 is new public-facing phrasing of positioning.price_promise, which is internal strategy text and had not itself passed the copy validator. See checkpoint 1 report."
+        },
+        {
+          "id": "stallgrid",
+          "kind": "signature_visual",
+          "eyebrow": "Every lot, one stall at a time",
+          "heading": "The last stall is always the one that matters",
+          "note": "Motion system step 2. brand.signature_element: hand-authored SVG, stalls fill on scroll, the ADA stall and its aisle land last and land in the blue. Meaningless for a competitor not leading on ADA, which is the point."
         },
         {
           "id": "trust",
@@ -1210,9 +1218,9 @@
   ],
   "gallery_source_note": "16 single photos from https://kleenstripereviews.com/imagery, downloaded to public/photos/source/ and stripped of all metadata (EXIF and ICC alike; none carried GPS) into public/photos/gallery/. Two files were excluded from this array and left out of public/photos/gallery/: a Kleen Stripe wordmark graphic on a black background (819b1bf9), which is brand art rather than a job photo, and an exact duplicate (ca2f9bdb, byte-identical to b20935af). Both remain in public/photos/source/ for the record. See the checkpoint report for the two photos flagged for a third-party naming risk and the two flagged for a baked-in UI artifact.",
   "photo_assignments": {
-    "hero": "wide-lot-crosshatch-winter",
+    "hero": "sealcoat-apartments-fresh-lines",
     "trust": null,
-    "note": "trust is null on purpose. Nothing in the 16 photos clearly shows Devin or the crew as a person, only a partial POV shot of a foot and shadow (crew-operating-striper-pov). The work order says to leave the trust slot as a placeholder rather than substitute something that does not show what the slot promises, so it stays a PhotoSlot until a real people photo exists."
+    "note": "hero changed from wide-lot-crosshatch-winter (white lines, visible cracks, dead winter brush, fought the site's own crack-sealing pitch and the accent palette) to sealcoat-apartments-fresh-lines: yellow paint on dark asphalt, the same colour doing the same job as the accent, no defects, and lines that recede toward the garage with a clean single vanishing point for the hero reveal animation to sweep along. trust is null on purpose. Nothing in the 16 photos clearly shows Devin or the crew as a person, only a partial POV shot of a foot and shadow (crew-operating-striper-pov). The work order says to leave the trust slot as a placeholder rather than substitute something that does not show what the slot promises, so it stays a PhotoSlot until a real people photo exists."
   },
   "lead_magnet": {
     "title": "The ADA parking walk-around",

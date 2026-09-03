@@ -3,6 +3,7 @@ import { content } from "@/lib/content";
 import { publishableReviews } from "@/content/schema";
 import Cta from "@/components/Cta";
 import ClosingBar from "@/components/ClosingBar";
+import PaintedLine from "@/components/PaintedLine";
 
 const page = content.pages["/reviews/"];
 
@@ -18,6 +19,7 @@ export default function ReviewsPage() {
     <>
       <article className="mx-auto max-w-3xl px-4 py-10 sm:py-14">
         <h1 className="text-[length:var(--text-h1)] font-extrabold text-[var(--ink)]">{page.h1}</h1>
+        <PaintedLine className="mt-3 w-16" />
         {page.lede && <p className="mt-4 text-[length:var(--text-lede)] text-[var(--ink)]/80">{page.lede}</p>}
 
         {reviews.length === 0 && page.empty_state ? (

@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { content } from "@/lib/content";
 import ClosingBar from "@/components/ClosingBar";
+import PaintedLine from "@/components/PaintedLine";
 
 const page = content.pages["/thank-you/"];
 
@@ -15,6 +16,7 @@ export default function ThankYouPage() {
     <>
       <article className="mx-auto max-w-xl px-4 py-16 text-center">
         <h1 className="text-[length:var(--text-h1)] font-extrabold text-[var(--ink)]">{page.h1}</h1>
+        <PaintedLine className="mx-auto mt-3 w-16" />
         {page.body && <p className="mt-4 text-[var(--ink)]/80">{page.body as string}</p>}
       </article>
       <ClosingBar />

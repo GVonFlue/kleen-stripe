@@ -1,6 +1,7 @@
 import type { Content } from "@/content/schema";
 import Cta from "@/components/Cta";
 import ClosingBar from "@/components/ClosingBar";
+import PaintedLine from "@/components/PaintedLine";
 
 type Buyer = Content["buyers"][number];
 
@@ -10,6 +11,7 @@ export default function BuyerPage({ buyer }: { buyer: Buyer }) {
     <>
       <article className="mx-auto max-w-3xl px-4 py-10 sm:py-14">
         <h1 className="text-[length:var(--text-h1)] font-extrabold text-[var(--ink)]">{buyer.h1}</h1>
+        <PaintedLine className="mt-3 w-16" />
         <p className="mt-4 text-[length:var(--text-lede)] text-[var(--ink)]/80">{buyer.pain}</p>
 
         {buyer.body.map((p, i) => (

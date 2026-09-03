@@ -3,6 +3,7 @@ import { content } from "@/lib/content";
 import { publishableWork, publishableGallery, isWorkIndexable } from "@/content/schema";
 import ClosingBar from "@/components/ClosingBar";
 import GalleryPhoto from "@/components/GalleryPhoto";
+import PaintedLine from "@/components/PaintedLine";
 
 const page = content.pages["/work/"];
 
@@ -27,6 +28,7 @@ export default function WorkPage() {
     <>
       <article className="mx-auto max-w-6xl px-4 py-10 sm:py-14">
         <h1 className="text-[length:var(--text-h1)] font-extrabold text-[var(--ink)]">{page.h1}</h1>
+        <PaintedLine className="mt-3 w-16" />
         {page.lede && <p className="mt-4 max-w-2xl text-[length:var(--text-lede)] text-[var(--ink)]/80">{page.lede}</p>}
 
         {isEmpty && page.empty_state ? (

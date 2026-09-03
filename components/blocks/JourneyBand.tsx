@@ -1,7 +1,11 @@
+import GalleryPhoto from "@/components/GalleryPhoto";
+
 /**
  * Checkpoint 1 decision 2. The four steps of the job, in order, which is why this is
  * the one band on the site allowed a numbered marker (doctrine's "avoid 01/02/03
  * unless genuinely sequential" only rules out numbering things that are not).
+ * Step 3 carries the striping-machine-at-sunset photo: it shows lines going down,
+ * literally, the moment the job actually happens rather than the result of it.
  */
 export default function JourneyBand({ block }: { block: any }) {
   return (
@@ -14,6 +18,11 @@ export default function JourneyBand({ block }: { block: any }) {
               <span className="text-sm font-semibold text-[var(--ink)]/50">{String(i + 1).padStart(2, "0")}</span>
               <span className="font-semibold text-[var(--ink)]">{s.step}</span>
               <span className="text-sm text-[var(--ink)]/70">{s.body}</span>
+              {s.gallery_id && (
+                <div className="mt-1">
+                  <GalleryPhoto id={s.gallery_id} fallbackSlot={`journey_${i}`} aspect="aspect-[4/3]" sizes="(min-width: 1024px) 25vw, 50vw" />
+                </div>
+              )}
             </li>
           ))}
         </ol>

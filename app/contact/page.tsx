@@ -3,6 +3,7 @@ import { content } from "@/lib/content";
 import { telHref, smsHref } from "@/lib/render";
 import Cta from "@/components/Cta";
 import ClosingBar from "@/components/ClosingBar";
+import PaintedLine from "@/components/PaintedLine";
 
 const page = content.pages["/contact/"];
 
@@ -23,6 +24,7 @@ export default function ContactPage() {
     <>
       <article className="mx-auto max-w-2xl px-4 py-10 sm:py-14">
         <h1 className="text-[length:var(--text-h1)] font-extrabold text-[var(--ink)]">{page.h1}</h1>
+        <PaintedLine className="mt-3 w-16" />
         {page.lede && <p className="mt-4 text-[length:var(--text-lede)] text-[var(--ink)]/80">{page.lede}</p>}
 
         <div className="mt-8 flex flex-wrap gap-3">

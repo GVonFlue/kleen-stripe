@@ -4,6 +4,8 @@ import Cta from "@/components/Cta";
 import PhotoSlot from "@/components/PhotoSlot";
 import PendingNote from "@/components/PendingNote";
 import GalleryPhoto from "@/components/GalleryPhoto";
+import PaintedLine from "@/components/PaintedLine";
+import HeroReveal from "@/components/HeroReveal";
 
 /**
  * Checkpoint 1 decision 1. The confirmed fact (1979) is merged into the headline
@@ -30,6 +32,7 @@ export default function Hero({ block }: { block: any }) {
           block.fallback_headline
         )}
       </h1>
+      <PaintedLine className="mt-4 w-20" />
       <p className="mt-5 max-w-2xl text-[length:var(--text-lede)] text-[var(--ink)]/80">{block.sub}</p>
 
       <div className="mt-7 flex flex-wrap gap-3">
@@ -37,15 +40,18 @@ export default function Hero({ block }: { block: any }) {
         <Cta label={block.cta_secondary.label} href={block.cta_secondary.href} variant="secondary" />
       </div>
 
-      <div className="mt-10">
+      <div className="relative mt-10">
         {content.photo_assignments.hero ? (
-          <GalleryPhoto
-            id={content.photo_assignments.hero}
-            fallbackSlot={block.image_slot}
-            aspect="aspect-[16/9]"
-            sizes="(min-width: 1152px) 1152px, 100vw"
-            eager
-          />
+          <>
+            <GalleryPhoto
+              id={content.photo_assignments.hero}
+              fallbackSlot={block.image_slot}
+              aspect="aspect-[16/9]"
+              sizes="(min-width: 1152px) 1152px, 100vw"
+              eager
+            />
+            <HeroReveal />
+          </>
         ) : (
           <PhotoSlot slot={block.image_slot} aspect="aspect-[16/9]" />
         )}
