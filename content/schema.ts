@@ -279,6 +279,30 @@ export const workPairSchema = z.object({
   consent: z.boolean(),
 });
 
+/**
+ * Work order, "photos first": single real job photos, not before/after pairs.
+ * Devin owns these and gave permission, so consent is true by construction here
+ * rather than something the audit gates on per item the way reviews and work[]
+ * pairs are gated. work[] stays reserved for real before/after pairs; a gallery
+ * item existing does not satisfy that stricter bar.
+ */
+export const gallerySchema = z.object({
+  id: z.string(),
+  src: z.string(),
+  alt: copy(200),
+  lot_type: z.enum(["Retail", "Apartments", "Warehouse", "Industrial", "Small business", "ADA"]),
+  caption: fact(copy(300)),
+  consent: z.boolean(),
+});
+
+/** Which gallery photo, if any, fills the hero and trust image slots. Null leaves
+ *  the slot a PhotoSlot placeholder rather than substituting a photo that does not
+ *  actually show what that slot promises (the trust slot promises a person). */
+export const photoAssignmentsSchema = z.object({
+  hero: z.string().nullable(),
+  trust: z.string().nullable(),
+});
+
 export const clientSchema = z.object({
   name: z.string(),
   /** False means the name never reaches rendered HTML, in text or as a logo. */
@@ -379,6 +403,9 @@ export const contentSchema = z.object({
   reviews: z.array(reviewSchema),
   work: z.array(workPairSchema),
   work_shot_list: z.array(z.string()).optional(),
+  gallery: z.array(gallerySchema).default([]),
+  gallery_source_note: z.string().optional(),
+  photo_assignments: photoAssignmentsSchema,
   lead_magnet: leadMagnetSchema,
   source_tags: z.array(z.string()),
 });
@@ -404,7 +431,7 @@ const COPY_EXEMPT_KEYS = [
   "reference_axis", "signature_element", "positioning", "provenance", "_meta", "domains",
   "href", "src", "slug", "schema_type", "kind", "id", "type", "image_slot", "pair_id",
   "lot_type", "text", "value", "principle", "requires", "travel_note", "work_shot_list",
-  "clients_note", "faqs_pending", "proof_needed", "never_say",
+  "clients_note", "faqs_pending", "proof_needed", "never_say", "gallery_source_note",
 ];
 
 function walkStrings(node: unknown, path: string, visit: (s: string, p: string) => void) {
@@ -457,6 +484,11 @@ export function auditContent(content: Content, mode: BuildMode): string[] {
       errors.push(`reviews[${i}] (${r.name}): consent is false. It must not render. Filter it, or get permission.`);
     }
   });
+  content.gallery.forEach((g, i) => {
+    if (!g.consent && mode === "launch") {
+      errors.push(`gallery[${i}] (${g.id}): consent is false. It must not render. Filter it, or get permission.`);
+    }
+  });
 
   // Every source tag used must be declared, so nothing lands in the CRM unattributed.
   const declared = new Set(content.source_tags);
@@ -493,8 +525,12 @@ export function auditContent(content: Content, mode: BuildMode): string[] {
     content.provenance.conflicts_to_resolve.forEach((c) => {
       errors.push(`LAUNCH BLOCKED. Unresolved conflict on "${c.field}": ${c.values.join(" vs ")}. ${c.resolution}`);
     });
-    if (content.work.length === 0) {
-      errors.push("LAUNCH BLOCKED. work[] is empty. No stock photography, so /work/ stays noindex and out of the sitemap.");
+    if (publishableWork(content).length === 0) {
+      errors.push(
+        "LAUNCH BLOCKED. work[] has no consented before/after pair. gallery[] singles are not a substitute for this " +
+          "bar: they satisfy isWorkIndexable() so /work/ can leave noindex, but the doctrine proof this checks for is " +
+          "a real before/after pair specifically.",
+      );
     }
     if (!content.lead_magnet.file) {
       errors.push("LAUNCH BLOCKED. lead_magnet.file is null. The give is the homepage's primary reciprocity path.");
@@ -526,6 +562,14 @@ export function parseContent(raw: unknown, mode: BuildMode = "draft"): Content {
 export const publishableClients = (c: Content) => c.clients.filter((x) => x.publishable);
 export const publishableReviews = (c: Content) => c.reviews.filter((x) => x.consent);
 export const publishableWork = (c: Content) => c.work.filter((x) => x.consent);
+export const publishableGallery = (c: Content) => c.gallery.filter((x) => x.consent);
+/**
+ * Work order, "photos first": /work/ comes off noindex once there is something
+ * real to show, gallery singles or work[] pairs either one. This does not affect
+ * the separate LAUNCH block on work[] being empty, which is a stricter bar
+ * (before/after pairs specifically) that gallery singles do not satisfy.
+ */
+export const isWorkIndexable = (c: Content) => publishableGallery(c).length > 0 || publishableWork(c).length > 0;
 export const answeredFaqs = <T extends { a: string | null }>(faqs: T[]) => faqs.filter((f) => f.a !== null);
 export const yearsInBusiness = (c: Content) =>
   c.business.founded_year === null ? null : new Date().getFullYear() - c.business.founded_year;

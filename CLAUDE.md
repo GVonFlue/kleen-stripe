@@ -12,8 +12,9 @@ Built by ProyTech to the ProyTech Website Build Doctrine.
    with the provenance of each one. It is the source of truth.
 3. `content/schema.ts` is the Zod schema. It enforces the doctrine at parse time. Read the
    refinements. They tell you what the build will refuse to compile.
-4. `docs/BUILD_PROMPT.md` is the kickoff brief. It includes the reference build at
-   https://gvonflue.vercel.app, which is the house shape our client sites take. Go look at it.
+4. `docs/BUILD_PROMPT.md` is the CURRENT brief and it supersedes every earlier prompt in this
+   repo. If an instruction elsewhere contradicts it, BUILD_PROMPT wins. It carries the reference
+   build at https://gvonflue.vercel.app, the settled decisions, and the current work order.
 5. `docs/CLAUDE_CODE_PROMPT.md` is the architecture detail: stack, route list, build order and
    checkpoints.
 

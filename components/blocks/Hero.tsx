@@ -3,6 +3,7 @@ import { hasAll, resolveTemplate } from "@/lib/render";
 import Cta from "@/components/Cta";
 import PhotoSlot from "@/components/PhotoSlot";
 import PendingNote from "@/components/PendingNote";
+import GalleryPhoto from "@/components/GalleryPhoto";
 
 /**
  * Checkpoint 1 decision 1. The confirmed fact (1979) is merged into the headline
@@ -37,7 +38,11 @@ export default function Hero({ block }: { block: any }) {
       </div>
 
       <div className="mt-10">
-        <PhotoSlot slot={block.image_slot} aspect="aspect-[16/9]" />
+        {content.photo_assignments.hero ? (
+          <GalleryPhoto id={content.photo_assignments.hero} aspect="aspect-[16/9]" sizes="(min-width: 1152px) 1152px, 100vw" priority />
+        ) : (
+          <PhotoSlot slot={block.image_slot} aspect="aspect-[16/9]" />
+        )}
       </div>
     </section>
   );

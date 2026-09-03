@@ -1,141 +1,169 @@
 # Kleen Stripe build prompt
 
-Paste everything below the line into Claude Code, run from `~/Documents/kleen-stripe`.
+**This supersedes every earlier prompt in this repo.** If an instruction here contradicts something
+you were told in a previous session, this wins.
+
+Continuing an existing Claude Code session: paste **The work order** section only.
+Starting fresh: paste the whole file.
 
 ---
 
-Build the Kleen Stripe website. Next.js, Tailwind, content-driven, mobile first.
+## Context
 
-## Read first
+Read `CLAUDE.md`, then `docs/DOCTRINE.md`, then `content/kleen-stripe.json` and
+`content/schema.ts`. `docs/CLAUDE_CODE_PROMPT.md` has the architecture detail and route list.
+The content file is the source of truth and no visitor-facing string gets typed into JSX.
 
-`CLAUDE.md`, then `docs/DOCTRINE.md`, then `content/kleen-stripe.json` and `content/schema.ts`.
-`docs/CLAUDE_CODE_PROMPT.md` has the architecture detail, route list and checkpoints. Do not write
-a component until you have read them. The content file is the source of truth and no
-visitor-facing string gets typed into JSX.
-
-## The reference build
-
-**https://gvonflue.vercel.app** is the house build. Go look at it before you design anything. It
-is Garrett's own site and it is the shape our client sites take. Take the structure, not the
-subject matter. Real estate is not parking lots.
-
-What to carry over:
-
-1. **A short declarative hero with one italicised word**, then a plain second line that undercuts
-   the industry norm. Garrett's is "Relationship First Real *Estate*." over "No suit. No jargon.
-   Just keys." Two CTAs, one give and one direct, and a real proof number sitting right underneath
-   ("120+ families guided home, and counting").
-2. **A named assistant in its own section, in the top third**, in the page body, not a floating
-   bubble. Garrett's is Scout, presented with three short claims and a "Let's go" button. Ours is
-   Chalk, after the chalk line you snap to get a straight line. For v1 Chalk is a deterministic
-   scripted qualifier, not a language model. It cannot hallucinate a price and it cannot claim an
-   appointment is booked, because there is no calendar behind it.
-3. **A four-step journey band.** Garrett's is Pre-Approval, House Shopping, Under Contract, Move-in
-   Day. Ours is the job: walk the lot, quote, stripe, walk it with you. Propose the four steps and
-   show me before you build them.
-4. **Three side-by-side blocks** in the middle: who you are working with, why people pick us, and
-   the systems side. Garrett's third column sells ProyTech. Ours does not, so replace that third
-   column with something true of Kleen Stripe and tell me what you chose and why.
-5. **The lead magnet as a real form with a benefit list**, and a button that states the outcome.
-   Garrett's is "Send me the guide" under six bullets. Ours is the ADA walk-around checklist, and
-   the six bullets are already written in `content.lead_magnet.value_stack`.
-6. **One signature section that only this business could run.** Garrett has DuckWichita. Kleen
-   Stripe has three generations since 1979 and a client list most striping outfits in Kansas
-   cannot touch. Build the equivalent, do not copy the duck.
-7. **A closing CTA with two buttons, then a compliance footer.**
-
-What to change, deliberately:
-
-- **Palette.** Garrett's site is one strong accent, #1338DE, on a lot of white. Keep that
-  discipline, one accent doing all the work with real whitespace around it, but the accent is
-  Devin's yellow, not blue. Read `brand.color_rules` first. Yellow on white and white on yellow
-  both fail WCAG AA, so every yellow surface carries ink text. Blue on this site means ADA and
-  nothing else, the way blue means ADA on a real lot.
-- **Buyer.** Garrett sells to first-time homebuyers, so his site is warm and reassuring. Devin
-  sells to property managers, paving contractors and warehouse operators. Same plain-spoken voice,
-  less hand-holding, more evidence. The "I text back. Actually." energy is exactly right. The
-  first-time-buyer softness is not.
-- **The hero line.** The content file currently reads "Fresh lines on your lot, from the Wichita
-  family that has been striping them since 1979." That is accurate but it is not the reference's
-  two-part shape. Propose a punchier version in that shape as a change to
-  `pages./.blocks.hero`, show me both, and do not commit the change until I pick.
-
-## The client, in short
+### The client
 
 Devin Hammann, Kleen Stripe, Wichita Kansas. Parking lot striping and maintenance. His grandfather
-Max started it in 1979, Devin took over in 2017, third generation. Call or text (316) 617-0352,
-kleenstripewichita@gmail.com. Wichita and all of Kansas, travels to Tulsa, Kansas City and
-Oklahoma City.
+Max started it in 1979, Devin took over in 2017, third generation. Call or text (316) 617-0352.
+Wichita and all of Kansas, travels to Tulsa, Kansas City and Oklahoma City.
 
-Nine services: striping, ADA compliance, sealcoating, crack sealing and pothole repair, restriping
-and new layouts, warehouse and interior striping, signage and bumper blocks, power washing, and
-maintenance programs. **ADA gets its own page** and it is the highest-intent page on the site,
-because that buyer is not shopping, they are exposed.
+Nine services. **ADA compliance gets its own page** and it is the highest-intent page on the site,
+because that buyer is not shopping, they are exposed. Four buyers who need different copy:
+commercial property managers, paving and construction contractors, warehouse operators, and small
+business owners with a dozen stalls out front.
 
-Four buyers, and they need different copy: commercial property managers, paving and construction
-contractors, warehouse operators, small business owners with a dozen stalls out front.
+His competition in Wichita is EverLine Coatings, a national franchise. The whole bet of this site
+is that a franchise beats him on price but cannot touch forty-seven years and a family name.
 
-He wants clean, bold, family-run. Straight-talking, professional, a little funny. His words for
-the look were "simple to the point but look good to the eye with the catch colors and word
-blocks." His competition in Wichita is EverLine Coatings, a national franchise. The whole bet of
-this site is that a franchise beats him on price but cannot touch forty-seven years and a family
-name.
+### The reference build
 
-Everything else, including full copy for all 26 routes, is already written in
-`content/kleen-stripe.json`. Use it. Do not rewrite copy that is already there unless you are
-proposing a change and showing me both versions.
+**https://gvonflue.vercel.app** is the house shape our client sites take. Structure to carry over:
+short declarative hero with one italicised word over a plain undercutting line, a named assistant
+in its own section in the top third, a four-step journey band, three side-by-side blocks, the lead
+magnet as a real form with a benefit list and an outcome-stated button, one signature section only
+this business could run, closing CTA, compliance footer.
 
-## Rules that will fail your build if you break them
+Palette discipline carries over, one accent doing all the work with real whitespace. The accent is
+Devin's yellow, not Garrett's blue. Read `brand.color_rules` first: yellow on white and white on
+yellow both fail WCAG AA, so every yellow surface carries ink text. Blue on this site means ADA
+and nothing else.
 
-- No visitor-facing copy in JSX. It all comes from the content file.
-- Never invent a fact. A `null` means we do not know, and the section withholds itself. Do not fill
-  one with something plausible.
-- No stock photography. Devin was explicit. Every image is a labelled placeholder that renders in
-  draft and hard-fails a launch build.
-- No em-dashes. No "cheap", no "affordable", no superlatives without evidence. The schema rejects
-  all of them.
+Garrett sells to first-time homebuyers so his site is warm and reassuring. Devin sells to property
+managers and paving contractors. Same plain-spoken voice, less hand-holding, more evidence. The
+"I text back. Actually." energy is right. The softness is not.
+
+### Rules that fail the build
+
+- No visitor-facing copy in JSX.
+- Never invent a fact. A `null` means we do not know and the section withholds itself.
+- No stock photography.
+- No em-dashes, no "cheap", no "affordable", no superlatives without evidence.
 - Nothing says booked, confirmed, scheduled, held or on the calendar. There is no calendar.
-- One primary action per screenful, and the accent colour is reserved for it. It never appears on
-  decoration.
-- Two or more distinct conversion paths on every route, tappable phone in header and footer, and a
-  closing CTA before the footer. Every route, no exceptions.
-- Tap-to-call and tap-to-text prominent on mobile. He asked for call and text specifically. Tell
-  me which one you made the larger button and why.
+- One primary action per screenful. The accent colour is reserved for it and never decorates.
+- Two or more distinct conversion paths on every route, tappable phone in header and footer,
+  closing CTA before the footer. Every route.
 
-## Build it
+### Already settled, do not reopen
 
-Work through the three checkpoints in `docs/CLAUDE_CODE_PROMPT.md` and report at each. Carry on
-through a checkpoint if your report has no decisions in it. Stop and wait only when you have a
-real DECISIONS I NEED FROM YOU block, numbered, most consequential first, lettered options with a
-recommendation.
+- **Hero:** "Striping Wichita Lots Since *1979*." over "No call center. You get Devin." Built and
+  approved. `Family Run Lot Striping.` is the fallback when `founded_year` is unconfirmed.
+- **Journey band:** built and approved. Step 2 is "One number, not a range that grows later,"
+  which deliberately does not contradict the small-business page.
+- **Checkpoint 1** is complete: scaffold, content parsing, route registry, layout, header, footer,
+  palette, PhotoSlot, homepage.
+- Numbering stays on the journey band only, because that is genuinely sequential.
 
-Before you call it done, these all have to pass and I want the real output, not a summary:
+---
 
-```
-npm run content:verify      draft clean, launch showing its twelve blockers
-npm run content:selftest    all fourteen negative tests
-npm run build               draft build, no errors
-npm run audit               definition-of-done audit against RENDERED html
-npm run audit:selftest      every check in audit.mjs proven able to fail
-npm run check:render        real Chromium, every route, 320 / 375 / 390
-```
+## The work order
 
-`npm run build:launch` is supposed to fail right now, with twelve blockers covering the facts
-Devin has not confirmed. Do not work around it and do not remove entries from
-`provenance.pending_confirmation` to make it pass.
+Three things, in this order. **Do not restyle the site from scratch.** Checkpoint 1 is solid and
+matches the reference. We are escalating it, not replacing it.
+
+### 1. Photos first
+
+Devin owns the roughly 17 photos on https://kleenstripereviews.com/imagery and we have permission
+to use them.
+
+- Download to `public/photos/source/`. Do not hotlink that CDN, the Duda account's ownership is
+  unresolved and if it lapses every image goes with it.
+- Strip all EXIF, GPS above all. Permission to use his photos is not permission to publish his
+  customers' addresses.
+- Write real alt text from what you can see in each image. Describe the lot, not the business.
+- Flag anything that reads as vendor stock rather than a real job photo. A vendor built that site
+  and Devin may not know what they added. List them, do not delete them.
+- `gallery[].consent = true`. These are **not** pending confirmation. They render in draft and in
+  launch. Add `gallery[]` to the schema for singles: `{ id, src, alt, lot_type, caption, consent }`.
+  `work[]` stays for real before and after pairs.
+- Fill the hero slot and the trust slot. If nothing shows Devin or the crew, leave the trust slot
+  as a placeholder and say so rather than substituting a lot photo for a people photo.
+- `/work/` comes off `noindex` and goes into the sitemap. Change the audit rule from "`work[]` is
+  non-empty" to "`gallery[]` or `work[]` has a consented item," negative-tested both directions.
+- The LAUNCH blocker on `work[]` **stays**. Those are before and after pairs and these are single
+  afters.
+- `next/image`, AVIF and WebP, real `sizes`, lazy below the fold.
+
+**Stop here and show me the homepage with real photos before you touch motion.** It may need less
+animation than I think once it has images in it.
+
+### 2. The motion system
+
+This site should feel one of a kind. It should not feel like every AI-built site in 2026, which
+means no fade-up-on-scroll on every card, no parallax, no scroll-jacking, no scattered decorative
+motion. Doctrine section 6 names that as an AI tell.
+
+For a striping company the motion **is the product**. Paint going down. Build these in order:
+
+**a. The painted line.** SVG `stroke-dashoffset` driven by IntersectionObserver. Section dividers
+and heading underlines paint left to right as they enter view, at the speed a striping machine
+moves. This is the backbone and it appears on every route.
+
+**b. StallGrid**, the signature element already specced in `brand.signature_element`. Hand-authored
+SVG of a real lot layout. Stalls fill as you scroll, the ADA stall and its access aisle land last
+and land in the blue. Doubles as the section progress indicator. Build it by hand, no chart
+library.
+
+**c. The hero reveal.** One idea done well. A stripe-shaped mask sweeps across the hero photo on
+load, so the image is revealed the way a lot gets painted. Under 700ms. It must never delay LCP:
+the image is in the DOM and painted first, the mask is enhancement.
+
+**d. Chalk's snap.** When the assistant opens, the chalk line snaps taut before the panel appears.
+Small, once, not repeated.
+
+**Do not animate** service cards, the door band, body copy, testimonials, the numbers strip, or
+anything else generic. If a section would get the same animation on a plumber's site, it does not
+get one here.
+
+Non-negotiable:
+
+- `prefers-reduced-motion` honored **twice**. A CSS media query that kills every animation, and JS
+  that renders final values immediately. The DOM correct on first paint either way. Negative-test
+  it: assert the reduced-motion path renders the final state.
+- No animation ever gates usability. Content readable and clickable before, during and after.
+- No scroll-jacking and no hijacked scroll speed. It breaks on phones and his buyers are standing
+  in a parking lot.
+- Lighthouse Performance 90+ on **mobile** still applies. If a motion idea costs that, the motion
+  loses.
+- **No animation library by default.** CSS transforms, SVG and IntersectionObserver cover all of
+  the above. If one earns its bundle weight, propose it with the measured cost and let me decide.
+  Do not just install it.
+
+### 3. Checkpoint 2
+
+Build the motion primitives as reusable components **before** the remaining 25 routes, so the
+routes inherit them instead of being retrofitted. Then build the routes.
+
+---
 
 ## Report
 
-Decisions first if you have any. Then the command output, then what is not built and who it is
-blocked on, then the written design self-critique the doctrine requires: would you have built this
-same site for any other striping company, and if so what did you change after asking. Also confirm
-in writing that you checked the three AI design tells in `brand.ai_tells_checked`, and say where
-you had to guess.
+Decisions first if you have any, numbered, most consequential first, lettered options with a
+recommendation. Then:
 
-Do not tell me it is green when it is only green in draft mode.
+- Lighthouse mobile, measured on the deploy, **before and after** the motion work. I want to see
+  what it cost.
+- `check-render.mjs` at 320 / 375 / 390. Mobile is still completely unverified and this does not
+  go to the client until it is.
+- The reduced-motion negative test, proven able to fail.
+- The design self-critique, and specifically: **name every animation you built and say why it
+  could not appear on a competitor's site.** Anything that fails that test, cut it.
 
-## Shipping, only when I say so
+Do not tell me it is green when it is only green in draft mode. Do not describe intended behavior
+as completed behavior.
 
-Do not create a GitHub repo or deploy to Vercel in this session unless I ask. When I do: private
-repo under the GVonFlue org, Vercel preview only, no production deploy, no custom domain, no DNS.
-Both Kleen Stripe domains are unresolved and one of them may be owned by a third-party vendor.
+## Not this session
+
+No GitHub changes and no production deploy unless I ask. Preview only, no custom domain, no DNS.

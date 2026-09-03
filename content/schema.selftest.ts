@@ -1,6 +1,6 @@
 /** Negative-test the auditor. A passing test that cannot fail is not a test. Doctrine section 7. */
 import raw from "./kleen-stripe.json";
-import { contentSchema, auditContent, copy } from "./schema";
+import { contentSchema, auditContent, copy, isWorkIndexable } from "./schema";
 
 const base = contentSchema.parse(raw);
 let failures = 0;
@@ -60,6 +60,32 @@ check("a block-level annotation field (note) stays exempt from copy rules", () =
   (c.pages["/"].blocks as any)[0].note = "Internal only — never rendered.";
   return auditContent(c, "draft").length === 0;
 });
+
+check("isWorkIndexable is true today (gallery[] has consented singles)", () => isWorkIndexable(base));
+check("isWorkIndexable is false with no consented gallery or work items", () => {
+  const c: any = structuredClone(base);
+  c.gallery = []; c.work = [];
+  return !isWorkIndexable(c);
+});
+check("isWorkIndexable is false when gallery items exist but none are consented", () => {
+  const c: any = structuredClone(base);
+  c.gallery = c.gallery.map((g: any) => ({ ...g, consent: false }));
+  c.work = [];
+  return !isWorkIndexable(c);
+});
+check("isWorkIndexable is true from a work[] pair alone, with no gallery", () => {
+  const c: any = structuredClone(base);
+  c.gallery = [];
+  c.work = [{ pair_id: "p1", lot_type: "Retail", before: { src: "/b.jpg", alt: "Faded retail lot" },
+    after: { src: "/a.jpg", alt: "Freshly striped retail lot" }, caption: null, city: "Wichita", consent: true }];
+  return isWorkIndexable(c);
+});
+check("non-consented gallery item blocks launch", () => {
+  const c: any = structuredClone(base);
+  c.gallery[0].consent = false;
+  return auditContent(c, "launch").some(e => e.includes(`gallery[0] (${base.gallery[0].id})`) && e.includes("consent is false"));
+});
+check("consented gallery items do not block launch", () => !auditContent(base, "launch").some(e => e.startsWith("gallery[")));
 
 check("non-consented review blocks launch", () => auditContent(base, "launch").some(e => e.includes("consent is false")));
 check("consented review does not block launch", () => {

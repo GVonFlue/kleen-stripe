@@ -1,4 +1,5 @@
 import { content } from "@/lib/content";
+import { isWorkIndexable } from "@/content/schema";
 
 /**
  * The route registry. Every indexable and non-indexable route the site serves,
@@ -17,7 +18,10 @@ export function getAllRoutes(): RouteEntry[] {
 
   for (const [path, page] of Object.entries(content.pages)) {
     if (path === "/404.html") continue; // not-found.tsx owns this, it is not a real route
-    routes.push({ kind: "page", path, indexable: page.indexable !== false });
+    // /work/'s indexability is computed, not a static content flag: it comes off
+    // noindex once there is a real photo to show, gallery or work[] either one.
+    const indexable = path === "/work/" ? isWorkIndexable(content) : page.indexable !== false;
+    routes.push({ kind: "page", path, indexable });
   }
   for (const s of content.services) {
     routes.push({ kind: "service", slug: s.slug, path: `/${s.slug}/`, indexable: true });

@@ -389,13 +389,12 @@
     "/work/": {
       "type": "gallery",
       "title": "Our Work | Parking Lot Striping Photos | Kleen Stripe",
-      "meta_description": "Before and after photographs of parking lots striped, sealed and repaired by Kleen Stripe in Wichita and across Kansas.",
-      "h1": "Before and after, same lot, same angle",
-      "lede": "Every photograph on this page is a lot this crew worked on. None of it is stock.",
+      "meta_description": "Real photographs of parking lots striped, sealed and repaired by Kleen Stripe in Wichita and across Kansas.",
+      "h1": "Lots this crew has actually striped",
+      "lede": "Real photos from real jobs. Before and after pairs are still to come. Nothing here is stock.",
       "filters": ["Retail", "Apartments", "Warehouse", "Industrial", "Small business", "ADA"],
       "empty_state": "This page is live but the photos are not on it yet. Nothing here is stock, so it stays empty until the crew's own photos are ready.",
-      "indexable": false,
-      "note": "Ships noindex and out of the sitemap until real photographs exist. Same pattern as the Level Up gallery."
+      "note": "Checkpoint 3 photos pass: h1 and lede changed from claiming before/after pairs to describing what actually exists (gallery[] singles), since the page would otherwise overpromise a pairing this content does not have yet. indexable is no longer a static flag here: see isWorkIndexable() in schema.ts, which came off noindex once gallery[] got real consented photos."
     },
 
     "/ada-striping-checklist/": {
@@ -754,6 +753,154 @@
     "A machine shop or production floor",
     "Devin and the crew with a truck and the striping machine"
   ],
+
+  "gallery": [
+    {
+      "id": "ada-stall-small-business-day",
+      "src": "/photos/gallery/3822d88c-3532-4d9d-b6b9-faafb8c33f1c.jpg",
+      "alt": "A freshly painted blue accessible parking symbol with white diagonal hatching in the access aisle beside it, next to a metal commercial building under a partly cloudy sky.",
+      "lot_type": "Small business",
+      "caption": null,
+      "consent": true
+    },
+    {
+      "id": "striper-dusk-shopping-center",
+      "src": "/photos/gallery/87b48cce-52ae-4fe7-b8f3-34346817ce94.jpg",
+      "alt": "A ride-on line striping machine parked in a shopping center lot beside a freshly painted yellow directional arrow, photographed at dusk with storefronts lit in the background.",
+      "lot_type": "Retail",
+      "caption": null,
+      "consent": true,
+      "note": "Background signage names a specific tenant. Alt text describes the lot, not the business, per the work order."
+    },
+    {
+      "id": "ada-stalls-bigbox-winter",
+      "src": "/photos/gallery/b7b5864a-ea3b-4748-8128-9109f2f6d703.jpg",
+      "alt": "A wide view from a rise above a large retail parking lot showing rows of white striped stalls and several blue accessible stalls, bare winter trees in the foreground.",
+      "lot_type": "Retail",
+      "caption": null,
+      "consent": true
+    },
+    {
+      "id": "custom-lane-stencils-night",
+      "src": "/photos/gallery/b246f24c-94ec-409f-a435-a6c89248c364.jpg",
+      "alt": "Custom directional lane stencils reading Enter and a lane marked for members, painted in white and red on pavement outside a business at night, with traffic cones set out.",
+      "lot_type": "Small business",
+      "caption": null,
+      "consent": true,
+      "note": "A food trailer and a chain's signage are visible in the background but not named in the alt text."
+    },
+    {
+      "id": "sealcoat-apartments-fresh-lines",
+      "src": "/photos/gallery/67350fb6-b736-4423-b972-fe849b0f678a.jpg",
+      "alt": "A freshly sealcoated apartment complex parking lot with new yellow stall lines, an attached garage building and residential units in the background.",
+      "lot_type": "Apartments",
+      "caption": null,
+      "consent": true
+    },
+    {
+      "id": "custom-stencil-carwash-drive",
+      "src": "/photos/gallery/f5826399-21ac-45f8-92f7-390a4e1e7640.jpg",
+      "alt": "A custom logo stencil and directional arrows painted on a car wash drive lane, with a red guide line running alongside it.",
+      "lot_type": "Small business",
+      "caption": null,
+      "consent": true,
+      "note": "FLAG (checkpoint 3 photos pass): the stencil reproduces a named car wash chain's own logo. Devin's permission covers publishing his own job photos, not necessarily that chain's branding appearing as a portfolio piece. Confirm with Devin before featuring this one prominently. Not added to provenance.pending_confirmation per the work order's instruction that gallery consent is settled, but flagged here and in the checkpoint report."
+    },
+    {
+      "id": "double-yellow-apartments-day",
+      "src": "/photos/gallery/229d2ce4-0e8a-44ad-864c-6dde8c2a70fb.jpg",
+      "alt": "Freshly painted double yellow stall lines in an apartment complex parking lot, with the front entrance and landscaped beds visible.",
+      "lot_type": "Apartments",
+      "caption": null,
+      "consent": true
+    },
+    {
+      "id": "parking-deck-sunset-striper",
+      "src": "/photos/gallery/deb1aab5-0fe3-4e09-8c20-d0a85e67953b.jpg",
+      "alt": "A line striping machine parked on an upper deck of a parking structure at sunset, with fresh white stall lines and concrete traffic barriers marked with reflective diamonds.",
+      "lot_type": "Retail",
+      "caption": null,
+      "consent": true,
+      "note": "lot_type is an imperfect fit. The enum has no parking-structure category."
+    },
+    {
+      "id": "ada-stall-apartments-hatch",
+      "src": "/photos/gallery/06869ba4-9fd7-4678-8fca-3142cdce795d.jpg",
+      "alt": "A blue accessible parking symbol and yellow diagonal hatching in the access aisle beside it, in front of an apartment building.",
+      "lot_type": "Apartments",
+      "caption": null,
+      "consent": true
+    },
+    {
+      "id": "wide-lot-crosshatch-winter",
+      "src": "/photos/gallery/874f7d4f-060a-419d-87b5-3fbe026f6d49.jpg",
+      "alt": "A wide, freshly striped parking lot with crisp white stall lines and cross-hatched no-parking zones, photographed under a clear blue sky with bare winter trees along the edge.",
+      "lot_type": "Retail",
+      "caption": null,
+      "consent": true,
+      "note": "Used as the hero photo. See photo_assignments.hero."
+    },
+    {
+      "id": "crew-operating-striper-pov",
+      "src": "/photos/gallery/45c5382e-f16e-4857-802e-7dcc0d6ab541.jpg",
+      "alt": "A point of view shot looking down at line striping equipment and a crew member's foot and long shadow cast across a freshly lined parking lot.",
+      "lot_type": "Retail",
+      "caption": null,
+      "consent": true,
+      "note": "The closest thing to a crew photo in this set, but it is a partial candid shot, not a clear person. Considered and rejected for the trust slot. See photo_assignments.trust."
+    },
+    {
+      "id": "ada-stalls-wide-lot",
+      "src": "/photos/gallery/1d7564e6-35a4-4479-8c6f-0017208565ec.jpg",
+      "alt": "A wide retail parking lot with many blue accessible stalls and white diagonal hatching in their access aisles, stretching across the full width of the lot.",
+      "lot_type": "ADA",
+      "caption": null,
+      "consent": true
+    },
+    {
+      "id": "ada-stall-fire-station",
+      "src": "/photos/gallery/6d809abf-2fbb-4c96-9ec1-2b1fbe52c3ca.jpg",
+      "alt": "Two blue accessible parking stalls with a shared white hatched access aisle in front of a public building.",
+      "lot_type": "ADA",
+      "caption": null,
+      "consent": true,
+      "note": "A small forward-arrow icon from the source site's own gallery widget is baked into this file's top right corner. Crop before using it anywhere prominent."
+    },
+    {
+      "id": "warehouse-dock-orange-black",
+      "src": "/photos/gallery/b20935af-2838-4c2e-8c86-070e83e27c9e.jpg",
+      "alt": "Orange and black striped loading zone markings on a warehouse dock apron, with an accessible stall marked on the pavement to the left.",
+      "lot_type": "Warehouse",
+      "caption": null,
+      "consent": true,
+      "note": "A small forward-arrow icon from the source site's own gallery widget is baked into this file's top right corner. Crop before using it anywhere prominent. The source site also served an exact duplicate of this file under a second filename; only one copy was kept."
+    },
+    {
+      "id": "warehouse-floor-stencil-1",
+      "src": "/photos/gallery/551040ef-0953-4870-98ae-33eff831a69e.jpg",
+      "alt": "A yellow striped floor zone inside a warehouse, with a large custom text stencil painted across the concrete and a forklift and truck visible in the background.",
+      "lot_type": "Warehouse",
+      "caption": null,
+      "consent": true,
+      "note": "FLAG (checkpoint 3 photos pass): the stencil spells out a specific client's in-house nickname for the crew. Same caution as the car wash photo. Confirm with Devin before featuring prominently."
+    },
+    {
+      "id": "warehouse-floor-stencil-2",
+      "src": "/photos/gallery/303999af-db9a-4d01-8051-5584c50a8f8c.jpg",
+      "alt": "A wide interior warehouse view with yellow floor striping marking a work zone, tall support columns and roll-up doors along the far wall.",
+      "lot_type": "Warehouse",
+      "caption": null,
+      "consent": true,
+      "note": "Same warehouse and stencil job as warehouse-floor-stencil-1. Same flag applies."
+    }
+  ],
+  "gallery_source_note": "16 single photos from https://kleenstripereviews.com/imagery, downloaded to public/photos/source/ and stripped of all metadata (EXIF and ICC alike; none carried GPS) into public/photos/gallery/. Two files were excluded from this array and left out of public/photos/gallery/: a Kleen Stripe wordmark graphic on a black background (819b1bf9), which is brand art rather than a job photo, and an exact duplicate (ca2f9bdb, byte-identical to b20935af). Both remain in public/photos/source/ for the record. See the checkpoint report for the two photos flagged for a third-party naming risk and the two flagged for a baked-in UI artifact.",
+
+  "photo_assignments": {
+    "hero": "wide-lot-crosshatch-winter",
+    "trust": null,
+    "note": "trust is null on purpose. Nothing in the 16 photos clearly shows Devin or the crew as a person, only a partial POV shot of a foot and shadow (crew-operating-striper-pov). The work order says to leave the trust slot as a placeholder rather than substitute something that does not show what the slot promises, so it stays a PhotoSlot until a real people photo exists."
+  },
 
   "lead_magnet": {
     "title": "The ADA parking walk-around",
