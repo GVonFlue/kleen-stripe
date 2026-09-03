@@ -29,8 +29,8 @@ export default function PhotoSlot({ slot, aspect = "aspect-[4/3]", className = "
     >
       <div>
         <p className="text-sm font-medium text-[var(--ink)]/70">Photo needed</p>
-        <p className="mt-1 text-xs text-[var(--ink)]/50">{slotLabel(slot)}</p>
-        <p className="mt-2 text-[10px] uppercase tracking-wide text-[var(--ink)]/40">
+        <p className="mt-1 text-xs text-[var(--ink)]/70">{slotLabel(slot)}</p>
+        <p className="mt-2 text-[10px] uppercase tracking-wide text-[var(--ink)]/70">
           draft placeholder, not for launch
         </p>
       </div>
