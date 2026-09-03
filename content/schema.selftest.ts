@@ -40,6 +40,27 @@ check("duplicate meta caught", () => {
   const c = structuredClone(base); (c.services[1] as any).meta_description = c.services[0].meta_description;
   return auditContent(c, "draft").some(e => e.includes("Duplicate meta"));
 });
+check("em-dash inside a homepage block is caught (blocks are z.any() at the schema level, so copy() alone never sees them)", () => {
+  const c = structuredClone(base);
+  (c.pages["/"].blocks as any)[0].sub = "No call center — you get Devin.";
+  return auditContent(c, "draft").some(e => e.includes("blocks[0].sub") && e.includes("em-dash"));
+});
+check("banned word inside a homepage block is caught", () => {
+  const c = structuredClone(base);
+  (c.pages["/"].blocks as any)[0].sub = "The cheap way to stripe a lot.";
+  return auditContent(c, "draft").some(e => e.includes("blocks[0].sub") && e.includes('banned word "cheap"'));
+});
+check("placeholder text inside a homepage block is caught", () => {
+  const c = structuredClone(base);
+  (c.pages["/"].blocks as any)[0].sub = "Call 555-555-5555 today.";
+  return auditContent(c, "draft").some(e => e.includes("blocks[0].sub") && e.includes("placeholder text"));
+});
+check("a block-level annotation field (note) stays exempt from copy rules", () => {
+  const c = structuredClone(base);
+  (c.pages["/"].blocks as any)[0].note = "Internal only — never rendered.";
+  return auditContent(c, "draft").length === 0;
+});
+
 check("non-consented review blocks launch", () => auditContent(base, "launch").some(e => e.includes("consent is false")));
 check("consented review does not block launch", () => {
   const c = structuredClone(base); (c.reviews[0] as any).consent = true;

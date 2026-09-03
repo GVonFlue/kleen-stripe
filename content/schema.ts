@@ -64,6 +64,18 @@ export type BuildMode = "draft" | "launch";
  * Field types
  * ------------------------------------------------------------------ */
 
+/** Shared with the auditContent tree walk below, so a `copy()` field and a raw string
+ *  inside a `blocks: z.any()` record are held to the exact same rule, not two copies
+ *  of it that can drift apart. */
+export function bannedWordHit(s: string): string | null {
+  return (
+    BANNED_WORDS.find((w) => new RegExp(`\\b${w.replace(/[.*+?^${}()|[\]\\]/g, "\\$&")}\\b`, "i").test(s)) ?? null
+  );
+}
+export function placeholderHit(s: string): RegExp | null {
+  return PLACEHOLDER_PATTERNS.find((p) => p.test(s)) ?? null;
+}
+
 /**
  * Any string that can reach rendered HTML. Rejects em-dashes and unevidenced
  * superlatives. Use this instead of z.string() for every piece of copy.
@@ -75,11 +87,10 @@ export const copy = (max = 2000) =>
     .refine((s) => !EM_DASH.test(s), {
       message: "Em-dash or en-dash found. Doctrine section 5 prohibits both. Use a comma, a period, or restructure.",
     })
-    .refine(
-      (s) => !BANNED_WORDS.some((w) => new RegExp(`\\b${w.replace(/[.*+?^${}()|[\]\\]/g, "\\$&")}\\b`, "i").test(s)),
-      { message: "Banned word. Doctrine section 5, superlatives without evidence and the client never_say list." },
-    )
-    .refine((s) => !PLACEHOLDER_PATTERNS.some((p) => p.test(s)), {
+    .refine((s) => bannedWordHit(s) === null, {
+      message: "Banned word. Doctrine section 5, superlatives without evidence and the client never_say list.",
+    })
+    .refine((s) => placeholderHit(s) === null, {
       message: "Placeholder text. Doctrine hard stop 2. A placeholder never reaches a live page.",
     });
 
@@ -203,6 +214,23 @@ export const buyerSchema = z.object({
   principle: z.string(),
 });
 
+/**
+ * Reusable section-chrome labels that would otherwise get typed straight into a
+ * page template as if they were not copy. They are: a visitor reads them, so they
+ * come from here rather than from a component. Checkpoint 2.
+ */
+export const uiSchema = z.object({
+  service_scope_heading: copy(40),
+  service_faqs_heading: copy(40),
+  service_buyers_heading: copy(40),
+  form_name_label: copy(20),
+  form_phone_label: copy(20),
+  form_email_label: copy(20),
+  form_message_label: copy(60),
+  form_optional_note: copy(20),
+  form_success_heading: copy(60),
+});
+
 export const areaSchema = z.object({
   city: z.string(),
   state: z.string().length(2),
@@ -211,6 +239,22 @@ export const areaSchema = z.object({
   primary: z.boolean().optional(),
   travel_market: z.boolean().optional(),
   note: z.string().optional(),
+});
+
+/**
+ * areaSchema carries no title, meta, h1 or body of its own. Checkpoint 2 found this
+ * gap: four routes (Derby, Andover, Haysville, Newton) are marked page:true with
+ * nothing to render. This is a template rather than per-city prose: {{city}} and
+ * {{state}} are the only variables, everything else is shared and reuses facts
+ * already established elsewhere in this file. Flagged in the checkpoint 2 report.
+ */
+export const areaPageTemplateSchema = z.object({
+  title_template: copy(70),
+  meta_description_template: copy(165),
+  h1_template: copy(120),
+  lede_template: copy(400),
+  body: z.array(copy(800)),
+  cta: ctaSchema,
 });
 
 /** Doctrine hard stop 3 and section 9. Nothing publishes without permission. */
@@ -316,12 +360,20 @@ export const contentSchema = z.object({
   nav: z.object({
     primary: z.array(z.object({ label: copy(40), href: z.string() })),
     cta: ctaSchema,
+    /** The two words next to the tappable tel:/sms: links in the header and footer.
+     *  Content, not JSX: checkpoint 2 caught "Call" and "Text" typed straight into
+     *  components, which is exactly the shortcut CLAUDE.md's "no copy in JSX, none"
+     *  rule exists to catch. */
+    call_label: copy(20),
+    text_label: copy(20),
     note: z.string().optional(),
   }),
   pages: z.record(z.string(), pageSchema),
   services: z.array(serviceSchema).min(1),
   buyers: z.array(buyerSchema).min(1),
   areas: z.array(areaSchema).min(1),
+  area_page_template: areaPageTemplateSchema,
+  ui: uiSchema,
   clients: z.array(clientSchema),
   clients_note: z.string().optional(),
   reviews: z.array(reviewSchema),
@@ -337,15 +389,30 @@ export type Content = z.infer<typeof contentSchema>;
  * Cross-cutting doctrine checks
  * ------------------------------------------------------------------ */
 
+/**
+ * Keys whose string content never reaches a visitor, so copy rules do not apply to
+ * them: internal annotations, provenance and strategy text, and structural/routing
+ * identifiers (hrefs, slugs, ids) that are not prose and are validated by their own
+ * schema types instead. Extended at checkpoint 1 decision 4 when auditContent's copy
+ * rules were widened from copy()-typed fields to every string in the tree, which is
+ * also why "text" (a review's verbatim words, doctrine hard stop 3) has to be here:
+ * a customer's own quote is not our copy to hold to our own house style.
+ */
+const COPY_EXEMPT_KEYS = [
+  "note", "needs", "resolution", "source", "content_gate", "compliance_note", "why_own_page",
+  "scope_flag", "fallback_note", "price_position_note", "rule", "doctrine",
+  "reference_axis", "signature_element", "positioning", "provenance", "_meta", "domains",
+  "href", "src", "slug", "schema_type", "kind", "id", "type", "image_slot", "pair_id",
+  "lot_type", "text", "value", "principle", "requires", "travel_note", "work_shot_list",
+  "clients_note", "faqs_pending", "proof_needed", "never_say",
+];
+
 function walkStrings(node: unknown, path: string, visit: (s: string, p: string) => void) {
   if (typeof node === "string") return visit(node, path);
   if (Array.isArray(node)) return node.forEach((v, i) => walkStrings(v, `${path}[${i}]`, visit));
   if (node && typeof node === "object") {
     for (const [k, v] of Object.entries(node as Record<string, unknown>)) {
-      // Internal annotation fields never render, so they are exempt from copy rules.
-      if (["note", "needs", "resolution", "source", "content_gate", "compliance_note", "why_own_page",
-           "scope_flag", "fallback_note", "price_position_note", "rule", "doctrine",
-           "reference_axis", "signature_element", "positioning"].includes(k)) continue;
+      if (COPY_EXEMPT_KEYS.includes(k)) continue;
       walkStrings(v, `${path}.${k}`, visit);
     }
   }
@@ -361,13 +428,28 @@ function resolvePath(content: any, path: string): unknown {
 export function auditContent(content: Content, mode: BuildMode): string[] {
   const errors: string[] = [];
 
-  // Doctrine section 8. No booking language without a booking URL.
-  if (!content.endpoints.booking_url) {
-    walkStrings(content, "content", (s, p) => {
-      const hit = BOOKING_CLAIMS.find((c) => new RegExp(`\\b${c}\\b`, "i").test(s));
-      if (hit) errors.push(`${p}: says "${hit}" with no endpoints.booking_url. Doctrine section 8.`);
-    });
-  }
+  // Doctrine section 5, checkpoint 1 decision 4. `pages[].blocks` is
+  // z.record(z.string(), z.any()) at the schema level, so a `copy()` field type never
+  // sees most block content. This walk is what actually enforces em-dash, banned-word
+  // and placeholder rules there, and everywhere else in the tree that copy() does not
+  // already type. Doctrine section 8's booking-language check rides the same pass.
+  const requireBookingUrl = !content.endpoints.booking_url;
+  walkStrings(content, "content", (s, p) => {
+    if (EM_DASH.test(s)) {
+      errors.push(`${p}: em-dash or en-dash found. Doctrine section 5 prohibits both. Use a comma, a period, or restructure.`);
+    }
+    const banned = bannedWordHit(s);
+    if (banned) {
+      errors.push(`${p}: banned word "${banned}". Doctrine section 5, superlatives without evidence and the client never_say list.`);
+    }
+    if (placeholderHit(s)) {
+      errors.push(`${p}: placeholder text. Doctrine hard stop 2. A placeholder never reaches a live page.`);
+    }
+    if (requireBookingUrl) {
+      const bookingHit = BOOKING_CLAIMS.find((c) => new RegExp(`\\b${c}\\b`, "i").test(s));
+      if (bookingHit) errors.push(`${p}: says "${bookingHit}" with no endpoints.booking_url. Doctrine section 8.`);
+    }
+  });
 
   // Doctrine hard stop 3. Consent gate.
   content.reviews.forEach((r, i) => {

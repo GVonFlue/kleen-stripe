@@ -12,8 +12,10 @@ Built by ProyTech to the ProyTech Website Build Doctrine.
    with the provenance of each one. It is the source of truth.
 3. `content/schema.ts` is the Zod schema. It enforces the doctrine at parse time. Read the
    refinements. They tell you what the build will refuse to compile.
-4. `docs/CLAUDE_CODE_PROMPT.md` is the build brief: stack, architecture, route list, build order
-   and checkpoints.
+4. `docs/BUILD_PROMPT.md` is the kickoff brief. It includes the reference build at
+   https://gvonflue.vercel.app, which is the house shape our client sites take. Go look at it.
+5. `docs/CLAUDE_CODE_PROMPT.md` is the architecture detail: stack, route list, build order and
+   checkpoints.
 
 ## Hard rules
 
@@ -34,11 +36,12 @@ Built by ProyTech to the ProyTech Website Build Doctrine.
 
 ## The launch build is supposed to fail
 
-`npm run build:launch` runs the strict audit and currently reports twelve blockers: six facts
-Devin has not confirmed, three conflicting facts, an empty photo array and a missing lead magnet.
-That list is the client question list. Do not remove entries from
-`provenance.pending_confirmation` to make it pass, and do not report the build green when it is
-only green in draft mode. Doctrine hard stop 8.
+`npm run build:launch` runs the strict audit and currently reports fourteen blockers: eight facts
+Devin has not confirmed (six from Phase 0, plus the differentiators band's price-promise framing
+from checkpoint 1, plus the four area pages' shared template from checkpoint 2, both pending his
+sign-off), three conflicting facts, an empty photo array and a missing lead magnet. That list is
+the client question list. Do not remove entries from `provenance.pending_confirmation` to make it
+pass, and do not report the build green when it is only green in draft mode. Doctrine hard stop 8.
 
 `npm run dev` and `npm run build` run in draft mode and are clean.
 
@@ -63,3 +66,13 @@ Build in phases and report at each checkpoint. Open every report with DECISIONS 
 numbered, most consequential first, as lettered options with a recommendation. Say what is not
 built and who it is blocked on. A report that only contains good news is a report nobody can act
 on. Doctrine section 11.
+
+<!-- BEGIN:nextjs-agent-rules -->
+
+# This is NOT the Next.js you know
+
+This version has breaking changes — APIs, conventions, and file structure may all differ from your training data. Read the relevant guide in `node_modules/next/dist/docs/` (resolved from this file's directory; in monorepos the `next` package may not be visible from the repo root) before writing any code. Heed deprecation notices.
+
+This block is written and re-added by `next dev` — verify at `node_modules/next/dist/server/lib/generate-agent-files.js`. Removing it from a diff only re-creates the uncommitted change; committing it with your work keeps the tree clean.
+
+<!-- END:nextjs-agent-rules -->

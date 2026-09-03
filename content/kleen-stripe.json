@@ -56,6 +56,18 @@
         "value": "Gary Moore, 8/12/2022",
         "source": "kleenstripereviews.com Testimonials page",
         "note": "consent is false. Doctrine hard stop 3. No testimonial publishes without permission and nobody edits the words."
+      },
+      {
+        "path": "pages./.blocks[differentiators]",
+        "value": "Column 3, 'One number, not a moving one', a public rephrasing of positioning.price_promise",
+        "source": "Author judgment at build checkpoint 1, not from Devin",
+        "note": "positioning.decision_status is still pending Devin: lead-on-tenure versus price-forward framing, decision 2 in the Phase 0 report. This column assumes the recommended tenure-first framing and states the price promise as supporting evidence, not the headline claim. Confirm with Devin before launch, or rewrite the column once he answers. This value renders in DRAFT and blocks LAUNCH."
+      },
+      {
+        "path": "area_page_template",
+        "value": "Shared title/meta/h1/lede/body template for the four area pages (Derby, Andover, Haysville, Newton)",
+        "source": "Author judgment at build checkpoint 2, not from Devin",
+        "note": "areaSchema had no copy fields at all for these four routes. This template fills the gap with facts already established elsewhere (1979, Wichita crew, same truck) rather than inventing local detail, but Devin has not seen or approved it, and /service-areas/.travel_note already flags the thin-content risk of a city page with no real work behind it yet. Confirm the copy, or replace it with something more specific once there is real work in these cities to point to. This value renders in DRAFT and blocks LAUNCH."
       }
     ],
     "conflicts_to_resolve": [
@@ -176,6 +188,8 @@
       {"label": "About", "href": "/about/"}
     ],
     "cta": {"label": "Get a quote", "href": "/contact/"},
+    "call_label": "Call",
+    "text_label": "Text",
     "note": "One CTA in the header. Doctrine check 1, Hick's Law. The tappable phone sits beside it as a tel link, not as a second accent button."
   },
 
@@ -184,21 +198,22 @@
       "type": "home",
       "title": "Parking Lot Striping & Sealcoating, Wichita KS | Kleen Stripe",
       "meta_description": "Commercial parking lot striping, sealcoating, ADA layouts and repairs in Wichita and across Kansas. A family crew that has been striping these lots since 1979.",
-      "h1": "Fresh lines on your lot, from the Wichita family that has been striping them since 1979.",
+      "h1": "Striping Wichita Lots Since 1979.",
       "blocks": [
         {
           "id": "hero",
           "eyebrow": "Wichita, Kansas",
-          "headline": "{{h1}}",
+          "headline_prefix": "Striping Wichita Lots Since",
+          "headline_year": "{{business.founded_year}}",
+          "headline_suffix": ".",
           "requires": ["business.founded_year"],
-          "fallback_headline": "Fresh lines on your lot, from a Wichita family crew that does this and nothing else.",
-          "sub": "Devin Hammann runs the crew his grandfather started. Striping, sealcoating, ADA layouts, crack sealing and repairs on commercial lots across Kansas, and he travels for the right job.",
-          "requires_sub": ["business.founder_name", "business.owner_name"],
-          "fallback_sub": "Striping, sealcoating, ADA layouts, crack sealing and repairs on commercial lots across Kansas.",
+          "fallback_headline": "Family Run Lot Striping.",
+          "sub": "No call center. You get Devin.",
           "cta_primary": {"label": "Get a quote on your lot", "href": "/contact/", "source_tag": "Kleen Stripe - Homepage Quote"},
           "cta_secondary": {"label": "Send me the ADA checklist", "href": "/ada-striping-checklist/"},
           "image_slot": "hero_before_after",
-          "scope_flag": "Doctrine section 4 puts the give as the homepage primary CTA on reciprocity grounds. Logan's signed brief puts the quote request first. The scope wins and the conflict is flagged, per the doctrine preamble."
+          "scope_flag": "Doctrine section 4 puts the give as the homepage primary CTA on reciprocity grounds. Logan's signed brief puts the quote request first. The scope wins and the conflict is flagged, per the doctrine preamble.",
+          "note": "Checkpoint 1 decision 1: merges the confirmed fact (1979) into the headline itself, since there is no proof number to let a soft category headline survive on its own (doctrine section 5). The year is its own gated field. fallback_headline is the old soft option, used only if founded_year is ever unconfirmed."
         },
         {
           "id": "doors",
@@ -210,6 +225,18 @@
             {"label": "I run a warehouse", "line": "Aisles, racking lines, safety zones and dock markings, inside.", "href": "/warehouse-and-interior-striping-wichita/"},
             {"label": "I own a small business", "line": "A dozen stalls out front that have not been touched in years.", "href": "/small-business-lots/"}
           ]
+        },
+        {
+          "id": "journey",
+          "kind": "journey_band",
+          "heading": "How the job actually goes",
+          "steps": [
+            {"step": "Walk the lot", "body": "You show him the lot. He tells you what he sees, not what he thinks you want to hear."},
+            {"step": "Get a number", "body": "One number, not a range that grows later."},
+            {"step": "Lines go down", "body": "The crew works it in sections so your lot keeps running."},
+            {"step": "Walk it back", "body": "You walk the finished lot together before he calls it done."}
+          ],
+          "note": "Checkpoint 1 decision 2: option B, with the step 2 fix. The original 'not a guess over the phone' contradicted /small-business-lots/, whose entire pitch is text a photo and get a number with no site visit. Placed after doors and before numbers since Chalk is not built yet. Chalk will likely sit between hero and doors once it exists, per the checkpoint 1 report."
         },
         {
           "id": "numbers",
@@ -244,6 +271,28 @@
             "template": "Sealcoat runs about {{pricing.sealcoat_per_sqft}} a square foot. Tearing out and replacing that same square foot runs about {{pricing.replacement_per_sqft}}. On a 20,000 foot lot that is the difference between a line item and a capital request.",
             "note": "Doctrine section 2 check 2 wants the cost stated as arithmetic. Both figures must come from Devin. Do not estimate them and do not source them from the internet."
           }
+        },
+        {
+          "id": "differentiators",
+          "kind": "three_column",
+          "eyebrow": "Why people call Devin instead of the franchise",
+          "heading": "Three things a national account can't buy",
+          "columns": [
+            {
+              "heading": "Devin, not a dispatcher",
+              "body": "Devin Hammann quotes the lot and he is on it when the crew stripes it. Third generation on the same machine his grandfather started with in 1979.",
+              "requires": ["business.founder_name", "business.founded_year", "business.generation"]
+            },
+            {
+              "heading": "The evidence, not the pitch",
+              "body": "An ADA page that actually explains the rule instead of burying it in a bullet, and a phone Devin answers himself instead of a call center reading a script."
+            },
+            {
+              "heading": "One number, not a moving one",
+              "body": "The number on your quote is the number on your invoice. No change orders once the crew shows up."
+            }
+          ],
+          "note": "New band, added at checkpoint 1. Replaces Garrett's third column, which sold ProyTech, with an operating promise true of Kleen Stripe. Column 1 restates already-confirmed trust facts, column 2 restates the ADA and no-call-center themes already established elsewhere in this file, column 3 is new public-facing phrasing of positioning.price_promise, which is internal strategy text and had not itself passed the copy validator. See checkpoint 1 report."
         },
         {
           "id": "trust",
@@ -344,6 +393,7 @@
       "h1": "Before and after, same lot, same angle",
       "lede": "Every photograph on this page is a lot this crew worked on. None of it is stock.",
       "filters": ["Retail", "Apartments", "Warehouse", "Industrial", "Small business", "ADA"],
+      "empty_state": "This page is live but the photos are not on it yet. Nothing here is stock, so it stays empty until the crew's own photos are ready.",
       "indexable": false,
       "note": "Ships noindex and out of the sitemap until real photographs exist. Same pattern as the Level Up gallery."
     },
@@ -650,6 +700,18 @@
     {"city": "Oklahoma City", "state": "OK", "slug": null, "page": false, "travel_market": true}
   ],
 
+  "area_page_template": {
+    "title_template": "Parking Lot Striping in {{city}}, {{state}} | Kleen Stripe",
+    "meta_description_template": "Commercial parking lot striping, sealcoating and ADA layouts in {{city}}, Kansas from the Wichita crew that has been striping lots since 1979.",
+    "h1_template": "Parking lot striping in {{city}}, {{state}}",
+    "lede_template": "The crew that stripes Wichita lots covers {{city}} the same way, on the same truck, on the same schedule.",
+    "body": [
+      "Kleen Stripe is based in Wichita and works this area routinely rather than treating it as a special trip. The same crew, the same equipment and the same quote process apply here as anywhere else in Kansas."
+    ],
+    "cta": {"label": "Get a quote on your lot", "href": "/contact/"},
+    "note": "Checkpoint 2 addition. areaSchema had no title, meta, h1 or body fields at all, so these four routes had nothing to render. This is a shared template, not per-city prose: only {{city}} and {{state}} vary, and the body restates facts already established elsewhere rather than inventing local detail (no landmarks, no job counts, no claims about work actually done in this city, since none of that exists yet). Flagged in the checkpoint 2 report as a content gap and a thin-content tradeoff worth watching against /service-areas/'s own travel_note reasoning."
+  },
+
   "clients": [
     {"name": "Boeing", "publishable": false},
     {"name": "Kroger", "publishable": false},
@@ -708,6 +770,18 @@
     "cta": {"label": "Send me the checklist", "href": "#", "source_tag": "Kleen Stripe - ADA Checklist Download"},
     "consent_line": "One checklist, sent once. It is not a subscription.",
     "content_gate": "file is null. The PDF does not exist yet and the site withholds the block until it does. Every figure in it must be verified against the 2010 ADA Standards for Accessible Design before it is written. Doctrine hard stop 1."
+  },
+
+  "ui": {
+    "service_scope_heading": "What's included",
+    "service_faqs_heading": "Questions",
+    "service_buyers_heading": "Who this is for",
+    "form_name_label": "Name",
+    "form_phone_label": "Phone",
+    "form_email_label": "Email",
+    "form_message_label": "What's going on with the lot",
+    "form_optional_note": "optional",
+    "form_success_heading": "That came through"
   },
 
   "source_tags": [

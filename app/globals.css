@@ -1,0 +1,49 @@
+@import "tailwindcss";
+
+/*
+ * Palette lives in content/kleen-stripe.json under brand.colors and is injected as
+ * CSS custom properties by app/layout.tsx from the parsed content object, not
+ * hardcoded here. If brand.colors changes, every surface that reads var(--ink) etc.
+ * updates on the next build. Nothing in this stylesheet names a hex value.
+ */
+
+@theme {
+  /* Type scale. A design-system token, not a content fact, so it lives here rather
+     than in the content file. Mobile-first: clamp() moves the top of the scale up
+     on wider viewports without a second breakpoint set. */
+  --font-sans:
+    -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+
+  --text-hero: clamp(2.25rem, 5vw + 1rem, 4rem);
+  --text-h1: clamp(1.875rem, 3.5vw + 1rem, 3rem);
+  --text-h2: clamp(1.5rem, 2vw + 1rem, 2.25rem);
+  --text-h3: clamp(1.25rem, 1vw + 1rem, 1.5rem);
+  --text-lede: clamp(1.125rem, 0.5vw + 1rem, 1.25rem);
+}
+
+@layer base {
+  * {
+    border-color: var(--line);
+  }
+  html {
+    font-family: var(--font-sans);
+    -webkit-tap-highlight-color: transparent;
+  }
+  body {
+    background: var(--surface);
+    color: var(--ink);
+  }
+  :focus-visible {
+    outline: 2px solid var(--ada);
+    outline-offset: 2px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}

@@ -5,6 +5,9 @@ const nextConfig: NextConfig = {
   trailingSlash: true,
   reactStrictMode: true,
   poweredByHeader: false,
+  // Pins the workspace root to this repo. Without it Turbopack looks for the
+  // nearest lockfile above the repo and warns that it found one outside git.
+  turbopack: { root: __dirname },
 };
 
 export default nextConfig;
