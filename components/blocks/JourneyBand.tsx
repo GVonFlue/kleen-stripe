@@ -15,7 +15,7 @@ export default function JourneyBand({ block }: { block: any }) {
         <ol className="mt-6 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
           {block.steps.map((s: any, i: number) => (
             <li key={i} className="flex flex-col gap-2">
-              <span className="text-sm font-semibold text-[var(--ink)]/50">{String(i + 1).padStart(2, "0")}</span>
+              <span className="text-sm font-semibold text-[var(--ink)]/70">{String(i + 1).padStart(2, "0")}</span>
               <span className="font-semibold text-[var(--ink)]">{s.step}</span>
               <span className="text-sm text-[var(--ink)]/70">{s.body}</span>
               {s.gallery_id && (
