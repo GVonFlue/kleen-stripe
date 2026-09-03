@@ -8,17 +8,20 @@ type ClosingBarProps = {
 
 /**
  * Closing CTA before the footer, required on every route without exception
- * (doctrine section 3). Reuses whatever CTA the page already defines as the
- * primary ask, or falls back to the sitewide quote CTA, paired with a tel: link
- * as the second distinct door. No new copy: every label here already exists and
- * has already passed the copy rules elsewhere in the content file.
+ * (doctrine section 3). Black band, matching the homepage's closing chapter break:
+ * this is the one moment on every interior page that gets the treatment, so it
+ * reads as a deliberate ending, not a plain bordered box.
+ * Reuses whatever CTA the page already defines as the primary ask, or falls back
+ * to the sitewide quote CTA, paired with a tel: link as the second distinct door.
+ * No new copy: every label here already exists and has already passed the copy
+ * rules elsewhere in the content file.
  */
 export default function ClosingBar({ cta }: ClosingBarProps) {
   const primary = cta ?? content.nav.cta;
   const showSecondaryCall = primary.href !== telHref(content.business.phone_primary);
 
   return (
-    <section aria-label="Get in touch" className="border-t border-[var(--line)] bg-[var(--subtle)]">
+    <section aria-label="Get in touch" className="bg-[var(--ink)]">
       <div className="mx-auto flex max-w-4xl flex-wrap justify-center gap-3 px-4 py-10">
         <Cta label={primary.label} href={primary.href} variant="primary" />
         {showSecondaryCall && (
@@ -26,6 +29,7 @@ export default function ClosingBar({ cta }: ClosingBarProps) {
             label={`${content.nav.call_label} ${content.business.phone_display}`}
             href={telHref(content.business.phone_primary)}
             variant="secondary"
+            onDark
           />
         )}
       </div>

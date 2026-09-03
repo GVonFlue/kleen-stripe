@@ -13,31 +13,36 @@ import HeroReveal from "@/components/HeroReveal";
  * site to let a category headline survive on its own (doctrine section 5). The year
  * is its own gated field: if business.founded_year is ever unconfirmed, the whole
  * headline falls back to fallback_headline rather than printing a broken sentence.
+ *
+ * The photo is full bleed: it sits outside the max-w-6xl text column entirely,
+ * edge to edge, no rounded corners. Contained columns are for body copy only.
  */
 export default function Hero({ block }: { block: any }) {
   const yearOk = hasAll(content, block.requires);
   const year = yearOk ? resolveTemplate(block.headline_year, content) : null;
 
   return (
-    <section className="mx-auto max-w-6xl px-4 pb-10 pt-8 sm:pt-14">
-      <PendingNote paths={block.requires ?? []} />
-      <p className="text-sm font-semibold uppercase tracking-wide text-[var(--ink)]/60">{block.eyebrow}</p>
-      <h1 className="mt-3 max-w-3xl text-[length:var(--text-hero)] font-extrabold leading-[1.05] text-[var(--ink)]">
-        {yearOk ? (
-          <>
-            {block.headline_prefix} <em className="italic">{year}</em>
-            {block.headline_suffix}
-          </>
-        ) : (
-          block.fallback_headline
-        )}
-      </h1>
-      <PaintedLine className="mt-4 w-20" />
-      <p className="mt-5 max-w-2xl text-[length:var(--text-lede)] text-[var(--ink)]/80">{block.sub}</p>
+    <section className="pb-10 pt-8 sm:pt-14">
+      <div className="mx-auto max-w-6xl px-4">
+        <PendingNote paths={block.requires ?? []} />
+        <p className="text-sm font-semibold uppercase tracking-wide text-[var(--ink)]/60">{block.eyebrow}</p>
+        <h1 className="mt-3 max-w-3xl text-[length:var(--text-hero)] font-extrabold leading-[1.05] text-[var(--ink)]">
+          {yearOk ? (
+            <>
+              {block.headline_prefix} <em className="italic">{year}</em>
+              {block.headline_suffix}
+            </>
+          ) : (
+            block.fallback_headline
+          )}
+        </h1>
+        <PaintedLine className="mt-4 w-20" />
+        <p className="mt-5 max-w-2xl text-[length:var(--text-lede)] text-[var(--ink)]/80">{block.sub}</p>
 
-      <div className="mt-7 flex flex-wrap gap-3">
-        <Cta label={block.cta_primary.label} href={block.cta_primary.href} variant="primary" />
-        <Cta label={block.cta_secondary.label} href={block.cta_secondary.href} variant="secondary" />
+        <div className="mt-7 flex flex-wrap gap-3">
+          <Cta label={block.cta_primary.label} href={block.cta_primary.href} variant="primary" />
+          <Cta label={block.cta_secondary.label} href={block.cta_secondary.href} variant="secondary" />
+        </div>
       </div>
 
       <div className="relative mt-10">
@@ -46,14 +51,17 @@ export default function Hero({ block }: { block: any }) {
             <GalleryPhoto
               id={content.photo_assignments.hero}
               fallbackSlot={block.image_slot}
-              aspect="aspect-[16/9]"
-              sizes="(min-width: 1152px) 1152px, 100vw"
+              aspect="aspect-[16/9] sm:aspect-[21/9]"
+              sizes="100vw"
               eager
+              rounded={false}
             />
             <HeroReveal />
           </>
         ) : (
-          <PhotoSlot slot={block.image_slot} aspect="aspect-[16/9]" />
+          <div className="mx-auto max-w-6xl px-4">
+            <PhotoSlot slot={block.image_slot} aspect="aspect-[16/9]" />
+          </div>
         )}
       </div>
     </section>

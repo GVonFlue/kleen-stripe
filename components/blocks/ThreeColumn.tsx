@@ -1,6 +1,7 @@
 import { content } from "@/lib/content";
 import { hasAll } from "@/lib/render";
 import PendingNote from "@/components/PendingNote";
+import WordBlock from "@/components/WordBlock";
 
 /**
  * The reference build's three side-by-side blocks. Garrett's third column sells
@@ -14,7 +15,15 @@ export default function ThreeColumn({ block }: { block: any }) {
   return (
     <section className="mx-auto max-w-6xl px-4 py-10">
       <p className="text-sm font-semibold uppercase tracking-wide text-[var(--ink)]/60">{block.eyebrow}</p>
-      <h2 className="mt-2 text-[length:var(--text-h2)] font-bold text-[var(--ink)]">{block.heading}</h2>
+      <h2 className="mt-2 text-[length:var(--text-h2)] font-bold text-[var(--ink)]">
+        {block.heading_prefix ? (
+          <>
+            {block.heading_prefix} <WordBlock>{block.heading_highlight}</WordBlock>
+          </>
+        ) : (
+          block.heading
+        )}
+      </h2>
       <div className="mt-6 grid gap-6 sm:grid-cols-3">
         {columns.map((col: any, i: number) => (
           <div key={i}>

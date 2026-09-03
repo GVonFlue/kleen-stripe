@@ -14,9 +14,13 @@
   --font-sans:
     -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
 
-  --text-hero: clamp(2.25rem, 5vw + 1rem, 4rem);
+  --text-hero: clamp(2.5rem, 6vw + 1rem, 4.5rem);
+  /* For black-band and word-block moments: bigger than a normal section heading,
+     smaller than the hero. A real jump exists between body copy and this, not a
+     medium-everything-forever scale. */
+  --text-display: clamp(2rem, 4vw + 1rem, 3.5rem);
   --text-h1: clamp(1.875rem, 3.5vw + 1rem, 3rem);
-  --text-h2: clamp(1.5rem, 2vw + 1rem, 2.25rem);
+  --text-h2: clamp(1.75rem, 2.5vw + 1rem, 2.75rem);
   --text-h3: clamp(1.25rem, 1vw + 1rem, 1.5rem);
   --text-lede: clamp(1.125rem, 0.5vw + 1rem, 1.25rem);
 }

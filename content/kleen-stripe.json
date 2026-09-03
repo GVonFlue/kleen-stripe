@@ -368,6 +368,8 @@
         {
           "id": "cost_of_inaction",
           "heading": "The cheapest thing on your property is the paint",
+          "heading_prefix": "The cheapest thing on your property is",
+          "heading_highlight": "the paint",
           "body": "Sealcoat and paint cost a fraction of the asphalt underneath them, and every season you skip is a season water gets down into the cracks. The crack you seal this year is the pothole you patch next year, and the pothole you skip is the section you replace the year after. That is the whole argument for maintenance and it is the reason this crew would rather sell you a plan than a rescue.",
           "arithmetic_block": {
             "requires": [
@@ -383,6 +385,8 @@
           "kind": "three_column",
           "eyebrow": "Why people call Devin instead of the franchise",
           "heading": "Three things a national account can't buy",
+          "heading_prefix": "Three things a national account",
+          "heading_highlight": "can't buy",
           "columns": [
             {
               "heading": "Devin, not a dispatcher",
@@ -444,6 +448,8 @@
           "id": "closing",
           "kind": "closing_cta",
           "heading": "Send a photo of your lot and get a number back.",
+          "heading_prefix": "Send a photo of your lot and get",
+          "heading_highlight": "a number back.",
           "body": "You do not need a site walk to start. Text a picture and the address, and you will get a real number instead of a range.",
           "cta_primary": {
             "label": "Text a photo of your lot",

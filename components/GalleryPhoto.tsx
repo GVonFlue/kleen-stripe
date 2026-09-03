@@ -16,14 +16,17 @@ type GalleryPhotoProps = {
    *  half, which is exactly the bug Lighthouse's LCP-discovery check caught. */
   eager?: boolean;
   className?: string;
+  /** Full-bleed images (the hero) run edge to edge with no rounded corners;
+   *  contained ones (the /work/ grid, journey band) keep them. */
+  rounded?: boolean;
 };
 
-export default function GalleryPhoto({ id, fallbackSlot, aspect = "aspect-[4/3]", sizes = "100vw", eager = false, className = "" }: GalleryPhotoProps) {
+export default function GalleryPhoto({ id, fallbackSlot, aspect = "aspect-[4/3]", sizes = "100vw", eager = false, className = "", rounded = true }: GalleryPhotoProps) {
   const photo = content.gallery.find((g) => g.id === id);
   if (!photo) return <PhotoSlot slot={fallbackSlot} aspect={aspect} className={className} />;
 
   return (
-    <div className={`relative w-full overflow-hidden rounded-md bg-[var(--subtle)] ${aspect} ${className}`}>
+    <div className={`relative w-full overflow-hidden ${rounded ? "rounded-md" : ""} bg-[var(--subtle)] ${aspect} ${className}`}>
       <Image
         src={photo.src}
         alt={photo.alt}

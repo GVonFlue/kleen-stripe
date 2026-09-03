@@ -7,6 +7,10 @@ type CtaProps = {
   className?: string;
   type?: "submit" | "button";
   disabled?: boolean;
+  /** Set on a black band: the secondary outline flips from ink-on-light to
+   *  surface-on-dark. The primary button never changes, it already reads
+   *  cleanly on black, which is the point of the black-and-yellow pairing. */
+  onDark?: boolean;
 };
 
 /**
@@ -16,13 +20,15 @@ type CtaProps = {
  * every yellow surface carries ink text so it clears WCAG AA. Doctrine check 1 and
  * check 3.
  */
-export default function Cta({ label, href, variant = "secondary", className = "", type, disabled }: CtaProps) {
+export default function Cta({ label, href, variant = "secondary", className = "", type, disabled, onDark = false }: CtaProps) {
   const base =
     "inline-flex min-h-11 items-center justify-center gap-2 rounded-full px-6 py-3 text-base font-semibold transition-colors disabled:opacity-50";
   const styles =
     variant === "primary"
       ? "bg-[var(--accent)] text-[var(--accent-ink)] hover:brightness-95"
-      : "border-2 border-[var(--ink)] text-[var(--ink)] hover:bg-[var(--subtle)]";
+      : onDark
+        ? "border-2 border-[var(--surface)] text-[var(--surface)] hover:bg-[var(--surface)]/10"
+        : "border-2 border-[var(--ink)] text-[var(--ink)] hover:bg-[var(--subtle)]";
 
   if (type === "submit" || type === "button") {
     return (
