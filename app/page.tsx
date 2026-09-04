@@ -13,14 +13,16 @@ import ReviewsBlock from "@/components/blocks/ReviewsBlock";
 import ClosingCta from "@/components/blocks/ClosingCta";
 import SignatureVisual from "@/components/blocks/SignatureVisual";
 import PaintedLine from "@/components/PaintedLine";
+import Band from "@/components/Band";
+import LotStripe from "@/components/LotStripe";
 
 const page = content.pages["/"];
 
 // Called as plain functions, not JSX, on purpose: these are stateless server
 // components, and calling them directly lets us see whether one withheld
 // itself (numbers strip and before/after both currently return null) before
-// deciding to place a divider after it. A divider between two blocks that
-// withheld themselves would be two painted lines stacked on empty space.
+// deciding how to seat the ones that did render. A band wrapped around a block
+// that withheld itself would be a black rectangle full of nothing.
 function renderBlock(block: any) {
   switch (block.id) {
     case "hero":
@@ -54,25 +56,77 @@ function renderBlock(block: any) {
   }
 }
 
+/**
+ * Which surface each band sits on, and which lot marking closes it.
+ *
+ * The page alternates asphalt and white rather than running white throughout,
+ * because the wordmark this site is built around is yellow on black and a site
+ * that never goes black never actually shows its own brand. The rhythm is also
+ * doing work: every asphalt band is a claim about the pavement (how the job goes,
+ * what neglect costs, the lot drawing itself, the closing ask) and every white
+ * band is a claim about the business (who he works for, what he does, why him,
+ * what customers said). Surface follows subject.
+ *
+ * `mark` names the marking that lays down along the bottom edge of that dark band
+ * as it scrolls into view. They run in the order a real lot is laid out: stalls
+ * first under the hero, then the crosswalk, then the drive-aisle arrows, then the
+ * hatched access aisle beside the accessible stall. Hero carries its own, so it is
+ * not listed here.
+ */
+const TONE: Record<string, { tone: "surface" | "subtle" | "asphalt"; mark?: "crosswalk" | "arrow" | "hatch" | "stall" }> = {
+  hero: { tone: "asphalt" },
+  doors: { tone: "surface" },
+  journey: { tone: "asphalt", mark: "crosswalk" },
+  numbers: { tone: "subtle" },
+  before_after: { tone: "surface" },
+  what_he_does: { tone: "surface" },
+  cost_of_inaction: { tone: "asphalt", mark: "arrow" },
+  differentiators: { tone: "surface" },
+  stallgrid: { tone: "asphalt", mark: "hatch" },
+  trust: { tone: "surface" },
+  lead_magnet: { tone: "asphalt" },
+  proof: { tone: "subtle" },
+  closing: { tone: "asphalt" },
+};
+
 export default function HomePage() {
   const blocks = page.blocks ?? [];
-  const rendered = blocks.map((block) => ({ id: block.id, node: renderBlock(block) })).filter((b) => b.node !== null);
+  const rendered = blocks
+    .map((block) => ({ id: block.id, node: renderBlock(block) }))
+    .filter((b) => b.node !== null);
 
   return (
     <>
       {rendered.map((b, i) => {
-        const isLast = i === rendered.length - 1;
+        const cfg = TONE[b.id] ?? { tone: "surface" as const };
+        const next = rendered[i + 1];
+        const nextTone = next ? (TONE[next.id]?.tone ?? "surface") : null;
+
+        // The hero builds its own band, scrim and marking. Everything else gets
+        // seated here so the rhythm lives in one readable table above.
+        if (b.id === "hero") return <div key={b.id}>{b.node}</div>;
+
+        // A painted divider is only needed where two bands share a surface. Where
+        // the surface changes, the change is the divider, and stacking a rule on
+        // top of it is the kind of decoration that made the old page feel busy
+        // and flat at the same time.
+        const needsRule = nextTone !== null && nextTone === cfg.tone;
+
         return (
           <div key={b.id}>
-            {b.node}
-            {/* The backbone: a painted divider between every homepage band that
-                actually rendered, in the same accent yellow as the paint in the
-                photographs beside it. */}
-            {!isLast && (
-              <div className="mx-auto max-w-6xl px-4">
-                <PaintedLine />
-              </div>
-            )}
+            <Band tone={cfg.tone} seam={cfg.tone === "asphalt"}>
+              {b.node}
+              {cfg.mark && (
+                <div className="-mb-px">
+                  <LotStripe variant={cfg.mark} />
+                </div>
+              )}
+              {needsRule && (
+                <div className="mx-auto max-w-6xl px-4">
+                  <PaintedLine />
+                </div>
+              )}
+            </Band>
           </div>
         );
       })}

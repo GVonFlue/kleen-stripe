@@ -14,3 +14,7 @@ next-env.d.ts
 /test-results/
 /playwright-report/
 .env*
+
+# Scratch from the brand-takeover session. Safe to delete.
+_to_delete/
+Claude outputs/

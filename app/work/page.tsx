@@ -4,6 +4,7 @@ import { publishableWork, publishableGallery, isWorkIndexable } from "@/content/
 import ClosingBar from "@/components/ClosingBar";
 import GalleryPhoto from "@/components/GalleryPhoto";
 import PaintedLine from "@/components/PaintedLine";
+import BeforeAfter from "@/components/BeforeAfter";
 
 const page = content.pages["/work/"];
 
@@ -39,11 +40,17 @@ export default function WorkPage() {
           <>
             {work.length > 0 && (
               <div className="mt-8 grid gap-6 sm:grid-cols-2">
+                {/* The same lot twice, on one handle the visitor drags, rather
+                    than two photos side by side that the eye has to reconcile. */}
                 {work.map((pair) => (
-                  <div key={pair.pair_id} className="grid grid-cols-2 gap-2">
-                    <img src={pair.before.src} alt={pair.before.alt} className="rounded-md" />
-                    <img src={pair.after.src} alt={pair.after.alt} className="rounded-md" />
-                  </div>
+                  <BeforeAfter
+                    key={pair.pair_id}
+                    className="aspect-[4/3]"
+                    beforeLabel={content.ui.before_after.before}
+                    afterLabel={content.ui.before_after.after}
+                    before={<img src={pair.before.src} alt={pair.before.alt} className="h-full w-full object-cover" />}
+                    after={<img src={pair.after.src} alt={pair.after.alt} className="h-full w-full object-cover" />}
+                  />
                 ))}
               </div>
             )}
@@ -62,6 +69,7 @@ export default function WorkPage() {
                     // carries its blur placeholder so a fast scroll never lands on
                     // blank white waiting for the rest to load in.
                     eager={i === 0}
+                    interactive
                   />
                 ))}
               </div>

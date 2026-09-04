@@ -4,7 +4,9 @@ import { useEffect, useState } from "react";
 
 /**
  * A stripe-shaped mask sweeps across the hero photo on load, the way a lot gets
- * painted. Under 700ms. This never delays LCP: it is a client-only overlay that
+ * painted. It is painted in --surface, which inside an asphalt band is the asphalt
+ * itself, so the sweep reads as the band peeling back off the photo rather than as
+ * a white bar crossing it. Under 700ms. This never delays LCP: it is a client-only overlay that
  * mounts on top of an image already in the DOM and already painted (see
  * GalleryPhoto's `eager` prop on the hero), so a slow or absent script never
  * hides the photo, it only ever adds a sweep in front of one already showing.
@@ -41,7 +43,7 @@ export default function HeroReveal() {
       <div
         className="absolute h-[300%] w-[60%]"
         style={{
-          background: "var(--ink)",
+          background: "var(--surface)",
           transform: play ? "translate(160%, -110%) skewX(-18deg)" : "translate(-40%, 40%) skewX(-18deg)",
           transition: "transform 650ms cubic-bezier(0.65, 0, 0.35, 1)",
         }}

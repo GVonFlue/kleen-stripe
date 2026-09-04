@@ -20,7 +20,16 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
     `:root{` +
     `--ink:${c.ink};--surface:${c.surface};--subtle:${c.subtle};` +
     `--line:${c.line};--accent:${c.accent};--accent-ink:${c.accent_ink};--ada:${c.ada};` +
-    `}`;
+    `--asphalt:${c.asphalt};--asphalt-raised:${c.asphalt_raised};` +
+    `--asphalt-line:${c.asphalt_line};--asphalt-ink:${c.asphalt_ink};` +
+    `--asphalt-muted:${c.asphalt_muted};--ada-on-dark:${c.ada_on_dark};` +
+    `}` +
+    // A dark band sets these four locally and every child reads them without
+    // caring which surface it is on. One Band component flips them, so a block
+    // written once renders correctly on white or on asphalt.
+    `.on-asphalt{--surface:${c.asphalt};--subtle:${c.asphalt_raised};` +
+    `--line:${c.asphalt_line};--ink:${c.asphalt_ink};--ada:${c.ada_on_dark};` +
+    `background:${c.asphalt};color:${c.asphalt_ink};}`;
 
   return (
     <html lang="en">

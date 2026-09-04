@@ -143,17 +143,25 @@
     "colors": {
       "ink": "#111111",
       "surface": "#FFFFFF",
-      "subtle": "#F5F5F5",
+      "subtle": "#F4F4F5",
       "line": "#DDDDDD",
-      "accent": "#FFD400",
+      "accent": "#FFE500",
       "accent_ink": "#111111",
-      "ada": "#1B54C8"
+      "ada": "#1B54C8",
+      "asphalt": "#0C0D0F",
+      "asphalt_raised": "#17181C",
+      "asphalt_line": "#2C2E34",
+      "asphalt_ink": "#F6F6F5",
+      "asphalt_muted": "#A3A3A9",
+      "ada_on_dark": "#5B94FF"
     },
     "color_rules": [
-      "Accent yellow is reserved for the primary action. It never appears on decoration, borders, icons or headings.",
-      "Every yellow surface carries ink text. Never white on yellow and never yellow on white. Both fail WCAG AA.",
-      "Blue means ADA and nothing else. On a real lot the blue stall is the accessible stall, so the site uses blue the same way the pavement does.",
-      "Exact accent hex is provisional until the logo vector arrives. If the logo specifies a yellow, the logo wins."
+      "Accent yellow is the logo yellow, sampled off the wordmark itself. The logo wins, per the rule this list used to carry while the hex was still provisional.",
+      "Every yellow surface carries ink text. Never white on yellow and never yellow on white at body size. Both fail WCAG AA.",
+      "Yellow on asphalt is the one place yellow may be decoration rather than action, because that is literally what the man paints. It is the wordmark, the painted lines and the section rules on dark bands, and nothing else.",
+      "On white sections yellow stays reserved for the primary action, unchanged.",
+      "Blue means ADA and nothing else. On a real lot the blue stall is the accessible stall, so the site uses blue the same way the pavement does. Dark bands use ada_on_dark because the white-surface blue fails contrast on asphalt.",
+      "Asphalt is a brand surface, not a dark mode. The wordmark is yellow on black, so the page alternates asphalt bands and white bands rather than sitting white throughout."
     ],
     "voice": [
       "straight-talking",
@@ -1257,7 +1265,11 @@
     "form_email_label": "Email",
     "form_message_label": "What's going on with the lot",
     "form_optional_note": "optional",
-    "form_success_heading": "That came through"
+    "form_success_heading": "That came through",
+    "before_after": {
+      "before": "Before",
+      "after": "After"
+    }
   },
   "source_tags": [
     "Kleen Stripe - Homepage Quote",

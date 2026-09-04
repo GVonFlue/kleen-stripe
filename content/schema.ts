@@ -161,6 +161,18 @@ export const brandSchema = z.object({
     accent: z.string(),
     accent_ink: z.string(),
     ada: z.string(),
+    /* The dark half of the palette. Added when the logo arrived: the wordmark is
+       yellow on black, so black is a brand surface here and not just a text colour.
+       Light sections keep ink/surface, dark bands use these. Every one of them is
+       still a content fact, injected by app/layout.tsx, never hardcoded in CSS. */
+    asphalt: z.string(),
+    asphalt_raised: z.string(),
+    asphalt_line: z.string(),
+    asphalt_ink: z.string(),
+    asphalt_muted: z.string(),
+    /* ADA blue fails contrast against asphalt at the value that passes against
+       white, so the dark bands carry their own. Same meaning, different surface. */
+    ada_on_dark: z.string(),
   }),
   color_rules: z.array(z.string()),
   voice: z.array(z.string()),
@@ -229,6 +241,11 @@ export const uiSchema = z.object({
   form_message_label: copy(60),
   form_optional_note: copy(20),
   form_success_heading: copy(60),
+  /** The two chips on the before/after wiper. Copy, so it lives here, not in JSX. */
+  before_after: z.object({
+    before: copy(16),
+    after: copy(16),
+  }),
 });
 
 export const areaSchema = z.object({

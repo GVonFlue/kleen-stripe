@@ -2,6 +2,7 @@ import Link from "next/link";
 import { content } from "@/lib/content";
 import { telHref, smsHref } from "@/lib/render";
 import TapLink from "@/components/TapLink";
+import Logo from "@/components/Logo";
 
 /**
  * Compliance footer. Black band, the last chapter break on the page. Social icons
@@ -17,10 +18,10 @@ export default function Footer() {
   const { business, nav } = content;
 
   return (
-    <footer className="bg-[var(--ink)]">
-      <div className="mx-auto grid max-w-6xl gap-8 px-4 py-10 sm:grid-cols-3">
+    <footer className="asphalt-grain relative overflow-hidden bg-[var(--asphalt)]">
+      <div className="relative z-10 mx-auto grid max-w-6xl gap-8 px-4 py-12 sm:grid-cols-3">
         <div>
-          <p className="text-lg font-bold text-[var(--surface)]">{business.name}</p>
+          <Logo variant="stacked" className="w-[150px] text-[var(--accent)]" />
           <p className="mt-2 max-w-xs text-sm text-[var(--surface)]/70">{business.service_area_statement}</p>
         </div>
 
@@ -50,7 +51,7 @@ export default function Footer() {
         </div>
       </div>
 
-      <div className="border-t border-[var(--surface)]/20">
+      <div className="relative z-10 border-t border-[var(--surface)]/20">
         <div className="mx-auto max-w-6xl px-4 py-4 text-xs text-[var(--surface)]/60">
           {"©"} {new Date().getFullYear()} {business.name}. {business.city}, {business.state}.
         </div>

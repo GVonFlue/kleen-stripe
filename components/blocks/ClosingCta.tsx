@@ -8,12 +8,19 @@ import WordBlock from "@/components/WordBlock";
  * cannot read as a decorative use of the ADA color. See checkpoint 1 self-critique
  * for why this used to be a plain subtle-background band; the tonal-range pass
  * changed that.
+ *
+ * Surface note: this block used to invert itself, painting bg-[var(--ink)] and
+ * drawing its text from --surface. Band tone="asphalt" now owns that decision (see
+ * the TONE table in app/page.tsx), and .on-asphalt already repoints --ink and
+ * --surface for everything inside it. A block that also inverts inside an inverted
+ * band inverts twice and comes out light, which is exactly what happened. So this
+ * reads --ink for text like every other block and states no background at all.
  */
 export default function ClosingCta({ block }: { block: any }) {
   return (
-    <section className="bg-[var(--ink)] py-14">
+    <section className="py-16">
       <div className="mx-auto max-w-4xl px-4 text-center">
-        <h2 className="text-[length:var(--text-display)] font-extrabold leading-[1.1] text-[var(--surface)]">
+        <h2 className="text-[length:var(--text-display)] font-extrabold leading-[1.1] text-[var(--ink)]">
           {block.heading_prefix ? (
             <>
               {block.heading_prefix} <WordBlock>{block.heading_highlight}</WordBlock>
@@ -22,10 +29,10 @@ export default function ClosingCta({ block }: { block: any }) {
             block.heading
           )}
         </h2>
-        <p className="mx-auto mt-4 max-w-xl text-[var(--surface)]/80">{block.body}</p>
+        <p className="mx-auto mt-4 max-w-xl text-[var(--ink)]/80">{block.body}</p>
         <div className="mt-7 flex flex-wrap justify-center gap-3">
           <Cta label={block.cta_primary.label} href={block.cta_primary.href} variant="primary" />
-          <Cta label={block.cta_secondary.label} href={block.cta_secondary.href} variant="secondary" onDark />
+          <Cta label={block.cta_secondary.label} href={block.cta_secondary.href} variant="secondary" />
         </div>
       </div>
     </section>

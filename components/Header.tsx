@@ -2,6 +2,7 @@ import Link from "next/link";
 import { content } from "@/lib/content";
 import { telHref, smsHref } from "@/lib/render";
 import Cta from "@/components/Cta";
+import Logo from "@/components/Logo";
 import TapLink from "@/components/TapLink";
 
 /**
@@ -14,13 +15,19 @@ export default function Header() {
   const { business, nav } = content;
 
   return (
-    <header className="sticky top-0 z-40 border-b border-[var(--line)] bg-[var(--surface)]/95 backdrop-blur">
+    // The bar is asphalt on every route, not just over the dark hero. The wordmark
+    // is yellow on black and a yellow-on-white header would be the one place the
+    // site contradicted the logo it is built from. .on-asphalt repoints --ink,
+    // --surface, --line and --ada for everything inside, so the nav, the tap
+    // targets and the CTA below need no dark variants of their own.
+    <header className="on-asphalt sticky top-0 z-40 border-b border-[var(--line)] backdrop-blur">
       <div className="mx-auto flex max-w-6xl items-center justify-between gap-3 px-4 py-3">
         <Link
           href="/"
-          className="flex min-h-11 shrink-0 items-center text-lg font-bold tracking-tight text-[var(--ink)]"
+          className="flex min-h-11 shrink-0 items-center text-[var(--accent)]"
+          aria-label={business.name}
         >
-          {business.name}
+          <Logo variant="lockup" className="w-[132px] sm:w-[164px]" />
         </Link>
 
         <nav aria-label="Primary" className="hidden items-center gap-5 lg:flex">
@@ -62,7 +69,7 @@ export default function Header() {
               ☰
             </span>
           </summary>
-          <div className="absolute inset-x-0 top-full border-b border-[var(--line)] bg-[var(--surface)] px-4 py-4 shadow-lg">
+          <div className="on-asphalt absolute inset-x-0 top-full border-b border-[var(--line)] px-4 py-4 shadow-lg">
             <nav aria-label="Primary, mobile" className="flex flex-col gap-3">
               {nav.primary.map((item) => (
                 <Link key={item.href} href={item.href} className="py-1 text-base font-medium text-[var(--ink)]">
