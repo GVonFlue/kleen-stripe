@@ -37,10 +37,12 @@ function paths(variant: Variant): { d: string; ada?: boolean }[] {
     case "hatch":
       // An access aisle. Blue, because on a real lot the hatching beside the
       // accessible stall is blue and this site uses blue for nothing else.
-      return Array.from({ length: 14 }, (_, i) => ({ d: `M ${40 + i * 84} 78 L ${88 + i * 84} 12`, ada: true }));
+      return Array.from({ length: 10 }, (_, i) => ({ d: `M ${50 + i * 120} 78 L ${98 + i * 120} 12`, ada: true }));
     case "stall":
     default:
-      return Array.from({ length: 7 }, (_, i) => ({ d: `M ${60 + i * 180} 82 L ${104 + i * 180} 8` }));
+      // Spacing widened from 180 to 260. With preserveAspectRatio="none" the X axis
+      // compresses hard on a phone, and at 180 these diagonals ran into each other.
+      return Array.from({ length: 5 }, (_, i) => ({ d: `M ${80 + i * 260} 82 L ${124 + i * 260} 8` }));
   }
 }
 
@@ -69,8 +71,13 @@ export default function LotStripe({
           d={m.d}
           fill="none"
           stroke={m.ada ? "var(--ada)" : "var(--accent)"}
-          strokeWidth={m.ada ? 7 : 9}
+          strokeWidth={m.ada ? 5 : 6}
           strokeLinecap="square"
+          // preserveAspectRatio="none" scales the stroke with the squashed X axis,
+          // which is what fattened these marks into each other at narrow widths.
+          // Pinning the stroke to screen pixels keeps every mark the same weight at
+          // every viewport, which is also how real paint behaves.
+          vectorEffect="non-scaling-stroke"
           pathLength={100}
           strokeDasharray={100}
           strokeDashoffset={drawn ? 0 : 100}

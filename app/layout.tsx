@@ -1,5 +1,34 @@
 import type { Metadata } from "next";
+import { Overpass, Overpass_Mono, Public_Sans } from "next/font/google";
 import "./globals.css";
+
+/*
+ * Two American public-infrastructure typefaces, chosen for this client rather than
+ * for this decade. Overpass is drawn from FHWA Highway Gothic, the lettering on US
+ * road signs, so the display face and the paint on the lots are the same lineage.
+ * Public Sans is the US Web Design System face, which suits a site whose highest
+ * intent page is about federal accessibility standards. Self-hosted by next/font,
+ * so there is no Google Fonts request and no third-party dependency at runtime.
+ */
+const display = Overpass({
+  subsets: ["latin"],
+  weight: ["600", "800", "900"],
+  style: ["normal", "italic"],
+  variable: "--font-display-face",
+  display: "swap",
+});
+const body = Public_Sans({
+  subsets: ["latin"],
+  weight: ["400", "600"],
+  variable: "--font-body",
+  display: "swap",
+});
+const mono = Overpass_Mono({
+  subsets: ["latin"],
+  weight: ["500", "600"],
+  variable: "--font-mono-ks",
+  display: "swap",
+});
 import { content } from "@/lib/content";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
@@ -32,7 +61,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
     `background:${c.asphalt};color:${c.asphalt_ink};}`;
 
   return (
-    <html lang="en">
+    <html lang="en" className={`${display.variable} ${body.variable} ${mono.variable}`}>
       <head>
         <style dangerouslySetInnerHTML={{ __html: paletteVars }} />
       </head>

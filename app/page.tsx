@@ -73,7 +73,7 @@ function renderBlock(block: any) {
  * hatched access aisle beside the accessible stall. Hero carries its own, so it is
  * not listed here.
  */
-const TONE: Record<string, { tone: "surface" | "subtle" | "asphalt"; mark?: "crosswalk" | "arrow" | "hatch" | "stall" }> = {
+const TONE: Record<string, { tone: "surface" | "subtle" | "asphalt" | "accent"; mark?: "crosswalk" | "arrow" | "hatch" | "stall" }> = {
   hero: { tone: "asphalt" },
   doors: { tone: "surface" },
   journey: { tone: "asphalt", mark: "crosswalk" },
@@ -84,9 +84,15 @@ const TONE: Record<string, { tone: "surface" | "subtle" | "asphalt"; mark?: "cro
   differentiators: { tone: "surface" },
   stallgrid: { tone: "asphalt", mark: "hatch" },
   trust: { tone: "surface" },
-  lead_magnet: { tone: "asphalt" },
+  // LeadMagnetBlock paints its own ADA-blue field and hatch (direction-v2.html's
+  // signature block) rather than the shared dark tone: tone: "surface" here is a
+  // transparent seat, not a color choice. See the component for why it cannot
+  // sit inside an asphalt Band (--ada gets repointed to ada_on_dark in there).
+  lead_magnet: { tone: "surface" },
   proof: { tone: "subtle" },
-  closing: { tone: "asphalt" },
+  // direction-v2.html: the closing band is the one loud yellow moment on the
+  // page, not another black one. See ClosingCta and Band's accent tone.
+  closing: { tone: "accent" },
 };
 
 export default function HomePage() {

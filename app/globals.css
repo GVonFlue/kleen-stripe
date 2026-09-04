@@ -11,8 +11,14 @@
   /* Type scale. A design-system token, not a content fact, so it lives here rather
      than in the content file. Mobile-first: clamp() moves the top of the scale up
      on wider viewports without a second breakpoint set. */
+  /* Body copy. Display and mono are separate tokens so a heading never silently
+     falls back to the body face. Every stack keeps a real system fallback. */
   --font-sans:
-    -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    var(--font-body), -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  --font-display:
+    var(--font-display-face), "Arial Narrow", Helvetica, Arial, sans-serif;
+  --font-mono:
+    var(--font-mono-ks), ui-monospace, "SF Mono", Menlo, monospace;
 
   --text-hero: clamp(2.5rem, 6vw + 1rem, 4.5rem);
   /* For black-band and word-block moments: bigger than a normal section heading,
@@ -129,4 +135,118 @@
 
 @media (prefers-reduced-motion: reduce) {
   .ks-lane { animation: none; }
+}
+
+
+/* ---------------------------------------------------------------------------
+ * Type roles
+ *
+ * Headings take the road-sign face and a tighter track. Uppercase labels and any
+ * figure that sits in a column take the mono face, which is where the industrial
+ * character of the page actually comes from.
+ * ------------------------------------------------------------------------- */
+
+h1, h2, h3, .ks-display {
+  font-family: var(--font-display);
+  letter-spacing: -0.02em;
+  text-wrap: balance;
+}
+
+.ks-label {
+  font-family: var(--font-mono);
+  font-weight: 600;
+  font-size: 0.6875rem;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+}
+
+.ks-figure {
+  font-family: var(--font-mono);
+  font-variant-numeric: tabular-nums;
+}
+
+/* ---------------------------------------------------------------------------
+ * The rail
+ *
+ * A lane line down the left edge of a section: solid through content, dashed at
+ * the joints, the way a road line goes dashed where passing is allowed. It runs
+ * in its own gutter and the content is padded past it, because the first version
+ * of this positioned the rail at the same offset as the content padding and the
+ * line ran straight through the text at every breakpoint.
+ *
+ * Below 700px the rail is removed entirely rather than narrowed. There is not
+ * enough horizontal room on a phone to spend 40px on a decorative gutter, and
+ * that is exactly where the collision was worst.
+ * ------------------------------------------------------------------------- */
+
+.ks-railed {
+  position: relative;
+}
+
+.ks-railed > .ks-rail {
+  position: absolute;
+  left: var(--ks-rail-left, 1rem);
+  top: 0;
+  bottom: 0;
+  width: 6px;
+  overflow: hidden;
+  pointer-events: none;
+}
+
+.ks-railed > .ks-rail::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: var(--accent);
+  transform-origin: top;
+  animation: ks-rail-paint 1.2s cubic-bezier(0.4, 0, 0.2, 1) both;
+}
+
+.ks-railed > .ks-rail.is-dashed::before {
+  background: repeating-linear-gradient(
+    180deg,
+    var(--accent) 0 34px,
+    transparent 34px 62px
+  );
+}
+
+.ks-railed > .ks-railed-body {
+  padding-left: 2.5rem;
+}
+
+@keyframes ks-rail-paint {
+  from { transform: scaleY(0); }
+  to   { transform: scaleY(1); }
+}
+
+@media (max-width: 700px) {
+  .ks-railed > .ks-rail { display: none; }
+  .ks-railed > .ks-railed-body { padding-left: 0; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .ks-railed > .ks-rail::before { animation: none; transform: none; }
+}
+
+/* ---------------------------------------------------------------------------
+ * The accessible stall
+ *
+ * ADA's signature treatment, per docs/design/direction-v2.html: on a real lot,
+ * diagonal hatching marks the access aisle beside an accessible stall, the zone
+ * you do not park in. The ADA content block is drawn as that zone, literally,
+ * rather than another bordered card. White at -52deg, the same angle the
+ * reference uses, so it reads as marked pavement and not a generic pattern.
+ * color-mix keeps this off pure white in the stylesheet: the line color is
+ * always a fraction of --surface, whatever brand.colors makes that today.
+ * ------------------------------------------------------------------------- */
+
+.stall-hatch {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background: repeating-linear-gradient(
+    -52deg,
+    color-mix(in srgb, var(--surface) 15%, transparent) 0 14px,
+    transparent 14px 46px
+  );
 }

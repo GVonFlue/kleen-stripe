@@ -1,4 +1,4 @@
-type Tone = "surface" | "subtle" | "asphalt";
+type Tone = "surface" | "subtle" | "asphalt" | "accent";
 
 /**
  * The one place a section decides which surface it sits on.
@@ -11,6 +11,11 @@ type Tone = "surface" | "subtle" | "asphalt";
  *
  * The grain and the seam are what stop a black band reading as an empty div: real
  * asphalt has aggregate in it and catches light along a fresh edge.
+ *
+ * `accent` is the yellow closing band (direction-v2.html: full yellow, ink text).
+ * It needs no repointing: --ink is already ink on a yellow ground, the same as on
+ * white. Only the primary button has to flip, since the accent-filled button is
+ * the one thing that vanishes into an accent background - see Cta's onAccent.
  */
 export default function Band({
   tone = "surface",
@@ -31,9 +36,7 @@ export default function Band({
     );
   }
 
-  return (
-    <div className={`relative ${tone === "subtle" ? "bg-[var(--subtle)]" : "bg-[var(--surface)]"} ${className}`}>
-      {children}
-    </div>
-  );
+  const bg = tone === "subtle" ? "bg-[var(--subtle)]" : tone === "accent" ? "bg-[var(--accent)]" : "bg-[var(--surface)]";
+
+  return <div className={`relative ${bg} ${className}`}>{children}</div>;
 }
