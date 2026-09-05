@@ -6,7 +6,6 @@ import PendingNote from "@/components/PendingNote";
 import GalleryPhoto from "@/components/GalleryPhoto";
 import HeroReveal from "@/components/HeroReveal";
 import Band from "@/components/Band";
-import Logo from "@/components/Logo";
 import Parallax from "@/components/Parallax";
 import LotStripe from "@/components/LotStripe";
 
@@ -16,12 +15,23 @@ import LotStripe from "@/components/LotStripe";
  * so an unconfirmed business.founded_year drops the whole headline to the fallback
  * instead of printing a broken sentence.
  *
- * What changed here is the surface. The wordmark is yellow on black, so the hero is
- * black: the photo runs full bleed behind the type under a gradient scrim rather
- * than sitting in a box below it, and the logo itself is the first thing on the
- * page, painting on. Contrast is not left to the photo. The scrim is opaque enough
- * on the left that the headline clears AA against the darkest and the lightest
- * frame of the image alike, which is why it is a hard gradient and not a soft one.
+ * What changed here is the surface. The hero is black: the photo runs full bleed
+ * behind the type under a gradient scrim rather than sitting in a box below it.
+ * Contrast is not left to the photo. The scrim is opaque enough on the left that
+ * the headline clears AA against the darkest and the lightest frame of the image
+ * alike, which is why it is a hard gradient and not a soft one.
+ *
+ * No wordmark lockup here: the header already carries the brand on every route,
+ * and a second, much larger one on top of the best remaining space on the page
+ * only pushed the actual claim (the headline) down. One wordmark, in the header,
+ * doing its one job.
+ *
+ * The horizontal scrim is a real linear-gradient with named stops, not a
+ * Tailwind three-point from/via/to: the old via stop sat at 85% opacity, so by
+ * the point the text column actually ends the fade had barely started, and the
+ * photo read as a dark texture rather than a parking lot. Heavy through the text
+ * column, then it drops fast, because we chose real photography on purpose and
+ * it should still look like a lot, not a mood.
  *
  * Text colours are var(--ink) exactly as before. Inside Band tone="asphalt" that
  * variable points at the light end of the palette, so nothing here branches on
@@ -49,10 +59,19 @@ export default function Hero({ block }: { block: any }) {
           </Parallax>
           {/* Two scrims, not one. The vertical pass seats the header and the
               bottom marking strip; the horizontal pass protects the text column
-              specifically, so the right half of the photo stays legible as a
-              photograph instead of being dimmed into a texture. */}
+              specifically, so the right two thirds of the photo stay legible as
+              a photograph instead of being dimmed into a texture. Named stops
+              rather than Tailwind's from/via/to: the text column ends by
+              roughly 45% of the frame, so the fade has to be most of the way
+              done by there, not just starting. */}
           <div className="absolute inset-0 bg-gradient-to-b from-[var(--asphalt)] via-transparent to-[var(--asphalt)]" />
-          <div className="absolute inset-0 bg-gradient-to-r from-[var(--asphalt)] via-[var(--asphalt)]/85 to-[var(--asphalt)]/25" />
+          <div
+            className="absolute inset-0"
+            style={{
+              background:
+                "linear-gradient(to right, var(--asphalt) 0%, color-mix(in srgb, var(--asphalt) 78%, transparent) 30%, color-mix(in srgb, var(--asphalt) 30%, transparent) 48%, color-mix(in srgb, var(--asphalt) 8%, transparent) 68%, transparent 100%)",
+            }}
+          />
           <HeroReveal />
         </div>
       ) : null}
@@ -60,13 +79,7 @@ export default function Hero({ block }: { block: any }) {
       <div className="relative z-10 mx-auto max-w-6xl px-4 pb-16 pt-12 sm:pb-24 sm:pt-20">
         <PendingNote paths={block.requires ?? []} />
 
-        <Logo
-          variant="lockup"
-          paint
-          className="w-[240px] text-[var(--accent)] drop-shadow-[0_2px_18px_rgb(0_0_0/60%)] sm:w-[340px]"
-        />
-
-        <p className="mt-8 text-sm font-semibold uppercase tracking-[0.18em] text-[var(--accent)]">
+        <p className="text-sm font-semibold uppercase tracking-[0.18em] text-[var(--accent)]">
           {block.eyebrow}
         </p>
 
