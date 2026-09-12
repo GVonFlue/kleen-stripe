@@ -5,6 +5,7 @@ import { yearsInBusiness } from "@/content/schema";
 import GalleryPhoto from "@/components/GalleryPhoto";
 import PhotoSlot from "@/components/PhotoSlot";
 import Cta from "@/components/Cta";
+import LotStripe from "@/components/LotStripe";
 
 /**
  * A direct port of the homepage in docs/design/direction-v2.html.
@@ -99,7 +100,11 @@ export default function HomePage() {
           </div>
         </div>
 
-        {/* The paint sweep along the bottom edge of the fold. */}
+        {/* The first marking of the page: stall lines at the angle they are
+            actually painted, sitting just above the hard edge of the fold. */}
+        <div className="absolute inset-x-0 bottom-[9px] z-10">
+          <LotStripe variant="stall" />
+        </div>
         <div className="ks-paint-on absolute inset-x-0 bottom-0 h-[9px] bg-[var(--accent)]" />
       </section>
 
@@ -135,6 +140,9 @@ export default function HomePage() {
             ))}
           </div>
         </div>
+      </div>
+      <div className="relative -mb-px">
+        <LotStripe variant="crosswalk" />
       </div>
       </section>
 
@@ -247,6 +255,9 @@ export default function HomePage() {
             </div>
           </div>
         </div>
+      </div>
+      <div className="relative -mb-px">
+        <LotStripe variant="arrow" />
       </div>
       </section>
 
