@@ -56,6 +56,15 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
     // A dark band sets these four locally and every child reads them without
     // caring which surface it is on. One Band component flips them, so a block
     // written once renders correctly on white or on asphalt.
+    // The access-aisle field. It cannot use .on-asphalt or a bare var(--ada):
+    // inside a dark band --ada is repointed to ada_on_dark (#5B94FF), which is a
+    // light blue for text and icons on black and is the wrong colour for a full
+    // field, and white type on it would fail AA. So this class pins the real ADA
+    // blue as its own background and repoints --surface to white, because
+    // .stall-hatch draws the hatching from --surface and the hatching on a real
+    // access aisle is white.
+    `.ada-field{--surface:#FFFFFF;--ink:${c.asphalt_ink};--line:rgb(255 255 255 / 30%);` +
+    `background:${c.ada};color:${c.asphalt_ink};}` +
     `.on-asphalt{--surface:${c.asphalt};--subtle:${c.asphalt_raised};` +
     `--line:${c.asphalt_line};--ink:${c.asphalt_ink};--ada:${c.ada_on_dark};` +
     `background:${c.asphalt};color:${c.asphalt_ink};}`;

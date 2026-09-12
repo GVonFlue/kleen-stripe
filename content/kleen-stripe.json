@@ -713,7 +713,9 @@
         "commercial-property-managers",
         "small-business-lots"
       ],
-      "why_own_page": "Highest commercial intent term on the list, and the only one where the buyer is not shopping, they are exposed. PMP has no ADA page. EverLine handles it as a bullet inside a FAQ. This is the gap."
+      "why_own_page": "Highest commercial intent term on the list, and the only one where the buyer is not shopping, they are exposed. PMP has no ADA page. EverLine handles it as a bullet inside a FAQ. This is the gap.",
+      "header_tone": "ada",
+      "header_note": "Blue field with white access-aisle hatching, per docs/design/direction-v2.html. On a real lot the hatched zone beside the accessible stall is the one you do not park in, so the page that sells compliance is drawn as that zone. Blue is used nowhere else on the site, which is what keeps this readable as a signal rather than decoration."
     },
     {
       "slug": "parking-lot-sealcoating-wichita",

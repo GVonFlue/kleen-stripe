@@ -50,11 +50,31 @@ export default function ServicePage({ service, content }: { service: Service; co
   return (
     <>
       <Band tone="asphalt" seam={false}>
-        <PageHeader
-          crumbs={[{ label: "Home", href: "/" }, { label: "Services", href: "/services/" }, { label: service.name }]}
-          h1={service.h1}
-          lede={service.lede}
-        />
+        {/* The ADA page opens as an access aisle rather than as another dark
+            header: a full-bleed blue field under white diagonal hatching, which
+            is what that marking means on real pavement. It is the site's
+            signature moment and it belongs on the page it was designed for.
+            Driven by service.header_tone in the content file, not by a slug
+            check here, so a second compliance page would inherit it by saying
+            so rather than by being special-cased in a component. */}
+        {service.header_tone === "ada" ? (
+          <div className="ada-field relative overflow-hidden">
+            <div className="stall-hatch" aria-hidden="true" />
+            <div className="relative">
+              <PageHeader
+                crumbs={[{ label: "Home", href: "/" }, { label: "Services", href: "/services/" }, { label: service.name }]}
+                h1={service.h1}
+                lede={service.lede}
+              />
+            </div>
+          </div>
+        ) : (
+          <PageHeader
+            crumbs={[{ label: "Home", href: "/" }, { label: "Services", href: "/services/" }, { label: service.name }]}
+            h1={service.h1}
+            lede={service.lede}
+          />
+        )}
 
         <div className="mx-auto grid max-w-6xl gap-10 px-4 py-12 sm:py-16 lg:grid-cols-[1.35fr_0.65fr] lg:gap-14">
           <article>

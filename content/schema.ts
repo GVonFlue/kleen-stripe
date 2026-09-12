@@ -205,6 +205,10 @@ export const serviceSchema = z.object({
     )
     .default([]),
   faqs_pending: z.array(z.string()).optional(),
+  /** Opt a service page into a non-default header treatment. "ada" paints the
+   *  access-aisle field. Content decides; no component special-cases a slug. */
+  header_tone: z.enum(["ada"]).optional(),
+  header_note: z.string().optional(),
   compliance_note: z.string().optional(),
   why_own_page: z.string().optional(),
   source_tag: z.string().min(1),
