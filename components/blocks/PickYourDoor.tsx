@@ -49,10 +49,19 @@ export default function PickYourDoor({ block }: { block: any }) {
                   rounded={false}
                   className="h-full transition-transform duration-500 group-hover:scale-[1.04]"
                 />
-                {/* Two passes: a flat wash so no frame of the photo is bright, and
-                    a bottom ramp so the type sits on near-solid asphalt. */}
-                <div className="absolute inset-0 bg-[var(--asphalt)]/72" />
-                <div className="absolute inset-0 bg-gradient-to-t from-[var(--asphalt)] via-[var(--asphalt)]/85 to-transparent" />
+                {/* A light wash knocks the brightest frames down without hiding the
+                    lot, then a ramp goes solid only across the lower half where the
+                    type sits. Named stops rather than from/via/to: the copy block
+                    starts around 55% of the panel height, so the fade has to be
+                    finished by there and absent above it. */}
+                <div className="absolute inset-0 bg-[var(--asphalt)]/25" />
+                <div
+                  className="absolute inset-0"
+                  style={{
+                    background:
+                      "linear-gradient(to top, var(--asphalt) 0%, var(--asphalt) 42%, color-mix(in srgb, var(--asphalt) 72%, transparent) 58%, color-mix(in srgb, var(--asphalt) 25%, transparent) 78%, transparent 100%)",
+                  }}
+                />
               </div>
             )}
 
