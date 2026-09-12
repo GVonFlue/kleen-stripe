@@ -76,14 +76,15 @@ export default function Hero({ block }: { block: any }) {
         </div>
       ) : null}
 
-      <div className="relative z-10 mx-auto max-w-6xl px-4 pb-16 pt-12 sm:pb-24 sm:pt-20">
+      <div className="relative z-10 mx-auto grid max-w-6xl grid-cols-1 items-end gap-10 px-4 pb-16 pt-12 sm:pb-24 sm:pt-20 lg:min-h-[74vh] lg:grid-cols-[minmax(0,1fr)_auto]">
+        <div>
         <PendingNote paths={block.requires ?? []} />
 
         <p className="text-sm font-semibold uppercase tracking-[0.18em] text-[var(--accent)]">
           {block.eyebrow}
         </p>
 
-        <h1 className="mt-4 max-w-3xl text-[length:var(--text-hero)] font-extrabold leading-[1.03] tracking-tight text-[var(--ink)]">
+        <h1 className="mt-4 max-w-[14ch] text-[length:var(--text-mega)] font-black leading-[0.92] tracking-[-0.03em] text-[var(--ink)]">
           {yearOk ? (
             <>
               {block.headline_prefix} <em className="not-italic text-[var(--accent)]">{year}</em>
@@ -105,6 +106,17 @@ export default function Hero({ block }: { block: any }) {
           <div className="mt-10">
             <PhotoSlot slot={block.image_slot} aspect="aspect-[16/9]" />
           </div>
+        )}
+        </div>
+
+        {block.aside && hasAll(content, block.aside.requires) && (
+          <p className="hidden border-r-2 border-[var(--accent)] pr-5 text-right text-sm font-semibold uppercase leading-[2.1] tracking-[0.14em] text-[var(--ink)]/70 lg:block">
+            {block.aside.lines.map((line: string, i: number) => (
+              <span key={i} className="block">
+                {line}
+              </span>
+            ))}
+          </p>
         )}
       </div>
 

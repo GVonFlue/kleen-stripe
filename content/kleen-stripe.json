@@ -287,7 +287,17 @@
           },
           "image_slot": "hero_before_after",
           "scope_flag": "Doctrine section 4 puts the give as the homepage primary CTA on reciprocity grounds. Logan's signed brief puts the quote request first. The scope wins and the conflict is flagged, per the doctrine preamble.",
-          "note": "Checkpoint 1 decision 1: merges the confirmed fact (1979) into the headline itself, since there is no proof number to let a soft category headline survive on its own (doctrine section 5). The year is its own gated field. fallback_headline is the old soft option, used only if founded_year is ever unconfirmed."
+          "note": "Checkpoint 1 decision 1: merges the confirmed fact (1979) into the headline itself, since there is no proof number to let a soft category headline survive on its own (doctrine section 5). The year is its own gated field. fallback_headline is the old soft option, used only if founded_year is ever unconfirmed.",
+          "aside": {
+            "lines": [
+              "Family run.",
+              "Third generation.",
+              "Wichita and all of Kansas."
+            ],
+            "requires": [
+              "business.generation"
+            ]
+          }
         },
         {
           "id": "doors",
@@ -297,24 +307,69 @@
             {
               "label": "I manage property",
               "line": "Multiple lots, one invoice, work that does not close your tenants down.",
-              "href": "/commercial-property-managers/"
+              "href": "/commercial-property-managers/",
+              "chip": "Multiple lots",
+              "photo": "double-yellow-apartments-day",
+              "bullets": [
+                "Every property on one schedule",
+                "Worked in sections so tenants keep parking",
+                "One invoice and one person to call"
+              ],
+              "cta": {
+                "label": "See the plan",
+                "href": "/commercial-property-managers/"
+              }
             },
             {
               "label": "I'm a paving contractor",
               "line": "You laid it. He'll stripe it, on your schedule, without you chasing him.",
-              "href": "/paving-and-construction-contractors/"
+              "href": "/paving-and-construction-contractors/",
+              "chip": "On a deadline",
+              "photo": "striper-dusk-shopping-center",
+              "bullets": [
+                "Layout straight from your drawings",
+                "ADA stalls and fire lanes to standard",
+                "If the date moves, say so and it moves"
+              ],
+              "cta": {
+                "label": "Send a plan and a date",
+                "href": "/paving-and-construction-contractors/"
+              }
             },
             {
               "label": "I run a warehouse",
               "line": "Aisles, racking lines, safety zones and dock markings, inside.",
-              "href": "/warehouse-and-interior-striping-wichita/"
+              "href": "/warehouse-and-interior-striping-wichita/",
+              "chip": "Inside work",
+              "photo": "warehouse-floor-stencil-1",
+              "bullets": [
+                "Aisles, travel lanes and safety zones",
+                "Dock and door approach markings",
+                "Zoned or after hours so the floor keeps running"
+              ],
+              "cta": {
+                "label": "Get the floor quoted",
+                "href": "/warehouse-and-interior-striping-wichita/"
+              }
             },
             {
               "label": "I own a small business",
               "line": "A dozen stalls out front that have not been touched in years.",
-              "href": "/small-business-lots/"
+              "href": "/small-business-lots/",
+              "chip": "One lot, out front",
+              "photo": "custom-stencil-carwash-drive",
+              "bullets": [
+                "A one day job on most small lots",
+                "Text a photo and the address, get a number",
+                "No proposal and no site visit to schedule"
+              ],
+              "cta": {
+                "label": "Text a photo",
+                "href": "/small-business-lots/"
+              }
             }
-          ]
+          ],
+          "lede": "Four different lots, four different conversations. Pick the one that sounds like yours."
         },
         {
           "id": "journey",

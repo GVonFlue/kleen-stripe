@@ -1,69 +1,94 @@
 import Link from "next/link";
+import GalleryPhoto from "@/components/GalleryPhoto";
+import Cta from "@/components/Cta";
 
 /**
  * Doctrine's "single highest-value structural element we borrow." Sorts every
  * visitor in one tap.
  *
- * These are not cards. A bordered box with a radius says "generic content module"
- * and every competitor site in this market has a grid of them. These are stall
- * bays: hard yellow rules on all four sides, no radius, no gap between them, so
- * the band reads as a row of marked-out spaces on pavement. The label above each
- * one uses the mono face and the word BAY, which is what the divisions on a lot
- * plan are actually called.
+ * Rebuilt to the density of the reference build: each lane is a full-bleed panel
+ * with a real lot photograph behind it rather than a bordered box with one line
+ * of text in it. A visitor scanning this band should be able to see their own
+ * kind of lot before they read a word, which is what a small text card can never
+ * do.
  *
- * The whole bay is the link, not a word inside it, so the tap target is the
- * entire space rather than a line of text.
+ * Per panel: a chip naming the buyer, the headline, one sentence, three proof
+ * bullets and its own button. Every bullet is traceable to copy already in the
+ * content file. The whole panel is the link; the button inside it is visual, so
+ * there is one tap target per lane rather than a link inside a link.
  *
- * Border-bottom stays on at every breakpoint, including lg where all four bays
- * sit in one row: it is both the divider between wrapped rows on mobile/tablet
- * and the box's own bottom edge at desktop, and nothing else supplies a bottom
- * rule if this one is switched off, which a `lg:border-b-0` here once did,
- * leaving the row open on its underside.
- *
- * Border-right only belongs on the last bay in each row, and which bay that is
- * changes with the column count (1 mobile, 2 sm, 4 lg). block.lanes is four
- * items today, evenly divisible by every one of those column counts, so
- * `nth-child(2n)`/`nth-child(4n)` name the right-column bay exactly at each
- * breakpoint. A `last:` selector alone only ever matches the fourth bay, which
- * is why the sm (2-col) row used to lose its right edge on the top row.
- *
- * "Bay 0X" was text-[var(--ink)]/55, and "Open ›" was text-[var(--accent)]:
- * a full Lighthouse pass caught both as color-contrast failures, and the
- * second is also a color_rules violation on its own (yellow as decorative link
- * text on white, not the one primary-action use it is reserved for). Bumped
- * the label to /70 and the chevron to ink, matching the fix already applied
- * everywhere else on the site with this exact issue.
+ * The photograph sits under a heavy scrim because the type has to clear AA
+ * against every frame of it, not against the average of it.
  */
 export default function PickYourDoor({ block }: { block: any }) {
   return (
-    <section className="ks-railed mx-auto max-w-6xl px-4 py-14 sm:py-20">
-      <span className="ks-rail" aria-hidden="true" />
-      <div className="ks-railed-body">
-        <h2 className="text-[length:var(--text-h2)] font-black text-[var(--ink)]">{block.heading}</h2>
+    <section className="mx-auto max-w-7xl px-4 py-14 sm:py-20">
+      <h2 className="text-[length:var(--text-display)] font-black leading-[0.98] text-[var(--ink)]">
+        {block.heading}
+      </h2>
+      {block.lede && (
+        <p className="mt-4 max-w-[52ch] text-[length:var(--text-lede)] text-[var(--ink)]/70">
+          {block.lede}
+        </p>
+      )}
 
-        <div className="mt-8 grid border-t-[3px] border-[var(--accent)] sm:grid-cols-2 lg:grid-cols-4">
-          {block.lanes.map((lane: any, i: number) => (
-            <Link
-              key={lane.href}
-              href={lane.href}
-              className="group flex flex-col border-b-[3px] border-l-[3px] border-r-[3px] border-[var(--accent)] p-6 transition-colors hover:bg-[var(--subtle)] sm:[&:nth-child(odd)]:border-r-0 lg:[&:not(:nth-child(4n))]:border-r-0"
-            >
-              <span className="ks-label text-[var(--ink)]/70">
-                {`Bay 0${i + 1}`}
+      <div className="mt-10 grid gap-px bg-[var(--accent)] sm:grid-cols-2 lg:grid-cols-4">
+        {block.lanes.map((lane: any) => (
+          <Link
+            key={lane.href}
+            href={lane.href}
+            className="group relative isolate flex min-h-[420px] flex-col justify-end overflow-hidden bg-[var(--asphalt)] p-6 focus-visible:outline-offset-[-3px]"
+          >
+            {lane.photo && (
+              <div aria-hidden="true" className="absolute inset-0 -z-10">
+                <GalleryPhoto
+                  id={lane.photo}
+                  fallbackSlot={`door_${lane.chip ?? "lane"}`}
+                  aspect="h-full"
+                  sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 25vw"
+                  rounded={false}
+                  className="h-full transition-transform duration-500 group-hover:scale-[1.04]"
+                />
+                {/* Two passes: a flat wash so no frame of the photo is bright, and
+                    a bottom ramp so the type sits on near-solid asphalt. */}
+                <div className="absolute inset-0 bg-[var(--asphalt)]/72" />
+                <div className="absolute inset-0 bg-gradient-to-t from-[var(--asphalt)] via-[var(--asphalt)]/85 to-transparent" />
+              </div>
+            )}
+
+            {lane.chip && (
+              <span className="ks-label absolute left-6 top-6 border border-[var(--accent)] px-2.5 py-1.5 text-[var(--accent)]">
+                {lane.chip}
               </span>
-              <span className="mt-3 font-display text-[length:var(--text-h3)] font-black leading-tight text-[var(--ink)]">
-                {lane.label}
-              </span>
-              <span className="mt-2 text-sm text-[var(--ink)]/70">{lane.line}</span>
+            )}
+
+            <h3 className="text-[length:var(--text-h3)] font-black leading-tight text-[var(--asphalt-ink)]">
+              {lane.label}
+            </h3>
+            <p className="mt-2.5 text-sm leading-relaxed text-[var(--asphalt-ink)]/75">{lane.line}</p>
+
+            {lane.bullets?.length > 0 && (
+              <ul className="mt-4 flex flex-col gap-2">
+                {lane.bullets.map((b: string, i: number) => (
+                  <li key={i} className="flex gap-2.5 text-[13.5px] leading-snug text-[var(--asphalt-ink)]/85">
+                    <span aria-hidden="true" className="mt-[7px] h-px w-3 shrink-0 bg-[var(--accent)]" />
+                    <span>{b}</span>
+                  </li>
+                ))}
+              </ul>
+            )}
+
+            {lane.cta && (
               <span
                 aria-hidden="true"
-                className="ks-label mt-5 text-[var(--ink)] transition-transform group-hover:translate-x-1"
+                className="mt-6 inline-flex min-h-11 items-center justify-center gap-2 rounded-full border-2 border-[var(--asphalt-ink)]/45 px-5 text-sm font-semibold text-[var(--asphalt-ink)] transition-colors group-hover:border-[var(--accent)] group-hover:text-[var(--accent)]"
               >
-                {"Open ›"}
+                {lane.cta.label}
+                <span className="transition-transform group-hover:translate-x-0.5">{"→"}</span>
               </span>
-            </Link>
-          ))}
-        </div>
+            )}
+          </Link>
+        ))}
       </div>
     </section>
   );
