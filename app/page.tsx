@@ -104,7 +104,8 @@ export default function HomePage() {
       </section>
 
       {/* ── 2. DOORS ──────────────────────────────────────────────────── */}
-      <section className="ks-railed mx-auto max-w-7xl px-4 py-[clamp(56px,8vw,104px)]">
+      <section className="on-asphalt asphalt-grain relative overflow-hidden">
+      <div className="ks-railed relative mx-auto max-w-7xl px-4 py-[clamp(56px,8vw,104px)]">
         <span className="ks-rail" aria-hidden="true" />
         <div className="ks-railed-body">
           <p className="ks-label text-[var(--ink)]/55">Start here</p>
@@ -134,6 +135,7 @@ export default function HomePage() {
             ))}
           </div>
         </div>
+      </div>
       </section>
 
       {/* ── 3. THE JOB, on concrete ───────────────────────────────────── */}
@@ -208,7 +210,8 @@ export default function HomePage() {
       </section>
 
       {/* ── 5. THE WORK ───────────────────────────────────────────────── */}
-      <section className="ks-railed mx-auto max-w-7xl px-4 py-[clamp(56px,8vw,104px)]">
+      <section className="on-asphalt asphalt-grain relative overflow-hidden">
+      <div className="ks-railed relative mx-auto max-w-7xl px-4 py-[clamp(56px,8vw,104px)]">
         <span className="ks-rail" aria-hidden="true" />
         <div className="ks-railed-body">
           <p className="ks-label text-[var(--ink)]/55">Real lots, real crew</p>
@@ -244,10 +247,12 @@ export default function HomePage() {
             </div>
           </div>
         </div>
+      </div>
       </section>
 
       {/* ── 6. THE FAMILY ─────────────────────────────────────────────── */}
-      <section className="ks-railed mx-auto max-w-7xl px-4 py-[clamp(56px,8vw,104px)]">
+      <section className="on-asphalt asphalt-grain relative overflow-hidden">
+      <div className="ks-railed relative mx-auto max-w-7xl px-4 py-[clamp(56px,8vw,104px)]">
         <span className="ks-rail is-dashed" aria-hidden="true" />
         <div className="ks-railed-body grid items-center gap-[clamp(28px,5vw,68px)] lg:grid-cols-2">
           <div>
@@ -276,6 +281,7 @@ export default function HomePage() {
             <span aria-hidden="true" className="absolute -bottom-3.5 -left-3.5 h-[9px] w-[110px] bg-[var(--accent)]" />
           </div>
         </div>
+      </div>
       </section>
 
       {/* ── 7. THE ASK ────────────────────────────────────────────────── */}
