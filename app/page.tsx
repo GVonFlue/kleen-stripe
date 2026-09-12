@@ -4,6 +4,7 @@ import PickYourDoor from "@/components/blocks/PickYourDoor";
 import JourneyBand from "@/components/blocks/JourneyBand";
 import NumbersStrip from "@/components/blocks/NumbersStrip";
 import BeforeAfterFeature from "@/components/blocks/BeforeAfterFeature";
+import WorkStrip from "@/components/blocks/WorkStrip";
 import ServiceGrid from "@/components/blocks/ServiceGrid";
 import CostOfInaction from "@/components/blocks/CostOfInaction";
 import ThreeColumn from "@/components/blocks/ThreeColumn";
@@ -35,6 +36,8 @@ function renderBlock(block: any) {
       return NumbersStrip({ block });
     case "before_after":
       return BeforeAfterFeature({ block });
+    case "work_strip":
+      return WorkStrip({ block });
     case "what_he_does":
       return ServiceGrid({ block });
     case "cost_of_inaction":
@@ -76,7 +79,7 @@ function renderBlock(block: any) {
 const TONE: Record<string, { tone: "surface" | "subtle" | "asphalt" | "accent"; mark?: "crosswalk" | "arrow" | "hatch" | "stall" }> = {
   hero: { tone: "asphalt" },
   doors: { tone: "surface" },
-  journey: { tone: "asphalt", mark: "crosswalk" },
+  journey: { tone: "subtle" },
   numbers: { tone: "subtle" },
   before_after: { tone: "surface" },
   what_he_does: { tone: "surface" },
@@ -89,6 +92,7 @@ const TONE: Record<string, { tone: "surface" | "subtle" | "asphalt" | "accent"; 
   // transparent seat, not a color choice. See the component for why it cannot
   // sit inside an asphalt Band (--ada gets repointed to ada_on_dark in there).
   lead_magnet: { tone: "surface" },
+  work_strip: { tone: "surface" },
   proof: { tone: "subtle" },
   // direction-v2.html: the closing band is the one loud yellow moment on the
   // page, not another black one. See ClosingCta and Band's accent tone.

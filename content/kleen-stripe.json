@@ -397,29 +397,56 @@
           "note": "Checkpoint 1 decision 2: option B, with the step 2 fix. The original 'not a guess over the phone' contradicted /small-business-lots/, whose entire pitch is text a photo and get a number with no site visit. Placed after doors and before numbers since Chalk is not built yet. Chalk will likely sit between hero and doors once it exists, per the checkpoint 1 report."
         },
         {
-          "id": "numbers",
-          "kind": "numbers_strip",
-          "render_if_min_items": 2,
-          "items": [
-            {
-              "figure": "{{business.founded_year}}",
-              "label": "Striping Wichita lots since",
-              "requires": [
-                "business.founded_year"
-              ]
-            }
-          ],
-          "note": "One verified figure is not a strip. This block withholds itself until Devin supplies two more real numbers. Question 12. Doctrine section 2 check 6 says omit a weak number rather than inflate it."
+          "id": "lead_magnet",
+          "kind": "conversion_block",
+          "source": "lead_magnet"
         },
         {
-          "id": "before_after",
-          "kind": "before_after_feature",
-          "heading": "Same lot, four hours apart.",
-          "body": "The photographs on this page are lots the crew actually striped. Nothing here was bought from a stock library, which is worth saying because most of the sites you are comparing did buy theirs.",
-          "requires": [
-            "work[0]"
+          "id": "work_strip",
+          "kind": "work_strip",
+          "eyebrow": "Real lots, real crew",
+          "heading": "Nothing on this page came from a stock library.",
+          "lede": "Which is worth saying, because most of the sites you are comparing did buy theirs.",
+          "pending_tile": "Before / after pair\nwaiting on Devin",
+          "tiles": [
+            {
+              "id": "double-yellow-apartments-day",
+              "tag": "Apartments"
+            },
+            {
+              "id": "ada-stalls-wide-lot",
+              "tag": "ADA"
+            },
+            {
+              "id": "custom-lane-stencils-night",
+              "tag": "Stencils"
+            },
+            {
+              "id": "warehouse-floor-stencil-1",
+              "tag": "Warehouse"
+            },
+            {
+              "id": "crew-operating-striper-pov",
+              "tag": "On the job"
+            }
           ],
-          "fallback_note": "DRAFT ONLY. Withholds until Devin's photos land."
+          "cta": {
+            "label": "See all the work",
+            "href": "/work/"
+          }
+        },
+        {
+          "id": "trust",
+          "heading": "Three generations, one trade",
+          "body": "Max Dyer started this with one truck and one striping machine in Wichita in 1979. His grandson Devin took it over in 2017 and it still runs the same way, which is to say the person who quotes your lot is the person standing on it while the work happens.",
+          "requires": [
+            "business.founder_name",
+            "business.founded_year",
+            "business.owner_since"
+          ],
+          "fallback": "The person who quotes your lot is the person standing on it while the work happens. That is the whole difference between a family crew and a call center.",
+          "image_slot": "devin_and_crew",
+          "stat_label": "Years on Wichita pavement"
         },
         {
           "id": "what_he_does",
@@ -472,28 +499,26 @@
           "note": "New band, added at checkpoint 1. Replaces Garrett's third column, which sold ProyTech, with an operating promise true of Kleen Stripe. Column 1 restates already-confirmed trust facts, column 2 restates the ADA and no-call-center themes already established elsewhere in this file, column 3 is new public-facing phrasing of positioning.price_promise, which is internal strategy text and had not itself passed the copy validator. See checkpoint 1 report."
         },
         {
+          "id": "numbers",
+          "kind": "numbers_strip",
+          "render_if_min_items": 2,
+          "items": [
+            {
+              "figure": "{{business.founded_year}}",
+              "label": "Striping Wichita lots since",
+              "requires": [
+                "business.founded_year"
+              ]
+            }
+          ],
+          "note": "One verified figure is not a strip. This block withholds itself until Devin supplies two more real numbers. Question 12. Doctrine section 2 check 6 says omit a weak number rather than inflate it."
+        },
+        {
           "id": "stallgrid",
           "kind": "signature_visual",
           "eyebrow": "Every lot, one stall at a time",
           "heading": "The last stall is always the one that matters",
           "note": "Motion system step 2. brand.signature_element: hand-authored SVG, stalls fill on scroll, the ADA stall and its aisle land last and land in the blue. Meaningless for a competitor not leading on ADA, which is the point."
-        },
-        {
-          "id": "trust",
-          "heading": "Three generations, one trade",
-          "body": "Max Dyer started this with one truck and one striping machine in Wichita in 1979. His grandson Devin took it over in 2017 and it still runs the same way, which is to say the person who quotes your lot is the person standing on it while the work happens.",
-          "requires": [
-            "business.founder_name",
-            "business.founded_year",
-            "business.owner_since"
-          ],
-          "fallback": "The person who quotes your lot is the person standing on it while the work happens. That is the whole difference between a family crew and a call center.",
-          "image_slot": "devin_and_crew"
-        },
-        {
-          "id": "lead_magnet",
-          "kind": "conversion_block",
-          "source": "lead_magnet"
         },
         {
           "id": "proof",

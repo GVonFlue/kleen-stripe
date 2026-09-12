@@ -3,6 +3,7 @@ import { hasAll } from "@/lib/render";
 import PhotoSlot from "@/components/PhotoSlot";
 import PendingNote from "@/components/PendingNote";
 import GalleryPhoto from "@/components/GalleryPhoto";
+import { yearsInBusiness } from "@/content/schema";
 
 /**
  * The signature section: three generations since 1979, the fact no franchise can
@@ -17,6 +18,7 @@ export default function Trust({ block }: { block: any }) {
   const ok = hasAll(content, block.requires);
   const body = ok ? block.body : block.fallback;
   const trustPhotoId = content.photo_assignments.trust;
+  const years = ok ? yearsInBusiness(content) : null;
 
   return (
     <section className="ks-railed mx-auto max-w-6xl px-4 py-10">
@@ -27,6 +29,18 @@ export default function Trust({ block }: { block: any }) {
           <div>
             <h2 className="text-[length:var(--text-h2)] font-bold text-[var(--ink)]">{block.heading}</h2>
             <p className="mt-3 max-w-xl text-[var(--ink)]/80">{body}</p>
+            {/* The one verifiable number this business owns. Computed from
+                founded_year, never stored, so it cannot drift out of date, and
+                withheld entirely when the year is unconfirmed rather than
+                printing a figure nobody stands behind. */}
+            {years !== null && (
+              <p className="mt-8">
+                <span className="ks-display block text-[length:var(--text-mega)] font-black leading-[0.86] tracking-[-0.04em] text-[var(--accent)]">
+                  {years}
+                </span>
+                <span className="ks-label mt-3 block text-[var(--ink)]/60">{block.stat_label}</span>
+              </p>
+            )}
           </div>
           {trustPhotoId ? (
             <GalleryPhoto id={trustPhotoId} fallbackSlot={block.image_slot} aspect="aspect-[4/3]" sizes="(min-width: 640px) 50vw, 100vw" />
