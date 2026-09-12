@@ -20,7 +20,7 @@ export default function ReviewsBlock({ block }: { block: any }) {
         <h2 className="text-[length:var(--text-h2)] font-bold text-[var(--ink)]">{block.heading}</h2>
         <div className="mt-6 grid gap-4 sm:grid-cols-2">
           {reviews.map((r, i) => (
-            <div key={i} className="rounded-lg border border-[var(--line)] p-5">
+            <div key={i} className="rounded-none border border-[var(--line)] p-5">
               <p className="text-[var(--ink)]/90">{r.text}</p>
               <p className="mt-3 text-sm font-medium text-[var(--ink)]/70">{r.name}</p>
               <div className="mt-4">

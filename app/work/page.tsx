@@ -33,7 +33,7 @@ export default function WorkPage() {
         {page.lede && <p className="mt-4 max-w-2xl text-[length:var(--text-lede)] text-[var(--ink)]/80">{page.lede}</p>}
 
         {isEmpty && page.empty_state ? (
-          <p className="mt-8 rounded-lg border border-[var(--line)] bg-[var(--subtle)] p-6 text-[var(--ink)]/80">
+          <p className="mt-8 rounded-none border border-[var(--line)] bg-[var(--subtle)] p-6 text-[var(--ink)]/80">
             {page.empty_state}
           </p>
         ) : (

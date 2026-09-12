@@ -63,7 +63,7 @@ export default function Header() {
         <details className="lg:hidden">
           <summary
             aria-label="Menu"
-            className="flex h-11 w-11 cursor-pointer list-none items-center justify-center rounded-md border border-[var(--line)]"
+            className="flex h-11 w-11 cursor-pointer list-none items-center justify-center rounded-none border border-[var(--line)]"
           >
             <span aria-hidden="true" className="text-lg">
               ☰

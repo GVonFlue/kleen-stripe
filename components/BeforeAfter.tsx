@@ -79,7 +79,7 @@ export default function BeforeAfter({
   return (
     <div
       ref={frame}
-      className={`relative select-none overflow-hidden rounded-md bg-[var(--subtle)] ${className}`}
+      className={`relative select-none overflow-hidden rounded-none bg-[var(--subtle)] ${className}`}
       onPointerDown={onPointerDown}
       onPointerMove={onPointerMove}
       onPointerUp={onPointerUp}

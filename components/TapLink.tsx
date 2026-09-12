@@ -20,7 +20,7 @@ export default function TapLink({ href, label, size = "small", className = "", o
   return (
     <a
       href={href}
-      className={`inline-flex items-center gap-1.5 rounded-md ${color} hover:underline ${sizing} ${className}`}
+      className={`inline-flex items-center gap-1.5 rounded-none ${color} hover:underline ${sizing} ${className}`}
     >
       {label}
     </a>

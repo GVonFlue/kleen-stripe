@@ -27,7 +27,7 @@ export default function ServiceAreasPage() {
             <Link
               key={a.slug}
               href={`/${a.slug}/`}
-              className="flex min-h-11 items-center rounded-full border border-[var(--line)] px-4 text-sm font-medium text-[var(--ink)] hover:border-[var(--ink)]"
+              className="flex min-h-11 items-center rounded-[2px] border border-[var(--line)] px-4 text-sm font-medium text-[var(--ink)] hover:border-[var(--ink)]"
             >
               {a.city}, {a.state}
             </Link>

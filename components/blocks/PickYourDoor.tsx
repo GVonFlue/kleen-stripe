@@ -81,7 +81,7 @@ export default function PickYourDoor({ block }: { block: any }) {
             {lane.cta && (
               <span
                 aria-hidden="true"
-                className="mt-6 inline-flex min-h-11 items-center justify-center gap-2 rounded-full border-2 border-[var(--asphalt-ink)]/45 px-5 text-sm font-semibold text-[var(--asphalt-ink)] transition-colors group-hover:border-[var(--accent)] group-hover:text-[var(--accent)]"
+                className="mt-6 inline-flex min-h-11 items-center justify-center gap-2 rounded-[2px] border-2 border-[var(--asphalt-ink)]/45 px-5 text-sm font-semibold text-[var(--asphalt-ink)] transition-colors group-hover:border-[var(--accent)] group-hover:text-[var(--accent)]"
               >
                 {lane.cta.label}
                 <span className="transition-transform group-hover:translate-x-0.5">{"→"}</span>

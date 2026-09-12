@@ -31,7 +31,7 @@ export default function GalleryPhoto({ id, fallbackSlot, aspect = "aspect-[4/3]"
 
   return (
     <div
-      className={`group relative w-full overflow-hidden ${rounded ? "rounded-md" : ""} bg-[var(--subtle)] ${aspect} ${className}`}
+      className={`group relative w-full overflow-hidden ${rounded ? "rounded-none" : ""} bg-[var(--subtle)] ${aspect} ${className}`}
     >
       <Image
         src={photo.src}

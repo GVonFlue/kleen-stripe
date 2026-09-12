@@ -24,7 +24,7 @@ export default function ServicesHubPage() {
             <Link
               key={service.slug}
               href={`/${service.slug}/`}
-              className="rounded-lg border border-[var(--line)] p-5 transition-colors hover:border-[var(--ink)]"
+              className="rounded-none border border-[var(--line)] p-5 transition-colors hover:border-[var(--ink)]"
             >
               <p className="font-semibold text-[var(--ink)]">{service.name}</p>
               <p className="mt-2 text-sm text-[var(--ink)]/70">{service.lede}</p>

@@ -23,13 +23,13 @@ export default function ReviewsPage() {
         {page.lede && <p className="mt-4 text-[length:var(--text-lede)] text-[var(--ink)]/80">{page.lede}</p>}
 
         {reviews.length === 0 && page.empty_state ? (
-          <p className="mt-8 rounded-lg border border-[var(--line)] bg-[var(--subtle)] p-6 text-[var(--ink)]/80">
+          <p className="mt-8 rounded-none border border-[var(--line)] bg-[var(--subtle)] p-6 text-[var(--ink)]/80">
             {page.empty_state}
           </p>
         ) : (
           <div className="mt-8 flex flex-col gap-4">
             {reviews.map((r, i) => (
-              <div key={i} className="rounded-lg border border-[var(--line)] p-5">
+              <div key={i} className="rounded-none border border-[var(--line)] p-5">
                 <p className="text-[var(--ink)]/90">{r.text}</p>
                 <p className="mt-3 text-sm font-medium text-[var(--ink)]/70">{r.name}</p>
                 <div className="mt-4">

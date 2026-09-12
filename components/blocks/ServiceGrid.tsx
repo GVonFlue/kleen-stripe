@@ -31,8 +31,8 @@ export default function ServiceGrid({ block }: { block: any }) {
                 href={`/${service.slug}/`}
                 className={
                   isMoneyPage
-                    ? "rounded-lg border-2 border-[var(--ada)] p-6 transition-colors hover:bg-[var(--subtle)] sm:col-span-2"
-                    : "rounded-lg border border-[var(--line)] p-5 transition-colors hover:border-[var(--ink)]"
+                    ? "rounded-none border-2 border-[var(--ada)] p-6 transition-colors hover:bg-[var(--subtle)] sm:col-span-2"
+                    : "rounded-none border border-[var(--line)] p-5 transition-colors hover:border-[var(--ink)]"
                 }
               >
                 <p className={isMoneyPage ? "text-[length:var(--text-h3)] font-bold text-[var(--ink)]" : "font-semibold text-[var(--ink)]"}>

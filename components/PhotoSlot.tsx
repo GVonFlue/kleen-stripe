@@ -25,7 +25,7 @@ export default function PhotoSlot({ slot, aspect = "aspect-[4/3]", className = "
     <div
       role="img"
       aria-label={`Photo placeholder: ${slotLabel(slot)}`}
-      className={`flex w-full items-center justify-center rounded-md border-2 border-dashed border-[var(--line)] bg-[var(--subtle)] p-4 text-center ${aspect} ${className}`}
+      className={`flex w-full items-center justify-center rounded-none border-2 border-dashed border-[var(--line)] bg-[var(--subtle)] p-4 text-center ${aspect} ${className}`}
     >
       <div>
         <p className="text-sm font-medium text-[var(--ink)]/70">Photo needed</p>
