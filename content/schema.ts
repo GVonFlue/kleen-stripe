@@ -245,6 +245,12 @@ export const uiSchema = z.object({
   form_message_label: copy(60),
   form_optional_note: copy(20),
   form_success_heading: copy(60),
+  /** The success state says what arrives, never how fast: business.quote_turnaround
+   *  is still null and doctrine section 5 forbids inventing one. */
+  form_success_body: copy(200),
+  form_submit_label: copy(24),
+  form_sending_label: copy(24),
+  form_error_note: copy(140),
   /** The two chips on the before/after wiper. Copy, so it lives here, not in JSX. */
   /** Copy for the draw-a-stall section. */
   stripe_game: z.object({

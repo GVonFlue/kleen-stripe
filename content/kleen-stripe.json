@@ -1348,6 +1348,10 @@
     "form_message_label": "What's going on with the lot",
     "form_optional_note": "optional",
     "form_success_heading": "That came through",
+    "form_success_body": "Devin gets the lot, the address and your number. He calls back with a real figure, not a range.",
+    "form_submit_label": "Send it",
+    "form_sending_label": "Sending",
+    "form_error_note": "That did not send. Call or text instead and it will still get to him.",
     "before_after": {
       "before": "Before",
       "after": "After"

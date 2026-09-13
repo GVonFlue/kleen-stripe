@@ -4,6 +4,7 @@ import { telHref, smsHref } from "@/lib/render";
 import Cta from "@/components/Cta";
 import ClosingBar from "@/components/ClosingBar";
 import PaintedLine from "@/components/PaintedLine";
+import LeadForm from "@/components/LeadForm";
 
 const page = content.pages["/contact/"];
 
@@ -13,9 +14,14 @@ export const metadata: Metadata = {
 };
 
 /**
- * The real <form> ships at checkpoint 3 with LeadForm and /api/lead. Until then this
- * route's two conversion paths are the two Devin himself asked for: call and text,
- * both real and both live today, so the page is not staged on the form existing.
+ * Three doors, in the order Devin ranked them: call, text, then the form.
+ *
+ * Call and text come first and stay first, because business.contact_preference is
+ * his own answer and because a visitor standing in the lot with a phone in their
+ * hand is one tap from the outcome. The form is for the buyer who is at a desk, or
+ * out of hours, or wants to leave a paragraph, and it exists because the page's own
+ * lede promises it. Doctrine, redundant lead paths: no single path is the only way
+ * through, and the page does not depend on JavaScript for any of them.
  */
 export default function ContactPage() {
   const { business, nav } = content;
@@ -34,7 +40,13 @@ export default function ContactPage() {
           )}
         </div>
 
-        {page.consent_line && <p className="mt-6 text-sm text-[var(--ink)]/60">{page.consent_line}</p>}
+        <div aria-hidden="true" className="mt-10 h-[3px] w-full bg-[var(--accent)]" />
+
+        <LeadForm
+          className="mt-8"
+          sourceTag={page.form_source_tag as string}
+          consentLine={(page.consent_line as string | undefined) ?? null}
+        />
       </article>
       <ClosingBar />
     </>
