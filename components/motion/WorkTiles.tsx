@@ -9,6 +9,10 @@ type Tile = { id: string; tag: string };
 /**
  * The work grid, with the photographs openable.
  *
+ * The grey placeholder tile is gone. The LAUNCH audit still blocks on an empty
+ * work[], so the before and after pairs are still owed; they are simply no longer
+ * advertised to visitors as missing.
+ *
  * They were hover-scale and nothing else, which is the one thing a visitor
  * actually wants to do on this band: look closer at the work. Clicking a tile
  * opens it full size; Escape closes; left and right move between them.
@@ -17,7 +21,7 @@ type Tile = { id: string; tag: string };
  * photograph still renders at tile size with its caption. The lightbox is
  * enhancement, never the only way to see the image.
  */
-export default function WorkTiles({ tiles, pendingLabel }: { tiles: Tile[]; pendingLabel: string }) {
+export default function WorkTiles({ tiles }: { tiles: Tile[] }) {
   const [open, setOpen] = useState<number | null>(null);
   const photos = tiles
     .map((t) => ({ tile: t, photo: content.gallery.find((g) => g.id === t.id) }))
@@ -69,12 +73,6 @@ export default function WorkTiles({ tiles, pendingLabel }: { tiles: Tile[]; pend
             </span>
           </button>
         ))}
-
-        <div className="flex aspect-[4/3] items-center justify-center border-2 border-dashed border-[var(--ink)]/25 bg-[var(--subtle)] p-4">
-          <p className="ks-label whitespace-pre-line text-center leading-[1.9] text-[var(--ink)]/55">
-            {pendingLabel}
-          </p>
-        </div>
       </div>
 
       {active && (

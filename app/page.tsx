@@ -61,7 +61,7 @@ export default function HomePage() {
     { id: "custom-lane-stencils-night", tag: "Stencils" },
     { id: "warehouse-floor-stencil-1", tag: "Warehouse" },
     { id: "crew-operating-striper-pov", tag: "On the job" },
-    { id: "striper-dusk-shopping-center", tag: "Retail" },
+    { id: "parking-deck-sunset-striper", tag: "End of a shift" },
   ];
 
   return (
@@ -247,20 +247,7 @@ export default function HomePage() {
             Which is worth saying, because most of the sites you are comparing did buy theirs.
           </p>
 
-          <figure className="relative mt-10 overflow-hidden">
-            <GalleryPhoto
-              id="parking-deck-sunset-striper"
-              fallbackSlot="work_feature"
-              aspect="aspect-[16/9]"
-              sizes="(max-width: 1024px) 100vw, 1280px"
-              rounded={false}
-            />
-            <figcaption className="ks-label absolute bottom-0 left-0 bg-[var(--accent)] px-3 py-[7px] text-[var(--accent-ink)]">
-              His machine, his lines, end of a shift
-            </figcaption>
-          </figure>
-
-          <WorkTiles tiles={tiles} pendingLabel={"Before / after pair\nwaiting on Devin"} />
+          <WorkTiles tiles={tiles} />
         </div>
       </div>
       </section>
