@@ -12,6 +12,8 @@ import CountUp from "@/components/motion/CountUp";
 import HatchDraw from "@/components/motion/HatchDraw";
 import WorkTiles from "@/components/motion/WorkTiles";
 import StickyQuote from "@/components/motion/StickyQuote";
+import PaintCursor from "@/components/motion/PaintCursor";
+import StripeGame from "@/components/motion/StripeGame";
 
 /**
  * A direct port of the homepage in docs/design/direction-v2.html.
@@ -245,6 +247,21 @@ export default function HomePage() {
       </div>
       </section>
 
+      {/* ── 5b. YOUR TURN ─────────────────────────────────────────────── */}
+      {content.ui.stripe_game && (
+        <section className="on-asphalt asphalt-grain relative overflow-hidden">
+          <div aria-hidden="true" className="h-[6px] w-full bg-[var(--accent)]" />
+          <div className="relative mx-auto max-w-7xl px-4 py-[clamp(56px,8vw,104px)]">
+            <StripeGame
+              eyebrow={content.ui.stripe_game.eyebrow}
+              heading={content.ui.stripe_game.heading}
+              instruction={content.ui.stripe_game.instruction}
+              retryLabel={content.ui.stripe_game.retry_label}
+            />
+          </div>
+        </section>
+      )}
+
       {/* ── 6. THE FAMILY ─────────────────────────────────────────────── */}
       <section className="on-asphalt asphalt-grain relative overflow-hidden">
         <div aria-hidden="true" className="h-[6px] w-full bg-[var(--accent)]" />
@@ -296,6 +313,7 @@ export default function HomePage() {
       </section>
 
       <StickyQuote />
+      <PaintCursor />
     </>
   );
 }

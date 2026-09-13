@@ -1351,6 +1351,12 @@
     "before_after": {
       "before": "Before",
       "after": "After"
+    },
+    "stripe_game": {
+      "eyebrow": "Harder than it looks",
+      "heading": "Think you could stripe it?",
+      "instruction": "Drag from one tick to the other and try to lay a straight line. Devin does it with a machine, a chalk line and about as many years of practice as you have been alive.",
+      "retry_label": "Try again"
     }
   },
   "source_tags": [

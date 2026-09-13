@@ -246,6 +246,13 @@ export const uiSchema = z.object({
   form_optional_note: copy(20),
   form_success_heading: copy(60),
   /** The two chips on the before/after wiper. Copy, so it lives here, not in JSX. */
+  /** Copy for the draw-a-stall section. */
+  stripe_game: z.object({
+    eyebrow: copy(80),
+    heading: copy(120),
+    instruction: copy(400),
+    retry_label: copy(40),
+  }).optional(),
   before_after: z.object({
     before: copy(16),
     after: copy(16),
