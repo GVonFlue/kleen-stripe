@@ -14,7 +14,7 @@ import { useDrawIn } from "@/components/useDrawIn";
  * tabular-nums via ks-figure on the caller, so the digits do not jitter the
  * layout as they change width.
  */
-export default function CountUp({ value, duration = 1100 }: { value: number; duration?: number }) {
+export default function CountUp({ value, duration = 2200 }: { value: number; duration?: number }) {
   const { ref, drawn } = useDrawIn<HTMLSpanElement>();
   const [shown, setShown] = useState(value);
   const [armed, setArmed] = useState(false);

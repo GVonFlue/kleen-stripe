@@ -8,7 +8,6 @@ import Cta from "@/components/Cta";
 import LotStripe from "@/components/LotStripe";
 import HeroReveal from "@/components/HeroReveal";
 import PaintWords from "@/components/motion/PaintWords";
-import Wipe from "@/components/motion/Wipe";
 import CountUp from "@/components/motion/CountUp";
 import HatchDraw from "@/components/motion/HatchDraw";
 import WorkTiles from "@/components/motion/WorkTiles";
@@ -93,17 +92,17 @@ export default function HomePage() {
           <h1 className="mt-3.5 max-w-[15ch] text-[length:var(--text-mega)] font-black leading-[0.92] tracking-[-0.03em] text-[var(--ink)]">
             {yearOk ? (
               <>
-                <PaintWords text={hero.headline_prefix} start={140} />{" "}
+                <PaintWords text={hero.headline_prefix} start={220} step={130} />{" "}
                 <em
                   className="ks-word italic text-[var(--accent)]"
-                  style={{ animationDelay: `${140 + hero.headline_prefix.split(" ").length * 65}ms` }}
+                  style={{ animationDelay: `${220 + hero.headline_prefix.split(" ").length * 130}ms` }}
                 >
                   {year}
                   {hero.headline_suffix}
                 </em>
               </>
             ) : (
-              <PaintWords text={hero.fallback_headline} start={140} />
+              <PaintWords text={hero.fallback_headline} start={220} step={130} />
             )}
           </h1>
           <p className="mt-4.5 max-w-[36ch] text-[length:var(--text-lede)] text-[var(--ink)]">{hero.sub}</p>
@@ -123,9 +122,9 @@ export default function HomePage() {
 
       {/* ── 2. DOORS ──────────────────────────────────────────────────── */}
       <section className="on-asphalt asphalt-grain relative overflow-hidden">
-      <div className="ks-railed relative mx-auto max-w-7xl px-4 py-[clamp(56px,8vw,104px)]">
-        <span className="ks-rail" aria-hidden="true" />
-        <div className="ks-railed-body">
+        <div aria-hidden="true" className="h-[6px] w-full bg-[var(--accent)]" />
+      <div className="relative mx-auto max-w-7xl px-4 py-[clamp(56px,8vw,104px)]">
+        <div>
           <p className="ks-label text-[var(--ink)]/55">Start here</p>
           <h2 className="mt-3 text-[length:var(--text-display)] font-black leading-[0.98] text-[var(--ink)]">
             {doors.heading}
@@ -133,8 +132,8 @@ export default function HomePage() {
 
           <div className="mt-11 grid border-t-[3px] border-[var(--accent)] sm:grid-cols-2 lg:grid-cols-4">
             {doors.lanes.map((lane: any, i: number) => (
-              <Wipe key={lane.href} delay={i * 110} className="h-full">
               <Link
+                key={lane.href}
                 href={lane.href}
                 className="group flex h-full flex-col border-b-[3px] border-l-[3px] border-[var(--accent)] p-6 pb-7 transition-colors hover:bg-[var(--subtle)] [&:last-child]:border-r-[3px]"
               >
@@ -150,21 +149,17 @@ export default function HomePage() {
                   {"Open ›"}
                 </span>
               </Link>
-              </Wipe>
             ))}
           </div>
         </div>
-      </div>
-      <div className="relative -mb-px">
-        <LotStripe variant="crosswalk" />
       </div>
       </section>
 
       {/* ── 3. THE JOB, on concrete ───────────────────────────────────── */}
       <section className="bg-[var(--subtle)]">
-        <div className="ks-railed mx-auto max-w-7xl px-4 py-[clamp(56px,8vw,104px)]">
-          <span className="ks-rail is-dashed" aria-hidden="true" />
-          <div className="ks-railed-body">
+        <div aria-hidden="true" className="h-[6px] w-full bg-[var(--accent)]" />
+        <div className="mx-auto max-w-7xl px-4 py-[clamp(56px,8vw,104px)]">
+            <div>
             <p className="ks-label text-[var(--ink)]/55">The job, start to finish</p>
             <h2 className="mt-3 text-[length:var(--text-display)] font-black leading-[0.98] text-[var(--ink)]">
               {journey.heading}
@@ -173,9 +168,7 @@ export default function HomePage() {
             <div className="mt-12 grid gap-x-7 gap-y-9 sm:grid-cols-2 lg:grid-cols-4">
               {journey.steps.map((s: any, i: number) => (
                 <div key={s.step}>
-                  <Wipe delay={i * 90} duration={520}>
-                    <div className="h-[6px] bg-[var(--ink)]" />
-                  </Wipe>
+                  <div className="h-[6px] bg-[var(--ink)]" />
                   <span className="ks-label mt-5 block text-[var(--ink)]/55">{`Step 0${i + 1}`}</span>
                   <h3 className="mt-2 text-[length:var(--text-h3)] font-black text-[var(--ink)]">{s.step}</h3>
                   <p className="mt-2.5 text-sm text-[var(--ink)]/70">{s.body}</p>
@@ -188,6 +181,7 @@ export default function HomePage() {
 
       {/* ── 4. THE ADA FIELD ──────────────────────────────────────────── */}
       <section className="ada-field relative overflow-hidden">
+        <div aria-hidden="true" className="h-[6px] w-full bg-[var(--accent)]" />
         <HatchDraw />
         <div className="relative mx-auto grid max-w-7xl items-start gap-[clamp(28px,5vw,64px)] px-4 py-[clamp(56px,8vw,104px)] lg:grid-cols-[1.05fr_0.95fr]">
           <div>
@@ -235,9 +229,9 @@ export default function HomePage() {
 
       {/* ── 5. THE WORK ───────────────────────────────────────────────── */}
       <section className="on-asphalt asphalt-grain relative overflow-hidden">
-      <div className="ks-railed relative mx-auto max-w-7xl px-4 py-[clamp(56px,8vw,104px)]">
-        <span className="ks-rail" aria-hidden="true" />
-        <div className="ks-railed-body">
+        <div aria-hidden="true" className="h-[6px] w-full bg-[var(--accent)]" />
+      <div className="relative mx-auto max-w-7xl px-4 py-[clamp(56px,8vw,104px)]">
+        <div>
           <p className="ks-label text-[var(--ink)]/55">Real lots, real crew</p>
           <h2 className="mt-3 text-[length:var(--text-display)] font-black leading-[0.98] text-[var(--ink)]">
             Nothing on this page came from a stock library.
@@ -249,16 +243,13 @@ export default function HomePage() {
           <WorkTiles tiles={tiles} pendingLabel={"Before / after pair\nwaiting on Devin"} />
         </div>
       </div>
-      <div className="relative -mb-px">
-        <LotStripe variant="arrow" />
-      </div>
       </section>
 
       {/* ── 6. THE FAMILY ─────────────────────────────────────────────── */}
       <section className="on-asphalt asphalt-grain relative overflow-hidden">
-      <div className="ks-railed relative mx-auto max-w-7xl px-4 py-[clamp(56px,8vw,104px)]">
-        <span className="ks-rail is-dashed" aria-hidden="true" />
-        <div className="ks-railed-body grid items-center gap-[clamp(28px,5vw,68px)] lg:grid-cols-2">
+        <div aria-hidden="true" className="h-[6px] w-full bg-[var(--accent)]" />
+      <div className="relative mx-auto max-w-7xl px-4 py-[clamp(56px,8vw,104px)]">
+        <div className="grid items-center gap-[clamp(28px,5vw,68px)] lg:grid-cols-2">
           <div>
             <p className="ks-label text-[var(--ink)]/55">Since {content.business.founded_year ?? ""}</p>
             <h2 className="mt-3 text-[length:var(--text-display)] font-black leading-[0.98] text-[var(--ink)]">

@@ -19,7 +19,7 @@ type Variant = "crosswalk" | "arrow" | "hatch" | "stall";
  * components/useDrawIn.ts. Read that before changing anything here.
  */
 
-const SPEED = 900; // ms for one mark to lay down, tuned to look like a machine, not a wipe
+const SPEED = 1600; // ms for one mark to lay down, tuned to look like a machine, not a wipe
 
 function paths(variant: Variant): { d: string; ada?: boolean }[] {
   switch (variant) {
@@ -85,7 +85,7 @@ export default function LotStripe({
             transition: `stroke-dashoffset ${SPEED}ms cubic-bezier(0.65,0,0.35,1)`,
             // Staggered so the marks lay down in sequence along the lot rather
             // than all at once, which is the tell of a generic fade-in.
-            transitionDelay: `${i * 55}ms`,
+            transitionDelay: `${i * 150}ms`,
           }}
         />
       ))}

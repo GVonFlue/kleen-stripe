@@ -19,7 +19,7 @@ export default function HatchDraw() {
       className="stall-hatch"
       style={{
         clipPath: drawn ? "inset(0 0 0 0)" : "inset(0 100% 0 0)",
-        transition: "clip-path 1200ms cubic-bezier(0.55,0,0.35,1)",
+        transition: "clip-path 2400ms cubic-bezier(0.45,0,0.2,1)",
       }}
     />
   );

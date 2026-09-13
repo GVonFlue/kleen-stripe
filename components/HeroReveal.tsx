@@ -45,7 +45,7 @@ export default function HeroReveal() {
         style={{
           background: "var(--surface)",
           transform: play ? "translate(160%, -110%) skewX(-18deg)" : "translate(-40%, 40%) skewX(-18deg)",
-          transition: "transform 650ms cubic-bezier(0.65, 0, 0.35, 1)",
+          transition: "transform 1400ms cubic-bezier(0.5, 0, 0.2, 1)",
         }}
       />
     </div>
