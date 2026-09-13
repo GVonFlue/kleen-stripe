@@ -6,6 +6,13 @@ import GalleryPhoto from "@/components/GalleryPhoto";
 import PhotoSlot from "@/components/PhotoSlot";
 import Cta from "@/components/Cta";
 import LotStripe from "@/components/LotStripe";
+import HeroReveal from "@/components/HeroReveal";
+import PaintWords from "@/components/motion/PaintWords";
+import Wipe from "@/components/motion/Wipe";
+import CountUp from "@/components/motion/CountUp";
+import HatchDraw from "@/components/motion/HatchDraw";
+import WorkTiles from "@/components/motion/WorkTiles";
+import StickyQuote from "@/components/motion/StickyQuote";
 
 /**
  * A direct port of the homepage in docs/design/direction-v2.html.
@@ -77,6 +84,7 @@ export default function HomePage() {
                   "linear-gradient(90deg, var(--asphalt) 0%, color-mix(in srgb, var(--asphalt) 70%, transparent) 48%, color-mix(in srgb, var(--asphalt) 25%, transparent) 100%), linear-gradient(0deg, var(--asphalt) 2%, transparent 58%)",
               }}
             />
+            <HeroReveal />
           </div>
         )}
 
@@ -85,12 +93,17 @@ export default function HomePage() {
           <h1 className="mt-3.5 max-w-[15ch] text-[length:var(--text-mega)] font-black leading-[0.92] tracking-[-0.03em] text-[var(--ink)]">
             {yearOk ? (
               <>
-                {hero.headline_prefix}{" "}
-                <em className="italic text-[var(--accent)]">{year}</em>
-                {hero.headline_suffix}
+                <PaintWords text={hero.headline_prefix} start={140} />{" "}
+                <em
+                  className="ks-word italic text-[var(--accent)]"
+                  style={{ animationDelay: `${140 + hero.headline_prefix.split(" ").length * 65}ms` }}
+                >
+                  {year}
+                  {hero.headline_suffix}
+                </em>
               </>
             ) : (
-              hero.fallback_headline
+              <PaintWords text={hero.fallback_headline} start={140} />
             )}
           </h1>
           <p className="mt-4.5 max-w-[36ch] text-[length:var(--text-lede)] text-[var(--ink)]">{hero.sub}</p>
@@ -120,10 +133,10 @@ export default function HomePage() {
 
           <div className="mt-11 grid border-t-[3px] border-[var(--accent)] sm:grid-cols-2 lg:grid-cols-4">
             {doors.lanes.map((lane: any, i: number) => (
+              <Wipe key={lane.href} delay={i * 110} className="h-full">
               <Link
-                key={lane.href}
                 href={lane.href}
-                className="group flex flex-col border-b-[3px] border-l-[3px] border-[var(--accent)] p-6 pb-7 transition-colors last:border-r-[3px] hover:bg-[var(--subtle)]"
+                className="group flex h-full flex-col border-b-[3px] border-l-[3px] border-[var(--accent)] p-6 pb-7 transition-colors hover:bg-[var(--subtle)] [&:last-child]:border-r-[3px]"
               >
                 <span className="ks-label text-[var(--ink)]/55">{`Bay 0${i + 1}`}</span>
                 <h3 className="mt-2.5 text-[length:var(--text-h3)] font-black leading-tight text-[var(--ink)]">
@@ -137,6 +150,7 @@ export default function HomePage() {
                   {"Open ›"}
                 </span>
               </Link>
+              </Wipe>
             ))}
           </div>
         </div>
@@ -159,7 +173,9 @@ export default function HomePage() {
             <div className="mt-12 grid gap-x-7 gap-y-9 sm:grid-cols-2 lg:grid-cols-4">
               {journey.steps.map((s: any, i: number) => (
                 <div key={s.step}>
-                  <div className="h-[6px] bg-[var(--ink)]" />
+                  <Wipe delay={i * 90} duration={520}>
+                    <div className="h-[6px] bg-[var(--ink)]" />
+                  </Wipe>
                   <span className="ks-label mt-5 block text-[var(--ink)]/55">{`Step 0${i + 1}`}</span>
                   <h3 className="mt-2 text-[length:var(--text-h3)] font-black text-[var(--ink)]">{s.step}</h3>
                   <p className="mt-2.5 text-sm text-[var(--ink)]/70">{s.body}</p>
@@ -172,7 +188,7 @@ export default function HomePage() {
 
       {/* ── 4. THE ADA FIELD ──────────────────────────────────────────── */}
       <section className="ada-field relative overflow-hidden">
-        <div className="stall-hatch" aria-hidden="true" />
+        <HatchDraw />
         <div className="relative mx-auto grid max-w-7xl items-start gap-[clamp(28px,5vw,64px)] px-4 py-[clamp(56px,8vw,104px)] lg:grid-cols-[1.05fr_0.95fr]">
           <div>
             <span className="ks-label inline-flex bg-white px-3.5 py-2 text-[#1B54C8]">ADA Compliance</span>
@@ -230,30 +246,7 @@ export default function HomePage() {
             Which is worth saying, because most of the sites you are comparing did buy theirs.
           </p>
 
-          <div className="mt-10 grid gap-[3px] bg-[var(--accent)] sm:grid-cols-2 lg:grid-cols-3">
-            {tiles.map((t) => (
-              <figure key={t.id} className="group relative m-0 overflow-hidden bg-[var(--asphalt)]">
-                <GalleryPhoto
-                  id={t.id}
-                  fallbackSlot={`work_${t.id}`}
-                  aspect="aspect-[4/3]"
-                  sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
-                  rounded={false}
-                  className="transition-transform duration-500 group-hover:scale-[1.04]"
-                />
-                <figcaption className="ks-label absolute bottom-0 left-0 bg-[var(--accent)] px-3 py-[7px] text-[var(--accent-ink)]">
-                  {t.tag}
-                </figcaption>
-              </figure>
-            ))}
-            <div className="flex aspect-[4/3] items-center justify-center border-2 border-dashed border-[var(--ink)]/25 bg-[var(--subtle)] p-4">
-              <p className="ks-label text-center leading-[1.9] text-[var(--ink)]/55">
-                Before / after pair
-                <br />
-                waiting on Devin
-              </p>
-            </div>
-          </div>
+          <WorkTiles tiles={tiles} pendingLabel={"Before / after pair\nwaiting on Devin"} />
         </div>
       </div>
       <div className="relative -mb-px">
@@ -277,7 +270,7 @@ export default function HomePage() {
             {years !== null && (
               <p className="mt-8">
                 <span className="ks-display block text-[length:var(--text-mega)] font-black leading-[0.86] tracking-[-0.04em] text-[var(--accent)]">
-                  {years}
+                  <CountUp value={years} />
                 </span>
                 <span className="ks-label mt-3.5 block text-[var(--ink)]/55">{trust.stat_label}</span>
               </p>
@@ -310,6 +303,8 @@ export default function HomePage() {
           </div>
         </div>
       </section>
+
+      <StickyQuote />
     </>
   );
 }
