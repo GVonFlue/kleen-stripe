@@ -206,26 +206,32 @@ export default function StripeGame({
       <h2 className="mt-3 text-[length:var(--text-display)] font-black leading-[0.98] text-[var(--ink)]">{heading}</h2>
       <p className="mt-4 max-w-[54ch] text-[length:var(--text-lede)] text-[var(--ink)]/70">{instruction}</p>
 
-      <div className="relative mt-8">
-        <canvas
-          ref={canvasRef}
-          onPointerDown={(e) => { e.currentTarget.setPointerCapture(e.pointerId); drawing.current = true; pts.current = [pos(e)]; setResult(null); setTouched(true); paint(); }}
-          onPointerMove={(e) => { if (!drawing.current) return; pts.current.push(pos(e)); paint(); }}
-          onPointerUp={() => { if (!drawing.current) return; drawing.current = false; score(); }}
-          onPointerCancel={() => { if (!drawing.current) return; drawing.current = false; score(); }}
-          className="block h-[240px] w-full cursor-crosshair touch-none border-2 border-[var(--accent)] sm:h-[320px]"
-        />
-        {!touched && (
-          <p className="ks-label pointer-events-none absolute inset-x-0 bottom-4 text-center text-[var(--ink)]/70">
-            {hint}
-          </p>
-        )}
-        <p className="ks-label pointer-events-none absolute left-3 top-3 text-[var(--ink)]/45">
-          {LAYOUTS[lot].name}
-        </p>
+      {/* The lot name and the hint used to sit inside the canvas, at top-3 and
+          bottom-4. Every layout paints in both of those places: the double-row lot
+          starts its first stall at y 0.06 and three of the five run an aisle line
+          across y 0.16, so the label was struck through by its own lot. A chip
+          behind the text would only have made the collision legible. Both now live
+          outside the frame, which removes the whole class of overlap rather than
+          patching its contrast, and the canvas is left as nothing but paint. */}
+      <div className="mt-8 flex items-baseline justify-between gap-4">
+        <p className="ks-label text-[var(--ink)]/45">{LAYOUTS[lot].name}</p>
+        <p className="ks-label text-[var(--ink)]/35">{`Lot ${lot + 1} of ${LAYOUTS.length}`}</p>
       </div>
 
+      <canvas
+        ref={canvasRef}
+        onPointerDown={(e) => { e.currentTarget.setPointerCapture(e.pointerId); drawing.current = true; pts.current = [pos(e)]; setResult(null); setTouched(true); paint(); }}
+        onPointerMove={(e) => { if (!drawing.current) return; pts.current.push(pos(e)); paint(); }}
+        onPointerUp={() => { if (!drawing.current) return; drawing.current = false; score(); }}
+        onPointerCancel={() => { if (!drawing.current) return; drawing.current = false; score(); }}
+        className="mt-2 block h-[240px] w-full cursor-crosshair touch-none border-2 border-[var(--accent)] sm:h-[320px]"
+      />
+
+      {/* One row under the canvas, carrying the hint before the first drag and the
+          score after it. They are mutually exclusive, so sharing a row keeps the
+          section from growing a line the moment you touch it. */}
       <div className="mt-5 flex min-h-11 flex-wrap items-center gap-x-8 gap-y-4">
+        {!result && !touched && <p className="ks-label text-[var(--ink)]/70">{hint}</p>}
         {result && (
           <>
             <p className="ks-figure text-[length:var(--text-h1)] font-black leading-none text-[var(--accent)]">
