@@ -241,7 +241,7 @@ export default function StripeGame({
         <button
           type="button"
           onClick={() => reset(true)}
-          className="ks-label ml-auto min-h-11 border-2 border-[var(--ink)]/40 px-5 text-[var(--ink)] transition-colors hover:border-[var(--accent)] hover:text-[var(--accent)]"
+          className="ks-label min-h-11 border-2 border-[var(--ink)]/40 px-5 text-[var(--ink)] transition-colors hover:border-[var(--accent)] hover:text-[var(--accent)] sm:ml-auto"
         >
           {retryLabel}
         </button>

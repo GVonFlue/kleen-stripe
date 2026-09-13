@@ -122,7 +122,7 @@ export default function HomePage() {
         {/* The first marking of the page: stall lines at the angle they are
             actually painted, sitting just above the hard edge of the fold. */}
         <div className="absolute inset-x-0 bottom-[6px] z-10">
-          <LotStripe variant="stall" />
+          <LotStripe variant="stall" className="!h-[46px] sm:!h-[78px] lg:!h-[104px]" />
         </div>
         <div className="ks-paint-on absolute inset-x-0 bottom-0 h-[9px] bg-[var(--accent)]" />
       </section>
@@ -137,12 +137,12 @@ export default function HomePage() {
             {doors.heading}
           </h2>
 
-          <div className="mt-11 grid border-t-[3px] border-[var(--accent)] sm:grid-cols-2 lg:grid-cols-4">
+          <div className="mt-11 grid gap-[3px] border-[3px] border-[var(--accent)] bg-[var(--accent)] sm:grid-cols-2 lg:grid-cols-4">
             {doors.lanes.map((lane: any, i: number) => (
               <Link
                 key={lane.href}
                 href={lane.href}
-                className="group flex h-full flex-col border-b-[3px] border-l-[3px] border-[var(--accent)] p-6 pb-7 transition-colors hover:bg-[var(--subtle)] [&:last-child]:border-r-[3px]"
+                className="group flex h-full flex-col bg-[var(--surface)] p-6 pb-7 transition-colors hover:bg-[var(--subtle)]"
               >
                 <span className="ks-label text-[var(--ink)]/55">{`Bay 0${i + 1}`}</span>
                 <h3 className="mt-2.5 text-[length:var(--text-h3)] font-black leading-tight text-[var(--ink)]">
@@ -296,7 +296,7 @@ export default function HomePage() {
             ) : (
               <PhotoSlot slot={trust.image_slot} aspect="aspect-[4/3]" />
             )}
-            <span aria-hidden="true" className="absolute -bottom-3.5 -left-3.5 h-[9px] w-[110px] bg-[var(--accent)]" />
+            <span aria-hidden="true" className="absolute -bottom-3.5 left-0 h-[9px] w-[84px] bg-[var(--accent)] sm:-left-3.5 sm:w-[110px]" />
           </div>
         </div>
       </div>
@@ -318,6 +318,7 @@ export default function HomePage() {
         </div>
       </section>
 
+      <div aria-hidden="true" className="h-[72px] lg:hidden" />
       <StickyQuote />
       <PaintCursor />
     </>

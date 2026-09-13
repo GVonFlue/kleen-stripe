@@ -1356,7 +1356,7 @@
       "eyebrow": "Harder than it looks",
       "heading": "Finish the lot.",
       "instruction": "Every lot below is missing its last stall line. Draw it. Devin does this with a machine, a chalk line and about as many years of practice as you have been alive.",
-      "hint": "Click and drag to paint the missing line",
+      "hint": "Drag across the gap to paint the missing line",
       "retry_label": "New lot"
     }
   },

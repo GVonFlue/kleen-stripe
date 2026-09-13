@@ -52,7 +52,7 @@ export default function WorkTiles({ tiles }: { tiles: Tile[] }) {
 
   return (
     <>
-      <div className="mt-10 grid gap-[3px] bg-[var(--accent)] sm:grid-cols-2 lg:grid-cols-3">
+      <div className="mt-10 grid grid-cols-2 gap-[3px] bg-[var(--accent)] lg:grid-cols-3">
         {photos.map(({ tile, photo }, i) => (
           <button
             key={tile.id}
@@ -101,7 +101,7 @@ export default function WorkTiles({ tiles }: { tiles: Tile[] }) {
             type="button"
             onClick={() => setOpen(null)}
             aria-label="Close"
-            className="ks-label absolute right-4 top-4 border-2 border-white/50 px-3 py-2 text-white"
+            className="ks-label absolute right-3 top-3 min-h-11 border-2 border-white/50 bg-black/55 px-3 py-2 text-white sm:right-4 sm:top-4"
           >
             Close
           </button>
@@ -109,7 +109,7 @@ export default function WorkTiles({ tiles }: { tiles: Tile[] }) {
             type="button"
             onClick={(e) => { e.stopPropagation(); move(-1); }}
             aria-label="Previous photograph"
-            className="absolute left-3 top-1/2 -translate-y-1/2 px-4 py-6 text-3xl text-white/70 hover:text-[var(--accent)]"
+            className="absolute left-2 top-1/2 flex h-12 w-12 -translate-y-1/2 items-center justify-center bg-black/55 text-3xl leading-none text-white hover:text-[var(--accent)] sm:left-3"
           >
             {"‹"}
           </button>
@@ -117,7 +117,7 @@ export default function WorkTiles({ tiles }: { tiles: Tile[] }) {
             type="button"
             onClick={(e) => { e.stopPropagation(); move(1); }}
             aria-label="Next photograph"
-            className="absolute right-3 top-1/2 -translate-y-1/2 px-4 py-6 text-3xl text-white/70 hover:text-[var(--accent)]"
+            className="absolute right-2 top-1/2 flex h-12 w-12 -translate-y-1/2 items-center justify-center bg-black/55 text-3xl leading-none text-white hover:text-[var(--accent)] sm:right-3"
           >
             {"›"}
           </button>
