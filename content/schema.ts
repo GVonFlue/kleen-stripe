@@ -251,6 +251,7 @@ export const uiSchema = z.object({
     eyebrow: copy(80),
     heading: copy(120),
     instruction: copy(400),
+    hint: copy(120),
     retry_label: copy(40),
   }).optional(),
   before_after: z.object({

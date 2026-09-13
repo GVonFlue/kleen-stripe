@@ -260,6 +260,7 @@ export default function HomePage() {
               eyebrow={content.ui.stripe_game.eyebrow}
               heading={content.ui.stripe_game.heading}
               instruction={content.ui.stripe_game.instruction}
+              hint={content.ui.stripe_game.hint ?? ""}
               retryLabel={content.ui.stripe_game.retry_label}
             />
           </div>
