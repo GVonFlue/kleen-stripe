@@ -40,9 +40,12 @@ function paths(variant: Variant): { d: string; ada?: boolean }[] {
       return Array.from({ length: 10 }, (_, i) => ({ d: `M ${50 + i * 120} 78 L ${98 + i * 120} 12`, ada: true }));
     case "stall":
     default:
-      // Spacing widened from 180 to 260. With preserveAspectRatio="none" the X axis
-      // compresses hard on a phone, and at 180 these diagonals ran into each other.
-      return Array.from({ length: 5 }, (_, i) => ({ d: `M ${80 + i * 260} 82 L ${124 + i * 260} 8` }));
+      // A row of angled stalls coming off the aisle line, not five loose ticks.
+      // More of them, closer together, and each running the full height of the
+      // band so the angle reads. Safe to tighten now that the stroke is pinned to
+      // screen pixels: it was the scaling stroke, not the spacing, that made these
+      // collide before.
+      return Array.from({ length: 9 }, (_, i) => ({ d: `M ${44 + i * 136} 88 L ${104 + i * 136} 2` }));
   }
 }
 
@@ -61,7 +64,7 @@ export default function LotStripe({
       ref={ref}
       viewBox="0 0 1200 90"
       preserveAspectRatio="none"
-      className={`h-[42px] w-full sm:h-[54px] ${className}`}
+      className={`h-[78px] w-full sm:h-[104px] ${className}`}
       aria-hidden="true"
       focusable="false"
     >

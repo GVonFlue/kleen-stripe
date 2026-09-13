@@ -66,7 +66,7 @@ export default function HomePage() {
   return (
     <>
       {/* ── 1. HERO ───────────────────────────────────────────────────── */}
-      <section className="on-asphalt relative flex min-h-[min(660px,86vh)] items-end overflow-hidden">
+      <section className="on-asphalt relative flex min-h-[min(700px,88vh)] items-end overflow-hidden">
         {heroPhoto && (
           <div aria-hidden="true" className="absolute inset-0">
             <GalleryPhoto
@@ -89,7 +89,11 @@ export default function HomePage() {
           </div>
         )}
 
-        <div className="relative mx-auto w-full max-w-7xl px-4 pb-12 pt-[clamp(88px,13vw,150px)] sm:pb-16">
+        {/* Bottom padding clears the stall band and the painted edge below it, so
+            the buttons are not sitting on the markings. Top padding is smaller
+            than it looks: the section is items-end, so this only sets the minimum
+            gap under the header rather than pushing the block down. */}
+        <div className="relative mx-auto w-full max-w-7xl px-4 pb-[clamp(128px,16vw,176px)] pt-[clamp(48px,7vw,88px)]">
           <p className="ks-label text-[var(--accent)]">{hero.eyebrow}</p>
           <h1 className="mt-3.5 max-w-[15ch] text-[length:var(--text-mega)] font-black leading-[0.92] tracking-[-0.03em] text-[var(--ink)]">
             {yearOk ? (
@@ -116,7 +120,7 @@ export default function HomePage() {
 
         {/* The first marking of the page: stall lines at the angle they are
             actually painted, sitting just above the hard edge of the fold. */}
-        <div className="absolute inset-x-0 bottom-[9px] z-10">
+        <div className="absolute inset-x-0 bottom-[6px] z-10">
           <LotStripe variant="stall" />
         </div>
         <div className="ks-paint-on absolute inset-x-0 bottom-0 h-[9px] bg-[var(--accent)]" />

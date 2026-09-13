@@ -17,7 +17,7 @@ import { useEffect, useRef } from "react";
  *
  * Sits under everything interactive and never takes pointer events.
  */
-const LIFE = 620; // ms a segment stays on the road
+const LIFE = 820; // ms a segment stays on the road
 const MAX = 90; // points retained, hard cap so a long drag cannot grow unbounded
 
 export default function PaintCursor() {
@@ -66,14 +66,21 @@ export default function PaintCursor() {
         const b = pts[i];
         const age = (now - b.t) / LIFE;
         if (age >= 1) continue;
-        // Fades and thins as it dries, so the tail of the pass is lighter than
-        // the head, the way a real line does when the gun lifts.
-        ctx.globalAlpha = (1 - age) * 0.85;
-        ctx.lineWidth = 7 * (1 - age * 0.55);
+        // Wet paint is two things at once: a thick opaque body, and a softer
+        // halo where it has spread into the surface and is still catching light.
+        // Drawing both, the halo wider and fainter, is what stops this reading as
+        // a flat vector line. It thins as it dries, the way a real line does when
+        // the gun lifts.
+        const dry = 1 - age;
         ctx.strokeStyle = accent;
         ctx.beginPath();
         ctx.moveTo(a.x, a.y);
         ctx.lineTo(b.x, b.y);
+        ctx.globalAlpha = dry * 0.22;
+        ctx.lineWidth = 20 * (1 - age * 0.35);
+        ctx.stroke();
+        ctx.globalAlpha = dry * 0.95;
+        ctx.lineWidth = 13 * (1 - age * 0.45);
         ctx.stroke();
       }
       ctx.globalAlpha = 1;
