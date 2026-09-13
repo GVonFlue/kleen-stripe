@@ -18,3 +18,7 @@ next-env.d.ts
 # Scratch from the brand-takeover session. Safe to delete.
 _to_delete/
 Claude outputs/
+
+# Bridge scratch, safe to delete
+.ks-locks/
+.probe
