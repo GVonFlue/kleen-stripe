@@ -7,6 +7,10 @@ type CtaProps = {
   className?: string;
   type?: "submit" | "button";
   disabled?: boolean;
+  /** Fires on the button or the link. Used by the phone menu to close itself the
+   *  instant the CTA is tapped, including when the CTA points at the route you are
+   *  already on and no navigation follows. */
+  onClick?: () => void;
   /** Set on a black band: the secondary outline flips from ink-on-light to
    *  surface-on-dark. The primary button never changes, it already reads
    *  cleanly on black, which is the point of the black-and-yellow pairing. */
@@ -38,6 +42,7 @@ export default function Cta({
   className = "",
   type,
   disabled,
+  onClick,
   onDark = false,
   onAccent = false,
   onAda = false,
@@ -57,7 +62,7 @@ export default function Cta({
 
   if (type === "submit" || type === "button") {
     return (
-      <button type={type} disabled={disabled} className={`${base} ${styles} ${className}`}>
+      <button type={type} disabled={disabled} onClick={onClick} className={`${base} ${styles} ${className}`}>
         {label}
       </button>
     );
@@ -67,7 +72,7 @@ export default function Cta({
   const Tag = isInternal ? Link : "a";
 
   return (
-    <Tag href={href ?? "#"} className={`${base} ${styles} ${className}`}>
+    <Tag href={href ?? "#"} onClick={onClick} className={`${base} ${styles} ${className}`}>
       {label}
     </Tag>
   );

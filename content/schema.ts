@@ -429,6 +429,11 @@ export const contentSchema = z.object({
      *  rule exists to catch. */
     call_label: copy(20),
     text_label: copy(20),
+    /** The phone menu's own two strings. Assistive tech is the only thing that
+     *  reads them, which is exactly why they were still hardcoded in Header.tsx
+     *  after everything visible had been moved out. Same rule applies. */
+    menu_label: copy(20),
+    menu_nav_label: copy(32),
     note: z.string().optional(),
   }),
   pages: z.record(z.string(), pageSchema),

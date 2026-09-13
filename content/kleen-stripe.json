@@ -256,6 +256,8 @@
     },
     "call_label": "Call",
     "text_label": "Text",
+    "menu_label": "Menu",
+    "menu_nav_label": "Primary, mobile",
     "note": "One CTA in the header. Doctrine check 1, Hick's Law. The tappable phone sits beside it as a tel link, not as a second accent button."
   },
   "pages": {

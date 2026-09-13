@@ -4,6 +4,7 @@ import { telHref, smsHref } from "@/lib/render";
 import Cta from "@/components/Cta";
 import Logo from "@/components/Logo";
 import TapLink from "@/components/TapLink";
+import MobileMenu from "@/components/MobileMenu";
 
 /**
  * Call is the larger tap target here and in the footer. business.contact_preference
@@ -60,28 +61,7 @@ export default function Header() {
           </span>
         </div>
 
-        <details className="lg:hidden">
-          <summary
-            aria-label="Menu"
-            className="flex h-11 w-11 cursor-pointer list-none items-center justify-center rounded-none border border-[var(--line)]"
-          >
-            <span aria-hidden="true" className="text-lg">
-              ☰
-            </span>
-          </summary>
-          <div className="on-asphalt absolute inset-x-0 top-full border-b border-[var(--line)] px-4 py-4 shadow-lg">
-            <nav aria-label="Primary, mobile" className="flex flex-col gap-3">
-              {nav.primary.map((item) => (
-                <Link key={item.href} href={item.href} className="py-1 text-base font-medium text-[var(--ink)]">
-                  {item.label}
-                </Link>
-              ))}
-              <span className="mt-2 block sm:hidden">
-                <Cta label={nav.cta.label} href={nav.cta.href} variant="primary" className="w-full" />
-              </span>
-            </nav>
-          </div>
-        </details>
+        <MobileMenu />
       </div>
     </header>
   );
