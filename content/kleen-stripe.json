@@ -585,7 +585,10 @@
         "label": "Call Devin",
         "href": "tel:+13166170352",
         "principle": "Trust is a person. Doctrine section 4."
-      }
+      },
+      "form_source_tag": "Kleen Stripe - About Page Quote",
+      "consent_line": "Sending this asks for one quote on one lot. It does not sign you up for anything.",
+      "form_heading": "Or put the lot in front of him"
     },
     "/reviews/": {
       "type": "reviews",
@@ -617,14 +620,15 @@
       "meta_description": "Wichita, Derby, Andover, Haysville, Newton and all of Kansas. Kleen Stripe travels to Tulsa, Kansas City and Oklahoma City for commercial lot work.",
       "h1": "Where the truck goes",
       "lede": "Wichita and the towns around it are the day to day. The rest of Kansas is a normal week. Tulsa, Kansas City and Oklahoma City are a phone call, and whether it makes sense depends on the size of the lot, so ask.",
-      "travel_note": "Out of state markets are listed here rather than given their own pages. A city page with no finished jobs and no photographs behind it is thin content, and it drags down the Wichita pages that actually earn. They get real pages when there is real work to put on them."
+      "travel_note": "These are a phone call rather than a route the truck already runs. Whether it makes sense depends on the size of the lot, so ask and Devin will tell you straight.",
+      "note": "Audit pass: travel_note previously carried the internal SEO rationale for not building out-of-state city pages (thin content, dilution of the Wichita pages). That reasoning is correct and is recorded here, in a copy-exempt field, rather than published to visitors."
     },
     "/work/": {
       "type": "gallery",
       "title": "Our Work | Parking Lot Striping Photos | Kleen Stripe",
       "meta_description": "Real photographs of parking lots striped, sealed and repaired by Kleen Stripe in Wichita and across Kansas.",
       "h1": "Lots this crew has actually striped",
-      "lede": "Real photos from real jobs. Before and after pairs are still to come. Nothing here is stock.",
+      "lede": "Real photos from real jobs. Nothing here is stock.",
       "filters": [
         "Retail",
         "Apartments",
@@ -634,14 +638,16 @@
         "ADA"
       ],
       "empty_state": "This page is live but the photos are not on it yet. Nothing here is stock, so it stays empty until the crew's own photos are ready.",
-      "note": "Checkpoint 3 photos pass: h1 and lede changed from claiming before/after pairs to describing what actually exists (gallery[] singles), since the page would otherwise overpromise a pairing this content does not have yet. indexable is no longer a static flag here: see isWorkIndexable() in schema.ts, which came off noindex once gallery[] got real consented photos."
+      "note": "Checkpoint 3 photos pass: h1 and lede changed from claiming before/after pairs to describing what actually exists (gallery[] singles), since the page would otherwise overpromise a pairing this content does not have yet. indexable is no longer a static flag here: see isWorkIndexable() in schema.ts, which came off noindex once gallery[] got real consented photos. Audit pass: the lede previously announced that before/after pairs were missing, which tells a buyer what the site does not have. work[] being empty is still tracked as a LAUNCH blocker in the auditor, which is the right place for it."
     },
     "/ada-striping-checklist/": {
       "type": "lead_magnet_landing",
       "title": "Free ADA Parking Checklist | Kansas | Kleen Stripe",
       "meta_description": "A one page ADA parking walk-around for Kansas property managers. Stall counts, van accessible dimensions, signage, slope and the route to the door.",
       "h1": "The ADA walk-around, on one page",
-      "source_tag": "Kleen Stripe - ADA Checklist Download"
+      "source_tag": "Kleen Stripe - ADA Checklist Download",
+      "form_source_tag": "Kleen Stripe - ADA Checklist Download",
+      "consent_line": "One checklist, sent once. It is not a subscription."
     },
     "/thank-you/": {
       "type": "thank_you",
@@ -726,8 +732,7 @@
       "faqs": [
         {
           "q": "How many accessible stalls does my lot need?",
-          "a": null,
-          "needs": "Requires the current ADA stall count table, verified against the 2010 Standards before this answer is written."
+          "a": "Your total stall count decides it, not your square footage. A lot up to 25 stalls needs one accessible space. At 26 it needs two, at 51 three, at 76 four, and it keeps stepping up from there. One of every six accessible spaces, or any fraction of six, has to be van accessible, so eight accessible spaces means two of them are van. Count each parking facility on its own rather than adding two separate lots on one site together. The full table is below."
         },
         {
           "q": "Can you tell me if my lot is out of compliance before I commit to anything?",
@@ -742,7 +747,74 @@
       ],
       "why_own_page": "Highest commercial intent term on the list, and the only one where the buyer is not shopping, they are exposed. PMP has no ADA page. EverLine handles it as a bullet inside a FAQ. This is the gap.",
       "header_tone": "ada",
-      "header_note": "Blue field with white access-aisle hatching, per docs/design/direction-v2.html. On a real lot the hatched zone beside the accessible stall is the one you do not park in, so the page that sells compliance is drawn as that zone. Blue is used nowhere else on the site, which is what keeps this readable as a signal rather than decoration."
+      "header_note": "Blue field with white access-aisle hatching, per docs/design/direction-v2.html. On a real lot the hatched zone beside the accessible stall is the one you do not park in, so the page that sells compliance is drawn as that zone. Blue is used nowhere else on the site, which is what keeps this readable as a signal rather than decoration.",
+      "reference_table": {
+        "heading": "Accessible spaces required, by total spaces in the lot",
+        "columns": [
+          "Total spaces in the lot",
+          "Minimum accessible",
+          "Of those, van"
+        ],
+        "rows": [
+          [
+            "1 to 25",
+            "1",
+            "1"
+          ],
+          [
+            "26 to 50",
+            "2",
+            "1"
+          ],
+          [
+            "51 to 75",
+            "3",
+            "1"
+          ],
+          [
+            "76 to 100",
+            "4",
+            "1"
+          ],
+          [
+            "101 to 150",
+            "5",
+            "1"
+          ],
+          [
+            "151 to 200",
+            "6",
+            "1"
+          ],
+          [
+            "201 to 300",
+            "7",
+            "2"
+          ],
+          [
+            "301 to 400",
+            "8",
+            "2"
+          ],
+          [
+            "401 to 500",
+            "9",
+            "2"
+          ],
+          [
+            "501 to 1000",
+            "2% of the total",
+            "1 of every 6"
+          ],
+          [
+            "1001 and over",
+            "20, plus 1 per 100 over 1000",
+            "1 of every 6"
+          ]
+        ],
+        "note": "Count each parking facility separately. Two lots on one site are not added together.",
+        "source": "2010 ADA Standards for Accessible Design, Table 208.2 and section 208.2.4. A published federal standard, not a Kleen Stripe claim."
+      }
     },
     {
       "slug": "parking-lot-sealcoating-wichita",
@@ -1017,25 +1089,29 @@
       "city": "Derby",
       "state": "KS",
       "slug": "parking-lot-striping-derby-ks",
-      "page": true
+      "page": true,
+      "source_tag": "Kleen Stripe - Derby Quote"
     },
     {
       "city": "Andover",
       "state": "KS",
       "slug": "parking-lot-striping-andover-ks",
-      "page": true
+      "page": true,
+      "source_tag": "Kleen Stripe - Andover Quote"
     },
     {
       "city": "Haysville",
       "state": "KS",
       "slug": "parking-lot-striping-haysville-ks",
-      "page": true
+      "page": true,
+      "source_tag": "Kleen Stripe - Haysville Quote"
     },
     {
       "city": "Newton",
       "state": "KS",
       "slug": "parking-lot-striping-newton-ks",
-      "page": true
+      "page": true,
+      "source_tag": "Kleen Stripe - Newton Quote"
     },
     {
       "city": "Tulsa",
@@ -1323,7 +1399,7 @@
   "lead_magnet": {
     "title": "The ADA parking walk-around",
     "subtitle": "One page. Take it outside and look at your own lot.",
-    "file": null,
+    "file": "/downloads/kleen-stripe-ada-parking-walkaround.pdf",
     "value_stack": [
       "The number of accessible stalls your total stall count actually requires, in a table you can read in one pass",
       "Van accessible stall and access aisle dimensions, with the mistakes that show up most often",
@@ -1334,11 +1410,11 @@
     ],
     "cta": {
       "label": "Send me the checklist",
-      "href": "#",
+      "href": "/ada-striping-checklist/",
       "source_tag": "Kleen Stripe - ADA Checklist Download"
     },
     "consent_line": "One checklist, sent once. It is not a subscription.",
-    "content_gate": "file is null. The PDF does not exist yet and the site withholds the block until it does. Every figure in it must be verified against the 2010 ADA Standards for Accessible Design before it is written. Doctrine hard stop 1."
+    "content_gate": "file is built. Generated by scripts/build-lead-magnet.py, which carries the section citation for every figure in it. Sourced entirely from the 2010 ADA Standards for Accessible Design, sections 208 and 502, which is a published federal standard and not a client fact, so it is not gated on Devin. He should still read it before it goes out under his name."
   },
   "ui": {
     "service_scope_heading": "What's included",
@@ -1361,10 +1437,60 @@
     "stripe_game": {
       "eyebrow": "Harder than it looks",
       "heading": "Finish the lot.",
-      "instruction": "Every lot below is missing its last stall line. Draw it. Devin does this with a machine, a chalk line and about as many years of practice as you have been alive.",
+      "instruction": "Every lot below is missing its last stall line. Draw it. Devin does this with a machine, a chalk line and more practice than most crews have been in business.",
       "hint": "Drag across the gap to paint the missing line",
-      "retry_label": "New lot"
-    }
+      "retry_label": "New lot",
+      "verdicts": [
+        {
+          "min": 92,
+          "text": "Machine straight. You have done this before."
+        },
+        {
+          "min": 80,
+          "text": "That would pass on a small lot. Not on a big box store."
+        },
+        {
+          "min": 65,
+          "text": "Off by enough that you would see it from the street."
+        },
+        {
+          "min": 45,
+          "text": "The property manager is calling somebody about that."
+        },
+        {
+          "min": 0,
+          "text": "That is a repaint, not a stripe."
+        }
+      ],
+      "after": {
+        "heading": "That was one line.",
+        "body": "A retail lot is six hundred of them, in a row, between eight and five, with cars still parking on it.",
+        "cta": {
+          "label": "Get a number on your lot",
+          "href": "/contact/",
+          "source_tag": "Kleen Stripe - Homepage Quote"
+        }
+      }
+    },
+    "form_address_label": "Property address",
+    "form_stalls_label": "Roughly how many stalls",
+    "form_timing_label": "When are you looking to do it",
+    "form_timing_options": [
+      "Not sure yet",
+      "This month",
+      "This quarter",
+      "Pricing it for a budget"
+    ],
+    "form_download_heading": "The checklist is ready",
+    "form_download_body": "It is one page. Print it, take it outside, and write your two numbers in the box at the bottom.",
+    "form_download_label": "Open the checklist",
+    "checklist_submit_label": "Send me the checklist",
+    "withheld_answer_label": "Answer stays off the page until the fact is checked",
+    "reference_table_source_label": "Source",
+    "quote_aside_heading": "Get a number on this lot",
+    "quote_aside_body": "Text a photo and the address. You will get a real number instead of a range.",
+    "inline_form_heading": "Or put it in writing",
+    "inline_form_note": "For the lot you are looking at right now. Address and rough stall count help, but a name and a number is enough to start."
   },
   "source_tags": [
     "Kleen Stripe - Homepage Quote",
@@ -1385,6 +1511,7 @@
     "Kleen Stripe - Derby Quote",
     "Kleen Stripe - Andover Quote",
     "Kleen Stripe - Haysville Quote",
-    "Kleen Stripe - Newton Quote"
+    "Kleen Stripe - Newton Quote",
+    "Kleen Stripe - About Page Quote"
   ]
 }

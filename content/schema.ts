@@ -205,6 +205,23 @@ export const serviceSchema = z.object({
     )
     .default([]),
   faqs_pending: z.array(z.string()).optional(),
+  /**
+   * A published reference table rendered on the page. Added for the ADA stall
+   * count, which was sitting as a withheld FAQ answer because nobody had verified
+   * it. It is not a client fact and never needed Devin: Table 208.2 of the 2010
+   * ADA Standards is a federal standard anyone can check, so it is sourced and
+   * cited rather than left blank. `source` is copy-exempt on purpose, it is an
+   * attribution line rather than house copy.
+   */
+  reference_table: z
+    .object({
+      heading: copy(120),
+      columns: z.array(copy(60)).length(3),
+      rows: z.array(z.array(copy(60)).length(3)).min(1),
+      note: z.string().optional(),
+      source: z.string(),
+    })
+    .optional(),
   /** Opt a service page into a non-default header treatment. "ada" paints the
    *  access-aisle field. Content decides; no component special-cases a slug. */
   header_tone: z.enum(["ada"]).optional(),
@@ -236,6 +253,16 @@ export const buyerSchema = z.object({
  * come from here rather than from a component. Checkpoint 2.
  */
 export const uiSchema = z.object({
+  /** Pulled out of QuoteAside.tsx, which had both of these typed straight into
+   *  JSX. A visitor reads them, so they live here. CLAUDE.md, "no copy in JSX,
+   *  none." */
+  quote_aside_heading: copy(60),
+  quote_aside_body: copy(200),
+  /** The inline form that now sits at the foot of every service, buyer and area
+   *  page, so an interior route has a second conversion path that does not
+   *  require leaving it. */
+  inline_form_heading: copy(60),
+  inline_form_note: copy(220),
   service_scope_heading: copy(40),
   service_faqs_heading: copy(40),
   service_buyers_heading: copy(40),
@@ -251,6 +278,23 @@ export const uiSchema = z.object({
   form_submit_label: copy(24),
   form_sending_label: copy(24),
   form_error_note: copy(140),
+  /** The extra qualifying fields on the quote form. Optional on the form itself:
+   *  a visitor standing in a lot on a phone should never be blocked by them. */
+  form_address_label: copy(30),
+  form_stalls_label: copy(40),
+  form_timing_label: copy(40),
+  form_timing_options: z.array(copy(40)).min(2),
+  /** The checklist form's own success state, which unlike the quote form's has
+   *  something to hand over. */
+  form_download_heading: copy(60),
+  form_download_body: copy(200),
+  form_download_label: copy(40),
+  checklist_submit_label: copy(30),
+  /** Was typed straight into ServicePage.tsx. A visitor reads it, so it lives
+   *  here. It now only renders under DRAFT_BADGES: a withheld answer is a note to
+   *  us, not a gap a buyer should be shown. */
+  withheld_answer_label: copy(80),
+  reference_table_source_label: copy(20),
   /** The two chips on the before/after wiper. Copy, so it lives here, not in JSX. */
   /** Copy for the draw-a-stall section. */
   stripe_game: z.object({
@@ -259,6 +303,14 @@ export const uiSchema = z.object({
     instruction: copy(400),
     hint: copy(120),
     retry_label: copy(40),
+    /** The five score lines. They were typed into StripeGame.tsx, which makes
+     *  them five strings a visitor reads that never went through the copy rules
+     *  and that Devin could never edit. Sorted highest first at render. */
+    verdicts: z.array(z.object({ min: z.number().int().min(0).max(100), text: copy(120) })).min(1),
+    /** What the section asks for once somebody has played it. Before this the
+     *  game was the only block on the site with no conversion path attached: a
+     *  visitor finished it, learned the job is hard, and was handed nothing. */
+    after: z.object({ heading: copy(80), body: copy(240), cta: ctaSchema }),
   }).optional(),
   before_after: z.object({
     before: copy(16),
@@ -268,6 +320,11 @@ export const uiSchema = z.object({
 
 export const areaSchema = z.object({
   city: z.string(),
+  /** Declared in source_tags and checked against it by auditContent, same as a
+   *  service's. Added when the area pages got their own inline form: a form has
+   *  to attribute itself to the page it sits on, and deriving the tag in a
+   *  component would put a CRM value one typo away from silently 400ing. */
+  source_tag: z.string().optional(),
   state: z.string().length(2),
   slug: z.string().nullable(),
   page: z.boolean(),
@@ -374,6 +431,7 @@ export const pageSchema = z.object({
   empty_state: copy(400).optional(),
   cta: ctaSchema.optional(),
   form_source_tag: z.string().optional(),
+  form_heading: copy(80).optional(),
   consent_line: copy(300).optional(),
   note: z.string().optional(),
   travel_note: z.string().optional(),
@@ -539,6 +597,7 @@ export function auditContent(content: Content, mode: BuildMode): string[] {
   const used: string[] = [];
   content.services.forEach((s) => used.push(s.source_tag));
   content.buyers.forEach((b) => b.cta.source_tag && used.push(b.cta.source_tag));
+  content.areas.forEach((a) => a.source_tag && used.push(a.source_tag));
   used.forEach((t) => {
     if (!declared.has(t)) errors.push(`source_tag "${t}" is used but not declared in source_tags.`);
   });

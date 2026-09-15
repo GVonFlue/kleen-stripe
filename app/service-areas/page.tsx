@@ -9,6 +9,7 @@ const page = content.pages["/service-areas/"];
 export const metadata: Metadata = {
   title: page.title,
   description: page.meta_description ?? undefined,
+  alternates: { canonical: "/service-areas/" },
 };
 
 export default function ServiceAreasPage() {

@@ -1,6 +1,7 @@
 "use client";
 
 import { useCallback, useEffect, useRef, useState } from "react";
+import Cta from "@/components/Cta";
 
 /**
  * "Finish the lot."
@@ -88,10 +89,14 @@ const LAYOUTS: Layout[] = [
 
 type Result = { straightness: number; placement: number; total: number } | null;
 
+type Verdict = { min: number; text: string };
+type After = { heading: string; body: string; cta: { label: string; href: string } };
+
 export default function StripeGame({
-  eyebrow, heading, instruction, hint, retryLabel,
+  eyebrow, heading, instruction, hint, retryLabel, verdicts, after,
 }: {
   eyebrow: string; heading: string; instruction: string; hint: string; retryLabel: string;
+  verdicts: Verdict[]; after: After;
 }) {
   const canvasRef = useRef<HTMLCanvasElement>(null);
   const pts = useRef<{ x: number; y: number }[]>([]);
@@ -192,12 +197,12 @@ export default function StripeGame({
     else paint();
   };
 
+  /** Was five hardcoded strings. They are copy, so they come from content now,
+   *  sorted here rather than relying on the content file being authored in
+   *  order. The last entry should have min 0 so there is always a match. */
   const verdict = (t: number) => {
-    if (t >= 92) return "Machine straight. You have done this before.";
-    if (t >= 80) return "That would pass on a small lot. Not on a Walmart.";
-    if (t >= 65) return "Off by enough that you would see it from the street.";
-    if (t >= 45) return "The property manager is calling somebody about that.";
-    return "That is a repaint, not a stripe.";
+    const sorted = [...verdicts].sort((a, b) => b.min - a.min);
+    return sorted.find((v) => t >= v.min)?.text ?? "";
   };
 
   return (
@@ -252,6 +257,20 @@ export default function StripeGame({
           {retryLabel}
         </button>
       </div>
+
+      {/* The ask, once they have actually played. It does not render before the
+          first score: a visitor who has not tried it has not learned anything
+          yet, and a CTA sitting there from the start makes the section read as
+          an advert with a toy attached rather than the other way round. */}
+      {result && (
+        <div className="mt-9 border-t border-[var(--line)] pt-7">
+          <p className="text-[length:var(--text-h3)] font-black text-[var(--ink)]">{after.heading}</p>
+          <p className="mt-2 max-w-[52ch] text-[var(--ink)]/70">{after.body}</p>
+          <div className="mt-5">
+            <Cta label={after.cta.label} href={after.cta.href} variant="primary" />
+          </div>
+        </div>
+      )}
     </div>
   );
 }

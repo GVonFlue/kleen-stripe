@@ -55,9 +55,20 @@ export async function POST(req: NextRequest) {
       : new NextResponse("Could not process that submission", { status: 400 });
   }
 
+  // A checklist submission is owed the file. `download` is undefined for every
+  // other source tag, so this changes nothing about the quote path.
+  // Narrowed already: the rejected branch returned above.
+  const download = outcome.download;
+
   if (wantsJson) {
-    return NextResponse.json({ ok: true });
+    return NextResponse.json(download ? { ok: true, download } : { ok: true });
   }
-  // No-JS path: a real 303 so a POST-then-refresh never resubmits the form.
-  return NextResponse.redirect(new URL("/thank-you/", req.url), 303);
+
+  // No-JS path: a real 303 so a POST-then-refresh never resubmits the form. The
+  // download rides along as a query param, which /thank-you/ turns back into a
+  // link. It is allow-listed against content there rather than trusted, so this
+  // is not an open redirect surface.
+  const to = new URL("/thank-you/", req.url);
+  if (download) to.searchParams.set("get", "ada-checklist");
+  return NextResponse.redirect(to, 303);
 }

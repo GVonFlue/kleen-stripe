@@ -5,6 +5,9 @@ import ClosingBar from "@/components/ClosingBar";
 import Band from "@/components/Band";
 import PageHeader from "@/components/PageHeader";
 import QuoteAside from "@/components/QuoteAside";
+import InlineQuote from "@/components/InlineQuote";
+import JsonLd from "@/components/JsonLd";
+import { breadcrumbs } from "@/lib/schema-org";
 
 type Area = Content["areas"][number];
 
@@ -26,6 +29,13 @@ export default function AreaPage({ area, content }: { area: Area; content: Conte
 
   return (
     <>
+      <JsonLd
+        data={breadcrumbs([
+          { name: "Home", path: "/" },
+          { name: "Service Area", path: "/service-areas/" },
+          { name: area.city, path: `/${area.slug}/` },
+        ])}
+      />
       <Band tone="asphalt" seam={false}>
         <PageHeader
           crumbs={[{ label: "Home", href: "/" }, { label: "Service Area", href: "/service-areas/" }, { label: area.city }]}
@@ -43,6 +53,7 @@ export default function AreaPage({ area, content }: { area: Area; content: Conte
             <div className="mt-2">
               <Cta label={t.cta.label} href={t.cta.href} variant="primary" />
             </div>
+            {area.source_tag && <InlineQuote sourceTag={area.source_tag} />}
           </article>
 
           <QuoteAside />

@@ -1,4 +1,5 @@
 import { slotLabel } from "@/lib/render";
+import { showDraftBadges } from "@/lib/render";
 
 type PhotoSlotProps = {
   slot: string;
@@ -8,16 +9,40 @@ type PhotoSlotProps = {
 
 /**
  * No stock photography, ever. Devin was explicit. Every image on the site is one
- * of these until a real photograph exists for that slot. It renders a visible,
- * labelled placeholder in draft and throws during a launch build, which hard-fails
- * `npm run build:launch` the way a stock photo slipping onto a live page never
- * should. Doctrine hard stop, "no stock photography."
+ * of these until a real photograph exists for that slot, and a launch build
+ * throws rather than shipping the gap. Doctrine hard stop, "no stock photography."
+ *
+ * Two renderings, for the same reason PendingNote is gated the way it is:
+ *
+ *   DRAFT_BADGES=1   the loud labelled placeholder. This is the QA view, for
+ *                    whoever is working the shot list.
+ *   otherwise        a quiet toned panel with no text in it.
+ *
+ * The audit pass caught the loud version rendering on the deployed preview, so
+ * "Photo needed, draft placeholder, not for launch" was the first thing a client
+ * opening the link read. That is a note to us. .env.example already says a build
+ * Devin or Logan actually looks at should render clean by default, and LAUNCH=1
+ * still refuses to compile with a slot unfilled regardless of this flag, so
+ * nothing about the guarantee changes. Only who has to read the QA annotation.
+ *
+ * It still occupies its slot rather than collapsing: a missing photo should read
+ * as a composition waiting on an image, not silently restyle the page around a
+ * hole nobody notices is there.
  */
 export default function PhotoSlot({ slot, aspect = "aspect-[4/3]", className = "" }: PhotoSlotProps) {
   if (process.env.LAUNCH === "1") {
     throw new Error(
       `PhotoSlot "${slot}" has no real photograph behind it. No stock photography is allowed to ` +
         `stand in. A launch build refuses to ship this placeholder.`,
+    );
+  }
+
+  if (!showDraftBadges) {
+    return (
+      <div
+        aria-hidden="true"
+        className={`w-full rounded-none bg-[var(--subtle)] ${aspect} ${className}`}
+      />
     );
   }
 

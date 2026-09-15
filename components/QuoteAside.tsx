@@ -7,6 +7,11 @@ import Cta from "@/components/Cta";
  * area). Pulled out of ServicePage so BuyerPage and AreaPage get the same shape
  * per docs/design/direction-v2.html rather than three copies drifting apart.
  *
+ * Audit pass: the heading and the body line were typed straight into this file.
+ * They are now ui.quote_aside_heading and ui.quote_aside_body. CLAUDE.md's "no
+ * copy in JSX, none" rule exists for exactly this, and this site feeds the client
+ * self-edit portal, so a hardcoded string here is a string Devin can never change.
+ *
  * Every field here is sitewide and already exists: the photo-and-address ask is
  * closingCopy's own primary CTA (the same "text a photo" door the homepage
  * closes on, see lib/content.ts), the phone number is
@@ -18,11 +23,9 @@ export default function QuoteAside() {
     <aside className="lg:sticky lg:top-24 lg:self-start">
       <div className="border-t-[5px] border-[var(--accent)] bg-[var(--subtle)] p-6">
         <h2 className="text-[length:var(--text-h3)] font-black text-[var(--ink)]">
-          Get a number on this lot
+          {content.ui.quote_aside_heading}
         </h2>
-        <p className="mt-3 text-sm text-[var(--ink)]/70">
-          Text a photo and the address. You will get a real number instead of a range.
-        </p>
+        <p className="mt-3 text-sm text-[var(--ink)]/70">{content.ui.quote_aside_body}</p>
         <div className="mt-5 flex flex-col gap-2.5">
           <Cta label={closingCopy.cta_primary.label} href={closingCopy.cta_primary.href} variant="primary" className="w-full" />
           <Cta

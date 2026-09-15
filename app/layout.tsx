@@ -32,12 +32,36 @@ const mono = Overpass_Mono({
 import { content } from "@/lib/content";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
+import JsonLd from "@/components/JsonLd";
+import { siteGraph } from "@/lib/schema-org";
+import { SITE_ORIGIN, IS_CANONICAL_HOST } from "@/lib/site";
 
 const home = content.pages["/"];
 
+/**
+ * metadataBase is what makes every canonical and every og:url absolute, and it
+ * resolves per deployment (lib/site.ts). Without it the audit pass found the
+ * preview shipping no canonical at all while kleenstripe.com was live, which is
+ * the setup where a preview deploy starts outranking the client.
+ *
+ * `robots` is the other half of that: any host that is not the primary domain
+ * carries a site-wide noindex, so the preview cannot be indexed even by a crawler
+ * that reached a URL without reading robots.txt first.
+ */
 export const metadata: Metadata = {
+  metadataBase: new URL(SITE_ORIGIN),
   title: home.title,
   description: home.meta_description ?? undefined,
+  alternates: { canonical: "/" },
+  robots: IS_CANONICAL_HOST ? undefined : { index: false, follow: false },
+  openGraph: {
+    type: "website",
+    siteName: content.business.name,
+    title: home.title,
+    description: home.meta_description ?? undefined,
+    locale: "en_US",
+  },
+  twitter: { card: "summary_large_image" },
 };
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
@@ -73,6 +97,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
     <html lang="en" className={`${display.variable} ${body.variable} ${mono.variable}`}>
       <head>
         <style dangerouslySetInnerHTML={{ __html: paletteVars }} />
+        <JsonLd data={siteGraph()} />
       </head>
       <body className="flex min-h-screen flex-col antialiased">
         <a

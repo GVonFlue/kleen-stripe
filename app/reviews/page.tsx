@@ -10,6 +10,7 @@ const page = content.pages["/reviews/"];
 export const metadata: Metadata = {
   title: page.title,
   description: page.meta_description ?? undefined,
+  alternates: { canonical: "/reviews/" },
 };
 
 export default function ReviewsPage() {

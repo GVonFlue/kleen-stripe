@@ -11,6 +11,7 @@ const page = content.pages["/contact/"];
 export const metadata: Metadata = {
   title: page.title,
   description: page.meta_description ?? undefined,
+  alternates: { canonical: "/contact/" },
 };
 
 /**

@@ -17,6 +17,7 @@ const page = content.pages["/work/"];
 export const metadata: Metadata = {
   title: page.title,
   description: page.meta_description ?? undefined,
+  alternates: { canonical: "/work/" },
   robots: isWorkIndexable(content) ? undefined : { index: false, follow: true },
 };
 

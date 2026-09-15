@@ -32,11 +32,22 @@ export async function generateMetadata({ params }: { params: Params }): Promise<
   const { slug } = await params;
   const entry = findEntry(slug);
   if (!entry) return {};
-  if (entry.kind === "service") return { title: entry.service.title, description: entry.service.meta_description };
-  if (entry.kind === "buyer") return { title: entry.buyer.title, description: entry.buyer.meta_description };
+  // Every route declares its own canonical. trailingSlash is on in next.config,
+  // so the canonical carries the slash and matches the URL actually served.
+  const alternates = { canonical: `/${slug}/` };
+  if (entry.kind === "service") {
+    return { title: entry.service.title, description: entry.service.meta_description, alternates };
+  }
+  if (entry.kind === "buyer") {
+    return { title: entry.buyer.title, description: entry.buyer.meta_description, alternates };
+  }
   const t = content.area_page_template;
   const vars = { city: entry.area.city, state: entry.area.state };
-  return { title: interpolate(t.title_template, vars), description: interpolate(t.meta_description_template, vars) };
+  return {
+    title: interpolate(t.title_template, vars),
+    description: interpolate(t.meta_description_template, vars),
+    alternates,
+  };
 }
 
 export default async function SlugPage({ params }: { params: Params }) {

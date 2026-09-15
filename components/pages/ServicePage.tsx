@@ -1,10 +1,14 @@
 import Link from "next/link";
 import type { Content } from "@/content/schema";
 import { answeredFaqs } from "@/content/schema";
+import { showDraftBadges } from "@/lib/render";
 import ClosingBar from "@/components/ClosingBar";
 import Band from "@/components/Band";
 import PageHeader from "@/components/PageHeader";
 import QuoteAside from "@/components/QuoteAside";
+import InlineQuote from "@/components/InlineQuote";
+import JsonLd from "@/components/JsonLd";
+import { breadcrumbs, servicePageGraph } from "@/lib/schema-org";
 
 type Service = Content["services"][number];
 
@@ -31,8 +35,13 @@ type Service = Content["services"][number];
  *      items of a quote, so they are set like line items, with the mono face
  *      and tabular figures.
  *
- * A withheld FAQ answer renders as a visible, labelled gap rather than vanishing
- * silently, so a missing fact reads as a missing fact and not as a short page.
+ * A withheld FAQ answer renders as a visible, labelled gap ONLY under
+ * DRAFT_BADGES. The audit pass caught the labelled version on the deployed
+ * preview, where a buyer on the ADA page read "Answer withheld until the fact is
+ * confirmed" under the single highest-intent question on the site. The gap is a
+ * note to us. A visitor should see a page that is short, not a page that is
+ * visibly missing something. LAUNCH still refuses to compile on the underlying
+ * pending fact, so nothing stops being tracked.
  *
  * Not carried over from the mockup: a per-service photo behind the header (no
  * photo_assignments field exists per service, and inventing one generic image
@@ -43,12 +52,24 @@ type Service = Content["services"][number];
  */
 export default function ServicePage({ service, content }: { service: Service; content: Content }) {
   const faqs = answeredFaqs(service.faqs);
-  const withheld = service.faqs.filter((f) => f.a === null);
+  const withheld = showDraftBadges ? service.faqs.filter((f) => f.a === null) : [];
+  const table = service.reference_table;
   const relatedBuyers = content.buyers.filter((b) => service.buyers.includes(b.slug));
   const cta = { label: content.nav.cta.label, href: "/contact/", source_tag: service.source_tag };
 
   return (
     <>
+      {/* Service, FAQPage and BreadcrumbList. The FAQ node is built from the same
+          answeredFaqs() filter the page renders from, so markup can never claim a
+          question the visitor cannot see answered. */}
+      <JsonLd data={servicePageGraph(service)} />
+      <JsonLd
+        data={breadcrumbs([
+          { name: "Home", path: "/" },
+          { name: "Services", path: "/services/" },
+          { name: service.name, path: `/${service.slug}/` },
+        ])}
+      />
       <Band tone="asphalt" seam={false}>
         {/* The ADA page opens as an access aisle rather than as another dark
             header: a full-bleed blue field under white diagonal hatching, which
@@ -101,6 +122,51 @@ export default function ServicePage({ service, content }: { service: Service; co
               ))}
             </ol>
 
+            {/* A published standard rendered as a table, not as prose. This is the
+                ADA stall count: the question every visitor on that page arrived
+                with, and the one thing on this site a search engine can match to
+                an exact query. It is cited rather than claimed, because it is
+                federal scoping and not a Kleen Stripe number. */}
+            {table && (
+              <>
+                <h2 className="mt-12 text-[length:var(--text-h2)] font-black text-[var(--ink)]">
+                  {table.heading}
+                </h2>
+                <div className="mt-6 overflow-x-auto">
+                  <table className="w-full min-w-[30rem] border-collapse text-left">
+                    <thead>
+                      <tr className="bg-[var(--ink)] text-[var(--surface)]">
+                        {table.columns.map((col) => (
+                          <th key={col} className="ks-label px-3 py-2.5 font-semibold">
+                            {col}
+                          </th>
+                        ))}
+                      </tr>
+                    </thead>
+                    <tbody>
+                      {table.rows.map((row, i) => (
+                        <tr key={i} className="border-b border-[var(--line)]">
+                          {row.map((cell, j) => (
+                            <td
+                              key={j}
+                              className={`px-3 py-2.5 text-sm text-[var(--ink)]/85 ${
+                                j === 1 ? "ks-figure font-semibold text-[var(--ink)]" : ""
+                              }`}
+                            >
+                              {cell}
+                            </td>
+                          ))}
+                        </tr>
+                      ))}
+                    </tbody>
+                  </table>
+                </div>
+                <p className="mt-4 text-sm text-[var(--ink)]/60">
+                  {content.ui.reference_table_source_label}: {table.source}
+                </p>
+              </>
+            )}
+
             {(faqs.length > 0 || withheld.length > 0) && (
               <>
                 <h2 className="mt-12 text-[length:var(--text-h2)] font-black text-[var(--ink)]">
@@ -117,7 +183,7 @@ export default function ServicePage({ service, content }: { service: Service; co
                     <div key={`w-${i}`} className="border-b border-[var(--line)] py-5">
                       <dt className="text-[length:var(--text-h3)] font-black text-[var(--ink)]/50">{f.q}</dt>
                       <dd className="ks-label mt-2 text-[var(--ink)]/45">
-                        Answer withheld until the fact is confirmed
+                        {content.ui.withheld_answer_label}
                       </dd>
                     </div>
                   ))}
@@ -143,6 +209,7 @@ export default function ServicePage({ service, content }: { service: Service; co
                 </div>
               </>
             )}
+            <InlineQuote sourceTag={service.source_tag} />
           </article>
 
           <QuoteAside />

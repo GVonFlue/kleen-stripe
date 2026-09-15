@@ -4,6 +4,9 @@ import ClosingBar from "@/components/ClosingBar";
 import Band from "@/components/Band";
 import PageHeader from "@/components/PageHeader";
 import QuoteAside from "@/components/QuoteAside";
+import InlineQuote from "@/components/InlineQuote";
+import JsonLd from "@/components/JsonLd";
+import { breadcrumbs } from "@/lib/schema-org";
 
 type Buyer = Content["buyers"][number];
 
@@ -18,6 +21,12 @@ type Buyer = Content["buyers"][number];
 export default function BuyerPage({ buyer }: { buyer: Buyer }) {
   return (
     <>
+      <JsonLd
+        data={breadcrumbs([
+          { name: "Home", path: "/" },
+          { name: buyer.label, path: `/${buyer.slug}/` },
+        ])}
+      />
       <Band tone="asphalt" seam={false}>
         <PageHeader crumbs={[{ label: "Home", href: "/" }, { label: buyer.label }]} h1={buyer.h1} lede={buyer.pain} />
 
@@ -31,6 +40,7 @@ export default function BuyerPage({ buyer }: { buyer: Buyer }) {
             <div className="mt-2">
               <Cta label={buyer.cta.label} href={buyer.cta.href} variant="primary" />
             </div>
+            {buyer.cta.source_tag && <InlineQuote sourceTag={buyer.cta.source_tag} />}
           </article>
 
           <QuoteAside />
