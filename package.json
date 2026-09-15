@@ -12,6 +12,7 @@
     "lint": "next lint",
     "content:verify": "tsx content/schema.verify.ts",
     "content:selftest": "tsx content/schema.selftest.ts",
+    "leadmagnet:build": "python3 scripts/build-lead-magnet.py",
     "audit": "node scripts/audit.mjs",
     "audit:selftest": "node scripts/audit.selftest.mjs",
     "check:render": "node scripts/check-render.mjs"
