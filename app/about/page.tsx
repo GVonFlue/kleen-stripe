@@ -4,6 +4,7 @@ import { hasAll } from "@/lib/render";
 import Cta from "@/components/Cta";
 import ClosingBar from "@/components/ClosingBar";
 import PhotoSlot from "@/components/PhotoSlot";
+import GalleryPhoto from "@/components/GalleryPhoto";
 import PendingNote from "@/components/PendingNote";
 import PaintedLine from "@/components/PaintedLine";
 import LeadForm from "@/components/LeadForm";
@@ -27,7 +28,17 @@ export default function AboutPage() {
         <h1 className="text-[length:var(--text-h1)] font-extrabold text-[var(--ink)]">{page.h1}</h1>
         <PaintedLine className="mt-3 w-16" />
         <div className="mt-8">
-          <PhotoSlot slot="devin_and_crew_about" aspect="aspect-[16/9]" />
+          {content.photo_assignments.about ? (
+            <GalleryPhoto
+              id={content.photo_assignments.about}
+              fallbackSlot="devin_and_crew_about"
+              aspect="aspect-[16/9]"
+              sizes="(min-width:768px) 768px, 100vw"
+              eager
+            />
+          ) : (
+            <PhotoSlot slot="devin_and_crew_about" aspect="aspect-[16/9]" />
+          )}
         </div>
         {ok
           ? body.map((p, i) => (

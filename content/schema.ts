@@ -389,6 +389,9 @@ export const gallerySchema = z.object({
    *  white while the real photo loads. Optional so a hand-added gallery entry
    *  without one still renders (a solid tone, not a void, is the fallback). */
   blur: z.string().optional(),
+  /** CSS object-position for photos whose subject is off center, so a tight
+   *  crop keeps the subject in frame. Defaults to centered. */
+  object_position: z.string().optional(),
 });
 
 /** Which gallery photo, if any, fills the hero and trust image slots. Null leaves
@@ -397,6 +400,8 @@ export const gallerySchema = z.object({
 export const photoAssignmentsSchema = z.object({
   hero: z.string().nullable(),
   trust: z.string().nullable(),
+  /** The About page photo. Null keeps the labelled placeholder. */
+  about: z.string().nullable().default(null),
   /** Route path to gallery id, painted behind that page's header. A route not
    *  listed here keeps a plain header rather than an unrelated photo. */
   pages: z.record(z.string(), z.string()).default({}),

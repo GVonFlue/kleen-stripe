@@ -1442,13 +1442,23 @@
       "caption": null,
       "consent": true,
       "blur": "data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wBDAA0JCgsKCA0LCgsODg0PEyAVExISEyccHhcgLikxMC4pLSwzOko+MzZGNywtQFdBRkxOUlNSMj5aYVpQYEpRUk//2wBDAQ4ODhMREyYVFSZPNS01T09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT0//wAARCAAOABgDASIAAhEBAxEB/8QAHwAAAQUBAQEBAQEAAAAAAAAAAAECAwQFBgcICQoL/8QAtRAAAgEDAwIEAwUFBAQAAAF9AQIDAAQRBRIhMUEGE1FhByJxFDKBkaEII0KxwRVS0fAkM2JyggkKFhcYGRolJicoKSo0NTY3ODk6Q0RFRkdISUpTVFVWV1hZWmNkZWZnaGlqc3R1dnd4eXqDhIWGh4iJipKTlJWWl5iZmqKjpKWmp6ipqrKztLW2t7i5usLDxMXGx8jJytLT1NXW19jZ2uHi4+Tl5ufo6erx8vP09fb3+Pn6/8QAHwEAAwEBAQEBAQEBAQAAAAAAAAECAwQFBgcICQoL/8QAtREAAgECBAQDBAcFBAQAAQJ3AAECAxEEBSExBhJBUQdhcRMiMoEIFEKRobHBCSMzUvAVYnLRChYkNOEl8RcYGRomJygpKjU2Nzg5OkNERUZHSElKU1RVVldYWVpjZGVmZ2hpanN0dXZ3eHl6goOEhYaHiImKkpOUlZaXmJmaoqOkpaanqKmqsrO0tba3uLm6wsPExcbHyMnK0tPU1dbX2Nna4uPk5ebn6Onq8vP09fb3+Pn6/9oADAMBAAIRAxEAPwCC18S6TIjGaO7Qg8KY92fxFW31rQiBmSZT1yYWxWVEVC5OalZoymdpo5HfcV12NBdW0SViqX8YI/vKV/pRWFOI2P8Aq1H4UVWq6k6H/9k="
+    },
+    {
+      "id": "truck-trailer-rig-fresh-lot",
+      "src": "/photos/gallery/b4ae28f4-d2a9-4cb4-b8e2-52dc30a66900.jpg",
+      "alt": "The Kleen Stripe pickup and enclosed trailer parked on a freshly striped lot, with a line striper and a walk behind blower set out beside the trailer.",
+      "lot_type": "Retail",
+      "caption": null,
+      "consent": true,
+      "object_position": "10% 50%",
+      "blur": "data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wBDAA0JCgsKCA0LCgsODg0PEyAVExISEyccHhcgLikxMC4pLSwzOko+MzZGNywtQFdBRkxOUlNSMj5aYVpQYEpRUk//2wBDAQ4ODhMREyYVFSZPNS01T09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT0//wAARCAAPABgDASIAAhEBAxEB/8QAHwAAAQUBAQEBAQEAAAAAAAAAAAECAwQFBgcICQoL/8QAtRAAAgEDAwIEAwUFBAQAAAF9AQIDAAQRBRIhMUEGE1FhByJxFDKBkaEII0KxwRVS0fAkM2JyggkKFhcYGRolJicoKSo0NTY3ODk6Q0RFRkdISUpTVFVWV1hZWmNkZWZnaGlqc3R1dnd4eXqDhIWGh4iJipKTlJWWl5iZmqKjpKWmp6ipqrKztLW2t7i5usLDxMXGx8jJytLT1NXW19jZ2uHi4+Tl5ufo6erx8vP09fb3+Pn6/8QAHwEAAwEBAQEBAQEBAQAAAAAAAAECAwQFBgcICQoL/8QAtREAAgECBAQDBAcFBAQAAQJ3AAECAxEEBSExBhJBUQdhcRMiMoEIFEKRobHBCSMzUvAVYnLRChYkNOEl8RcYGRomJygpKjU2Nzg5OkNERUZHSElKU1RVVldYWVpjZGVmZ2hpanN0dXZ3eHl6goOEhYaHiImKkpOUlZaXmJmaoqOkpaanqKmqsrO0tba3uLm6wsPExcbHyMnK0tPU1dbX2Nna4uPk5ebn6Onq8vP09fb3+Pn6/9oADAMBAAIRAxEAPwCObXZF1GKKS4X7MnyuEBAI7n3rVsdajkuTFHdGMNknc4ANcbJcRyPuMMYPThQBRI6Rgq64b+6vatFG2jZF10Otk1a2yGkXcWJP+sXI+uKK4wSDruI/CitoyaVrmUoRbvY//9k="
     }
   ],
   "gallery_source_note": "16 single photos from https://kleenstripereviews.com/imagery, downloaded to public/photos/source/ and stripped of all metadata (EXIF and ICC alike; none carried GPS) into public/photos/gallery/. Two files were excluded from this array and left out of public/photos/gallery/: a Kleen Stripe wordmark graphic on a black background (819b1bf9), which is brand art rather than a job photo, and an exact duplicate (ca2f9bdb, byte-identical to b20935af). Both remain in public/photos/source/ for the record. See the checkpoint report for the two photos flagged for a third-party naming risk and the two flagged for a baked-in UI artifact. Sept 2026: six more job photos supplied directly by Devin were added (metadata stripped, a baked-in Snapchat caption cropped off ada-hatch-concrete-bollards), and ada-stall-fire-station was replaced in place with his full resolution original of the same shot.",
   "photo_assignments": {
     "hero": "sealcoat-apartments-fresh-lines",
-    "trust": null,
-    "note": "hero changed from wide-lot-crosshatch-winter (white lines, visible cracks, dead winter brush, fought the site's own crack-sealing pitch and the accent palette) to sealcoat-apartments-fresh-lines: yellow paint on dark asphalt, the same colour doing the same job as the accent, no defects, and lines that recede toward the garage with a clean single vanishing point for the hero reveal animation to sweep along. trust is null on purpose. Nothing in the 16 photos clearly shows Devin or the crew as a person, only a partial POV shot of a foot and shadow (crew-operating-striper-pov). The work order says to leave the trust slot as a placeholder rather than substitute something that does not show what the slot promises, so it stays a PhotoSlot until a real people photo exists. pages maps a route to a photo painted behind that page's header. A route is only listed where a photo honestly fits it: power washing has no photo of that work, the ADA page keeps its blue access-aisle header, and the Andover, Haysville and Newton area pages have no photo from those towns (the Wichita page shows a City of Wichita fire station, the Derby page the Derby water tower).",
+    "trust": "truck-trailer-rig-fresh-lot",
+    "note": "hero changed from wide-lot-crosshatch-winter (white lines, visible cracks, dead winter brush, fought the site's own crack-sealing pitch and the accent palette) to sealcoat-apartments-fresh-lines: yellow paint on dark asphalt, the same colour doing the same job as the accent, no defects, and lines that recede toward the garage with a clean single vanishing point for the hero reveal animation to sweep along. trust is null on purpose. Nothing in the 16 photos clearly shows Devin or the crew as a person, only a partial POV shot of a foot and shadow (crew-operating-striper-pov). The work order says to leave the trust slot as a placeholder rather than substitute something that does not show what the slot promises, so it stays a PhotoSlot until a real people photo exists. pages maps a route to a photo painted behind that page's header. A route is only listed where a photo honestly fits it: power washing has no photo of that work, the ADA page keeps its blue access-aisle header, and the Andover, Haysville and Newton area pages have no photo from those towns (the Wichita page shows a City of Wichita fire station, the Derby page the Derby water tower). Sept 2026: trust and about now use truck-trailer-rig-fresh-lot, Devin's own photo of his truck and branded trailer on a job, at Garrett's direction. It shows the rig rather than a person; swap in a crew photo if one arrives. A school bus carrying a school's name was cropped off the right edge of the file.",
     "pages": {
       "/services/": "parking-deck-sunset-striper",
       "/service-areas/": "ada-stalls-bigbox-winter",
@@ -1465,7 +1475,8 @@
       "/small-business-lots/": "custom-stencil-carwash-drive",
       "/parking-lot-striping-wichita-ks/": "ada-stall-fire-station",
       "/parking-lot-striping-derby-ks/": "ada-hatch-concrete-bollards"
-    }
+    },
+    "about": "truck-trailer-rig-fresh-lot"
   },
   "lead_magnet": {
     "title": "The ADA parking walk-around",

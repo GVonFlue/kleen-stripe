@@ -43,6 +43,7 @@ export default function GalleryPhoto({ id, fallbackSlot, aspect = "aspect-[4/3]"
         fetchPriority={eager ? "high" : undefined}
         placeholder={photo.blur ? "blur" : "empty"}
         blurDataURL={photo.blur}
+        style={photo.object_position ? { objectPosition: photo.object_position } : undefined}
         className={`object-cover ${interactive ? "transition-transform duration-500 ease-out group-hover:scale-[1.04]" : ""}`}
       />
       {interactive && (
