@@ -28,7 +28,7 @@ export default function BuyerPage({ buyer }: { buyer: Buyer }) {
         ])}
       />
       <Band tone="asphalt" seam={false}>
-        <PageHeader crumbs={[{ label: "Home", href: "/" }, { label: buyer.label }]} h1={buyer.h1} lede={buyer.pain} />
+        <PageHeader crumbs={[{ label: "Home", href: "/" }, { label: buyer.label }]} h1={buyer.h1} lede={buyer.pain} path={`/${buyer.slug}/`} />
 
         <div className="mx-auto grid max-w-6xl gap-10 px-4 py-12 sm:py-16 lg:grid-cols-[1.35fr_0.65fr] lg:gap-14">
           <article>

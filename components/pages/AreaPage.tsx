@@ -41,6 +41,7 @@ export default function AreaPage({ area, content }: { area: Area; content: Conte
           crumbs={[{ label: "Home", href: "/" }, { label: "Service Area", href: "/service-areas/" }, { label: area.city }]}
           h1={h1}
           lede={lede}
+          path={`/${area.slug}/`}
         />
 
         <div className="mx-auto grid max-w-6xl gap-10 px-4 py-12 sm:py-16 lg:grid-cols-[1.35fr_0.65fr] lg:gap-14">

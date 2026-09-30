@@ -9,7 +9,6 @@ import LotStripe from "@/components/LotStripe";
 import HeroReveal from "@/components/HeroReveal";
 import PaintWords from "@/components/motion/PaintWords";
 import CountUp from "@/components/motion/CountUp";
-import HatchDraw from "@/components/motion/HatchDraw";
 import WorkTiles from "@/components/motion/WorkTiles";
 import StickyQuote from "@/components/motion/StickyQuote";
 import PaintCursor from "@/components/motion/PaintCursor";
@@ -18,8 +17,10 @@ import StripeGameLazy from "@/components/motion/StripeGameLazy";
 /**
  * A direct port of the homepage in docs/design/direction-v2.html.
  *
- * Seven bands, in the order the client recorded them: hero, doors, the job, the
- * ADA field, the work, the family, the ask. Nothing else. The service grid,
+ * Six bands, in the order the client recorded them: hero, doors, the job, the
+ * work, the family, the ask. Nothing else. The ADA field band was removed at the
+ * client's request (Sept 2026); the lead magnet still lives at
+ * /ada-striping-checklist/ and the ADA service page. The service grid,
  * cost-of-inaction block, three-column differentiators, numbers strip, StallGrid
  * and reviews block are no longer on this page: the client reviewed the mock and
  * asked for the mock, and this is the mock.
@@ -43,7 +44,6 @@ const doors = block("doors");
 const journey = block("journey");
 const trust = block("trust");
 const closing = block("closing");
-const lm = content.lead_magnet;
 
 const tel = telHref(content.business.phone_primary);
 
@@ -182,54 +182,6 @@ export default function HomePage() {
                 </div>
               ))}
             </div>
-          </div>
-        </div>
-      </section>
-
-      {/* ── 4. THE ADA FIELD ──────────────────────────────────────────── */}
-      <section className="ada-field relative overflow-hidden">
-        <div aria-hidden="true" className="h-[6px] w-full bg-[var(--accent)]" />
-        <HatchDraw />
-        <div className="relative mx-auto grid max-w-7xl items-start gap-[clamp(28px,5vw,64px)] px-4 py-[clamp(56px,8vw,104px)] lg:grid-cols-[1.05fr_0.95fr]">
-          <div>
-            <span className="ks-label inline-flex bg-white px-3.5 py-2 text-[#1B54C8]">ADA Compliance</span>
-            <h2 className="mt-5 text-[length:var(--text-display)] font-black leading-[0.98] text-[var(--ink)]">
-              The lot is the part that gets cited.
-            </h2>
-            <p className="mt-4.5 max-w-[46ch] text-[length:var(--text-lede)] text-[var(--ink)]/90">
-              If you are on this page you are either coming off an inspection or you have a feeling
-              about one. The lot is the cheapest part of an ADA complaint to fix and the easiest to
-              see from the parking area, which is why it is the part that gets cited.
-            </p>
-            <div className="mt-7 flex flex-wrap gap-3">
-              <Link
-                href="/ada-striping-checklist/"
-                className="inline-flex min-h-11 items-center justify-center rounded-[2px] bg-white px-6 py-3 text-base font-semibold text-[#1B54C8]"
-              >
-                {lm.cta.label}
-              </Link>
-              <Link
-                href="/ada-parking-compliance-kansas/"
-                className="inline-flex min-h-11 items-center justify-center rounded-[2px] border-2 border-white/55 px-6 py-3 text-base font-semibold text-[var(--ink)] transition-colors hover:bg-white/10"
-              >
-                Walk my lot
-              </Link>
-            </div>
-            <p className="mt-3.5 text-[13px] text-[var(--ink)]/75">{lm.consent_line}</p>
-          </div>
-
-          <div>
-            <p className="ks-label text-[var(--ink)]/75">What the walk-around covers</p>
-            <ul className="mt-6 grid list-none gap-3 p-0">
-              {lm.value_stack.slice(0, 5).map((v: string) => (
-                <li key={v} className="flex gap-3 text-[15.5px] leading-snug text-[var(--ink)]/95">
-                  <svg width="18" height="18" viewBox="0 0 18 18" fill="none" aria-hidden="true" className="mt-[3px] shrink-0">
-                    <path d="M2 9.5l4.5 4.5L16 4" stroke="currentColor" strokeWidth="2.4" strokeLinecap="square" />
-                  </svg>
-                  <span>{v}</span>
-                </li>
-              ))}
-            </ul>
           </div>
         </div>
       </section>

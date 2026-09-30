@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { content } from "@/lib/content";
 import ClosingBar from "@/components/ClosingBar";
+import PhotoBackdrop from "@/components/PhotoBackdrop";
 import PaintedLine from "@/components/PaintedLine";
 
 const page = content.pages["/service-areas/"];
@@ -18,10 +19,14 @@ export default function ServiceAreasPage() {
 
   return (
     <>
-      <article className="mx-auto max-w-3xl px-4 py-10 sm:py-14">
-        <h1 className="text-[length:var(--text-h1)] font-extrabold text-[var(--ink)]">{page.h1}</h1>
-        <PaintedLine className="mt-3 w-16" />
-        {page.lede && <p className="mt-4 text-[length:var(--text-lede)] text-[var(--ink)]/80">{page.lede}</p>}
+      <PhotoBackdrop path="/service-areas/">
+        <header className="mx-auto max-w-3xl px-4 pt-10 sm:pt-14">
+          <h1 className="text-[length:var(--text-h1)] font-extrabold text-[var(--ink)]">{page.h1}</h1>
+          <PaintedLine className="mt-3 w-16" />
+          {page.lede && <p className="mt-4 text-[length:var(--text-lede)] text-[var(--ink)]/80">{page.lede}</p>}
+        </header>
+      </PhotoBackdrop>
+      <article className="mx-auto max-w-3xl px-4 pb-10 pt-2 sm:pb-14">
 
         <div className="mt-8 flex flex-wrap gap-3">
           {cityPages.map((a) => (

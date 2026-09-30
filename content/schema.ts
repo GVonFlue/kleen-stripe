@@ -397,6 +397,9 @@ export const gallerySchema = z.object({
 export const photoAssignmentsSchema = z.object({
   hero: z.string().nullable(),
   trust: z.string().nullable(),
+  /** Route path to gallery id, painted behind that page's header. A route not
+   *  listed here keeps a plain header rather than an unrelated photo. */
+  pages: z.record(z.string(), z.string()).default({}),
 });
 
 export const clientSchema = z.object({

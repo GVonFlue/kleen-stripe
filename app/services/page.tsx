@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { content } from "@/lib/content";
 import ClosingBar from "@/components/ClosingBar";
+import PhotoBackdrop from "@/components/PhotoBackdrop";
 import PaintedLine from "@/components/PaintedLine";
 
 const page = content.pages["/services/"];
@@ -15,10 +16,14 @@ export const metadata: Metadata = {
 export default function ServicesHubPage() {
   return (
     <>
-      <article className="mx-auto max-w-6xl px-4 py-10 sm:py-14">
-        <h1 className="text-[length:var(--text-h1)] font-extrabold text-[var(--ink)]">{page.h1}</h1>
-        <PaintedLine className="mt-3 w-16" />
-        {page.lede && <p className="mt-4 max-w-2xl text-[length:var(--text-lede)] text-[var(--ink)]/80">{page.lede}</p>}
+      <PhotoBackdrop path="/services/">
+        <header className="mx-auto max-w-6xl px-4 pt-10 sm:pt-14">
+          <h1 className="text-[length:var(--text-h1)] font-extrabold text-[var(--ink)]">{page.h1}</h1>
+          <PaintedLine className="mt-3 w-16" />
+          {page.lede && <p className="mt-4 max-w-2xl text-[length:var(--text-lede)] text-[var(--ink)]/80">{page.lede}</p>}
+        </header>
+      </PhotoBackdrop>
+      <article className="mx-auto max-w-6xl px-4 pb-10 pt-2 sm:pb-14">
 
         <div className="mt-8 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
           {content.services.map((service) => (

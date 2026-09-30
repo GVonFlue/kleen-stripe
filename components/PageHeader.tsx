@@ -1,4 +1,5 @@
 import Link from "next/link";
+import PhotoBackdrop from "@/components/PhotoBackdrop";
 
 type Crumb = { label: string; href?: string };
 
@@ -19,8 +20,8 @@ type Crumb = { label: string; href?: string };
  * tally marks floating in an otherwise empty strip rather than a ladder. The
  * breadcrumb already does the job of separating header from body.
  */
-export default function PageHeader({ crumbs, h1, lede }: { crumbs: Crumb[]; h1: string; lede: string }) {
-  return (
+export default function PageHeader({ crumbs, h1, lede, path }: { crumbs: Crumb[]; h1: string; lede: string; path?: string }) {
+  const header = (
     <div className="mx-auto max-w-6xl px-4 pb-12 pt-10 sm:pb-16 sm:pt-14">
       <nav aria-label="Breadcrumb" className="ks-label text-[var(--ink)]/70">
         {crumbs.map((c, i) => (
@@ -44,4 +45,5 @@ export default function PageHeader({ crumbs, h1, lede }: { crumbs: Crumb[]; h1: 
       <p className="mt-5 max-w-2xl text-[length:var(--text-lede)] text-[var(--ink)]/80">{lede}</p>
     </div>
   );
+  return path ? <PhotoBackdrop path={path}>{header}</PhotoBackdrop> : header;
 }

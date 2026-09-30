@@ -94,6 +94,7 @@ export default function ServicePage({ service, content }: { service: Service; co
             crumbs={[{ label: "Home", href: "/" }, { label: "Services", href: "/services/" }, { label: service.name }]}
             h1={service.h1}
             lede={service.lede}
+            path={`/${service.slug}/`}
           />
         )}
 

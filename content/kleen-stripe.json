@@ -1356,8 +1356,8 @@
       "lot_type": "ADA",
       "caption": null,
       "consent": true,
-      "note": "A small forward-arrow icon from the source site's own gallery widget is baked into this file's top right corner. Crop before using it anywhere prominent.",
-      "blur": "data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAASABIAAD/4QBMRXhpZgAATU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAA6ABAAMAAAABAAEAAKACAAQAAAABAAAAGKADAAQAAAABAAAAEAAAAAD/7QA4UGhvdG9zaG9wIDMuMAA4QklNBAQAAAAAAAA4QklNBCUAAAAAABDUHYzZjwCyBOmACZjs+EJ+/8AAEQgAEAAYAwEiAAIRAQMRAf/EAB8AAAEFAQEBAQEBAAAAAAAAAAABAgMEBQYHCAkKC//EALUQAAIBAwMCBAMFBQQEAAABfQECAwAEEQUSITFBBhNRYQcicRQygZGhCCNCscEVUtHwJDNicoIJChYXGBkaJSYnKCkqNDU2Nzg5OkNERUZHSElKU1RVVldYWVpjZGVmZ2hpanN0dXZ3eHl6g4SFhoeIiYqSk5SVlpeYmZqio6Slpqeoqaqys7S1tre4ubrCw8TFxsfIycrS09TV1tfY2drh4uPk5ebn6Onq8fLz9PX29/j5+v/EAB8BAAMBAQEBAQEBAQEAAAAAAAABAgMEBQYHCAkKC//EALURAAIBAgQEAwQHBQQEAAECdwABAgMRBAUhMQYSQVEHYXETIjKBCBRCkaGxwQkjM1LwFWJy0QoWJDThJfEXGBkaJicoKSo1Njc4OTpDREVGR0hJSlNUVVZXWFlaY2RlZmdoaWpzdHV2d3h5eoKDhIWGh4iJipKTlJWWl5iZmqKjpKWmp6ipqrKztLW2t7i5usLDxMXGx8jJytLT1NXW19jZ2uLj5OXm5+jp6vLz9PX29/j5+v/bAEMAAgICAgICAwICAwUDAwMFBgUFBQUGCAYGBgYGCAoICAgICAgKCgoKCgoKCgwMDAwMDA4ODg4ODw8PDw8PDw8PD//bAEMBAgICBAQEBwQEBxALCQsQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEP/dAAQAAv/aAAwDAQACEQMRAD8A8fg8WfG5ENzqfw5SDcOFt5/NfGOeexzgglSPY189+KL74oHdeat4f1SS45UtJbSNweynaQB9ABX36buV+S2B9a07XVr7aI0mwo45HP59a0x3E2MxUeWvVbXbb8jmw/D+GoSvTglc/K3SfHfj/TtbsWuNLu9IQGRBdT2zo2wq2QrMnyknqV5xXpn/AAs7xN/0GZ/++5v/AImv0UkggmCyagqyqo2qZFDqrMcA/MDyc4/Sov7M0z/nnF/4Dxf/ABNJZ/Vo+5Rk2vmhvJ41feqRSfyZ/9k="
+      "note": "Replaced Sept 2026 with Devin's full resolution original of the same shot. The source site's arrow icon that was baked into the old file is gone.",
+      "blur": "data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wBDAA0JCgsKCA0LCgsODg0PEyAVExISEyccHhcgLikxMC4pLSwzOko+MzZGNywtQFdBRkxOUlNSMj5aYVpQYEpRUk//2wBDAQ4ODhMREyYVFSZPNS01T09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT0//wAARCAASABgDASIAAhEBAxEB/8QAHwAAAQUBAQEBAQEAAAAAAAAAAAECAwQFBgcICQoL/8QAtRAAAgEDAwIEAwUFBAQAAAF9AQIDAAQRBRIhMUEGE1FhByJxFDKBkaEII0KxwRVS0fAkM2JyggkKFhcYGRolJicoKSo0NTY3ODk6Q0RFRkdISUpTVFVWV1hZWmNkZWZnaGlqc3R1dnd4eXqDhIWGh4iJipKTlJWWl5iZmqKjpKWmp6ipqrKztLW2t7i5usLDxMXGx8jJytLT1NXW19jZ2uHi4+Tl5ufo6erx8vP09fb3+Pn6/8QAHwEAAwEBAQEBAQEBAQAAAAAAAAECAwQFBgcICQoL/8QAtREAAgECBAQDBAcFBAQAAQJ3AAECAxEEBSExBhJBUQdhcRMiMoEIFEKRobHBCSMzUvAVYnLRChYkNOEl8RcYGRomJygpKjU2Nzg5OkNERUZHSElKU1RVVldYWVpjZGVmZ2hpanN0dXZ3eHl6goOEhYaHiImKkpOUlZaXmJmaoqOkpaanqKmqsrO0tba3uLm6wsPExcbHyMnK0tPU1dbX2Nna4uPk5ebn6Onq8vP09fb3+Pn6/9oADAMBAAIRAxEAPwDPGqPtLPplzHxxuGf6VlXWpu4/esf90jA/Kur8xuxNKXDjDxo/+8M1Uq05KzZKppbHFW2rbblBFtVuRu9qK7J7S1mCiS3iIHQFQOaKSquOiYcie4z0p60UVkaE38P4iiiigD//2Q=="
     },
     {
       "id": "warehouse-dock-orange-black",
@@ -1388,13 +1388,84 @@
       "consent": true,
       "note": "Same warehouse and stencil job as warehouse-floor-stencil-1. Same flag applies.",
       "blur": "data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAASABIAAD/4QBMRXhpZgAATU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAA6ABAAMAAAABAAEAAKACAAQAAAABAAAAGKADAAQAAAABAAAADQAAAAD/7QA4UGhvdG9zaG9wIDMuMAA4QklNBAQAAAAAAAA4QklNBCUAAAAAABDUHYzZjwCyBOmACZjs+EJ+/8AAEQgADQAYAwEiAAIRAQMRAf/EAB8AAAEFAQEBAQEBAAAAAAAAAAABAgMEBQYHCAkKC//EALUQAAIBAwMCBAMFBQQEAAABfQECAwAEEQUSITFBBhNRYQcicRQygZGhCCNCscEVUtHwJDNicoIJChYXGBkaJSYnKCkqNDU2Nzg5OkNERUZHSElKU1RVVldYWVpjZGVmZ2hpanN0dXZ3eHl6g4SFhoeIiYqSk5SVlpeYmZqio6Slpqeoqaqys7S1tre4ubrCw8TFxsfIycrS09TV1tfY2drh4uPk5ebn6Onq8fLz9PX29/j5+v/EAB8BAAMBAQEBAQEBAQEAAAAAAAABAgMEBQYHCAkKC//EALURAAIBAgQEAwQHBQQEAAECdwABAgMRBAUhMQYSQVEHYXETIjKBCBRCkaGxwQkjM1LwFWJy0QoWJDThJfEXGBkaJicoKSo1Njc4OTpDREVGR0hJSlNUVVZXWFlaY2RlZmdoaWpzdHV2d3h5eoKDhIWGh4iJipKTlJWWl5iZmqKjpKWmp6ipqrKztLW2t7i5usLDxMXGx8jJytLT1NXW19jZ2uLj5OXm5+jp6vLz9PX29/j5+v/bAEMAAgICAgICAwICAwUDAwMFBgUFBQUGCAYGBgYGCAoICAgICAgKCgoKCgoKCgwMDAwMDA4ODg4ODw8PDw8PDw8PD//bAEMBAgICBAQEBwQEBxALCQsQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEP/dAAQAAv/aAAwDAQACEQMRAD8A9A+E/ijxNPBYaTea5eXEFjA0GzCoJ052K5x/CDhSOegr6EGrR6nGDbiF5IxtIYbchfUgYz+FfJPh26ezJ8vOQAevpzXda34jv2sopYz5SsCSqcZb1J715GJq11Llpq6fd7fndeXl56dcaFPd7/mdXrni17HWpYL7TmEawLgQurjdvIzzg8isr/hO9N/58bn/AL5H/wAVXlmma5PcaoLm4QPLIgTdnHGc12X9oP8A3f5f4V30W+X3txKmnsf/2Q=="
+    },
+    {
+      "id": "crack-sealed-lot-night",
+      "src": "/photos/gallery/627c4523-a060-4735-aab1-87d703d64bbf.jpg",
+      "alt": "A freshly striped parking lot at night with crisp white stall lines and a long filled crack running through the asphalt in the foreground.",
+      "lot_type": "Small business",
+      "caption": null,
+      "consent": true,
+      "blur": "data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wBDAA0JCgsKCA0LCgsODg0PEyAVExISEyccHhcgLikxMC4pLSwzOko+MzZGNywtQFdBRkxOUlNSMj5aYVpQYEpRUk//2wBDAQ4ODhMREyYVFSZPNS01T09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT0//wAARCAAOABgDASIAAhEBAxEB/8QAHwAAAQUBAQEBAQEAAAAAAAAAAAECAwQFBgcICQoL/8QAtRAAAgEDAwIEAwUFBAQAAAF9AQIDAAQRBRIhMUEGE1FhByJxFDKBkaEII0KxwRVS0fAkM2JyggkKFhcYGRolJicoKSo0NTY3ODk6Q0RFRkdISUpTVFVWV1hZWmNkZWZnaGlqc3R1dnd4eXqDhIWGh4iJipKTlJWWl5iZmqKjpKWmp6ipqrKztLW2t7i5usLDxMXGx8jJytLT1NXW19jZ2uHi4+Tl5ufo6erx8vP09fb3+Pn6/8QAHwEAAwEBAQEBAQEBAQAAAAAAAAECAwQFBgcICQoL/8QAtREAAgECBAQDBAcFBAQAAQJ3AAECAxEEBSExBhJBUQdhcRMiMoEIFEKRobHBCSMzUvAVYnLRChYkNOEl8RcYGRomJygpKjU2Nzg5OkNERUZHSElKU1RVVldYWVpjZGVmZ2hpanN0dXZ3eHl6goOEhYaHiImKkpOUlZaXmJmaoqOkpaanqKmqsrO0tba3uLm6wsPExcbHyMnK0tPU1dbX2Nna4uPk5ebn6Onq8vP09fb3+Pn6/9oADAMBAAIRAxEAPwDhptNVGJa5T/GqrW6Kw/eAgdvWpZZWYknvUDtSAjeMDJDKfxoprGigD//Z"
+    },
+    {
+      "id": "ada-hatch-concrete-bollards",
+      "src": "/photos/gallery/1b5e3083-0bac-4b78-be70-13c1f14770c2.jpg",
+      "alt": "New yellow hatched access aisles and blue accessible stall symbols on fresh concrete, with yellow bollards and accessible parking signs along the edge.",
+      "lot_type": "Retail",
+      "caption": null,
+      "consent": true,
+      "blur": "data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wBDAA0JCgsKCA0LCgsODg0PEyAVExISEyccHhcgLikxMC4pLSwzOko+MzZGNywtQFdBRkxOUlNSMj5aYVpQYEpRUk//2wBDAQ4ODhMREyYVFSZPNS01T09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT0//wAARCAAYABEDASIAAhEBAxEB/8QAHwAAAQUBAQEBAQEAAAAAAAAAAAECAwQFBgcICQoL/8QAtRAAAgEDAwIEAwUFBAQAAAF9AQIDAAQRBRIhMUEGE1FhByJxFDKBkaEII0KxwRVS0fAkM2JyggkKFhcYGRolJicoKSo0NTY3ODk6Q0RFRkdISUpTVFVWV1hZWmNkZWZnaGlqc3R1dnd4eXqDhIWGh4iJipKTlJWWl5iZmqKjpKWmp6ipqrKztLW2t7i5usLDxMXGx8jJytLT1NXW19jZ2uHi4+Tl5ufo6erx8vP09fb3+Pn6/8QAHwEAAwEBAQEBAQEBAQAAAAAAAAECAwQFBgcICQoL/8QAtREAAgECBAQDBAcFBAQAAQJ3AAECAxEEBSExBhJBUQdhcRMiMoEIFEKRobHBCSMzUvAVYnLRChYkNOEl8RcYGRomJygpKjU2Nzg5OkNERUZHSElKU1RVVldYWVpjZGVmZ2hpanN0dXZ3eHl6goOEhYaHiImKkpOUlZaXmJmaoqOkpaanqKmqsrO0tba3uLm6wsPExcbHyMnK0tPU1dbX2Nna4uPk5ebn6Onq8vP09fb3+Pn6/9oADAMBAAIRAxEAPwDoJltygVQm3PXHI9qb5sUaYCqT0zt5rl9P0jWreIKt+IlJLeXkHBNWLm01508pL5NpAy2zDfmK2VVPQy9m1qbP2iH0P/fFFcx/YWqf8/X6tRS9oPlN4l+SMMfXFL5jKDhee5oorJRSLbuJ9pf1FFFFMD//2Q=="
+    },
+    {
+      "id": "centerline-drive-night",
+      "src": "/photos/gallery/bee1fe3c-4d18-4811-956b-41a66369b61c.jpg",
+      "alt": "A fresh yellow center line running down a newly paved drive lane at night under tall parking lot lights, with a white stop bar at the far end.",
+      "lot_type": "Retail",
+      "caption": null,
+      "consent": true,
+      "blur": "data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wBDAA0JCgsKCA0LCgsODg0PEyAVExISEyccHhcgLikxMC4pLSwzOko+MzZGNywtQFdBRkxOUlNSMj5aYVpQYEpRUk//2wBDAQ4ODhMREyYVFSZPNS01T09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT0//wAARCAAYABIDASIAAhEBAxEB/8QAHwAAAQUBAQEBAQEAAAAAAAAAAAECAwQFBgcICQoL/8QAtRAAAgEDAwIEAwUFBAQAAAF9AQIDAAQRBRIhMUEGE1FhByJxFDKBkaEII0KxwRVS0fAkM2JyggkKFhcYGRolJicoKSo0NTY3ODk6Q0RFRkdISUpTVFVWV1hZWmNkZWZnaGlqc3R1dnd4eXqDhIWGh4iJipKTlJWWl5iZmqKjpKWmp6ipqrKztLW2t7i5usLDxMXGx8jJytLT1NXW19jZ2uHi4+Tl5ufo6erx8vP09fb3+Pn6/8QAHwEAAwEBAQEBAQEBAQAAAAAAAAECAwQFBgcICQoL/8QAtREAAgECBAQDBAcFBAQAAQJ3AAECAxEEBSExBhJBUQdhcRMiMoEIFEKRobHBCSMzUvAVYnLRChYkNOEl8RcYGRomJygpKjU2Nzg5OkNERUZHSElKU1RVVldYWVpjZGVmZ2hpanN0dXZ3eHl6goOEhYaHiImKkpOUlZaXmJmaoqOkpaanqKmqsrO0tba3uLm6wsPExcbHyMnK0tPU1dbX2Nna4uPk5ebn6Onq8vP09fb3+Pn6/9oADAMBAAIRAxEAPwDMguIJrSRJuGIAVj2/+txWG9r5jO54x0BH3vpXXi4eBCI44UP+ygpF1Ke0uCrBJEzyjD+XpWfO+w+UwE8NX7orLbMQwyDRXZDW7XA/dyj24oqfbT/lHyLuYbsWOKg1L5b2YejkUUVF/fXo/wBCuhW3n1ooorQR/9k="
+    },
+    {
+      "id": "basketball-court-apartments",
+      "src": "/photos/gallery/47c34e24-a633-4ce4-ae07-166e578d2894.jpg",
+      "alt": "A freshly coated outdoor basketball court with bright yellow court lines, set in the lawn of an apartment community.",
+      "lot_type": "Apartments",
+      "caption": null,
+      "consent": true,
+      "blur": "data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wBDAA0JCgsKCA0LCgsODg0PEyAVExISEyccHhcgLikxMC4pLSwzOko+MzZGNywtQFdBRkxOUlNSMj5aYVpQYEpRUk//2wBDAQ4ODhMREyYVFSZPNS01T09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT0//wAARCAASABgDASIAAhEBAxEB/8QAHwAAAQUBAQEBAQEAAAAAAAAAAAECAwQFBgcICQoL/8QAtRAAAgEDAwIEAwUFBAQAAAF9AQIDAAQRBRIhMUEGE1FhByJxFDKBkaEII0KxwRVS0fAkM2JyggkKFhcYGRolJicoKSo0NTY3ODk6Q0RFRkdISUpTVFVWV1hZWmNkZWZnaGlqc3R1dnd4eXqDhIWGh4iJipKTlJWWl5iZmqKjpKWmp6ipqrKztLW2t7i5usLDxMXGx8jJytLT1NXW19jZ2uHi4+Tl5ufo6erx8vP09fb3+Pn6/8QAHwEAAwEBAQEBAQEBAQAAAAAAAAECAwQFBgcICQoL/8QAtREAAgECBAQDBAcFBAQAAQJ3AAECAxEEBSExBhJBUQdhcRMiMoEIFEKRobHBCSMzUvAVYnLRChYkNOEl8RcYGRomJygpKjU2Nzg5OkNERUZHSElKU1RVVldYWVpjZGVmZ2hpanN0dXZ3eHl6goOEhYaHiImKkpOUlZaXmJmaoqOkpaanqKmqsrO0tba3uLm6wsPExcbHyMnK0tPU1dbX2Nna4uPk5ebn6Onq8vP09fb3+Pn6/9oADAMBAAIRAxEAPwB1rrSzwBriwmjfHOwgjPfvxUf9prI2PsciDpliP8ml03TTNpPn7iJnBZFxx7fyrNE7OP3mM9+1L61O25PsY9ixBqUpBFxp8mc9UIH8zRTFSPJ4IYjs3aip+tVO5XsYnTacMWNuBx+7X+VcvcqonvsADE7Y496KKwZqy0oH2VDjnHWiiioKP//Z"
+    },
+    {
+      "id": "ada-hatch-yellow-concrete-lot",
+      "src": "/photos/gallery/bbc4a738-54f7-4e06-acf2-3a7c0ec1008f.jpg",
+      "alt": "A concrete parking lot with new yellow stall lines, a long yellow hatched access aisle and a blue accessible stall symbol beside a single story building.",
+      "lot_type": "Small business",
+      "caption": null,
+      "consent": true,
+      "blur": "data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wBDAA0JCgsKCA0LCgsODg0PEyAVExISEyccHhcgLikxMC4pLSwzOko+MzZGNywtQFdBRkxOUlNSMj5aYVpQYEpRUk//2wBDAQ4ODhMREyYVFSZPNS01T09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT0//wAARCAASABgDASIAAhEBAxEB/8QAHwAAAQUBAQEBAQEAAAAAAAAAAAECAwQFBgcICQoL/8QAtRAAAgEDAwIEAwUFBAQAAAF9AQIDAAQRBRIhMUEGE1FhByJxFDKBkaEII0KxwRVS0fAkM2JyggkKFhcYGRolJicoKSo0NTY3ODk6Q0RFRkdISUpTVFVWV1hZWmNkZWZnaGlqc3R1dnd4eXqDhIWGh4iJipKTlJWWl5iZmqKjpKWmp6ipqrKztLW2t7i5usLDxMXGx8jJytLT1NXW19jZ2uHi4+Tl5ufo6erx8vP09fb3+Pn6/8QAHwEAAwEBAQEBAQEBAQAAAAAAAAECAwQFBgcICQoL/8QAtREAAgECBAQDBAcFBAQAAQJ3AAECAxEEBSExBhJBUQdhcRMiMoEIFEKRobHBCSMzUvAVYnLRChYkNOEl8RcYGRomJygpKjU2Nzg5OkNERUZHSElKU1RVVldYWVpjZGVmZ2hpanN0dXZ3eHl6goOEhYaHiImKkpOUlZaXmJmaoqOkpaanqKmqsrO0tba3uLm6wsPExcbHyMnK0tPU1dbX2Nna4uPk5ebn6Onq8vP09fb3+Pn6/9oADAMBAAIRAxEAPwCgBYSjIuU56EginCwhbO2VSAM5HIP0roLeKJVCKiqB0AHSp8hY+Bir+syXQn2KOSeO1iBLzAAdyDRW1qsKXtq1vK0kakg5jODxRQsTJ9A9ii5D/DVhvvt9KKK5mblG5+7RRRTRJ//Z"
+    },
+    {
+      "id": "crosshatch-islands-sunset",
+      "src": "/photos/gallery/91ed466c-0af6-440b-b02a-1c63154182e5.jpg",
+      "alt": "A newly striped concrete lot at sunset with white stall lines and two large white cross hatched islands curving across the pavement.",
+      "lot_type": "Retail",
+      "caption": null,
+      "consent": true,
+      "blur": "data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wBDAA0JCgsKCA0LCgsODg0PEyAVExISEyccHhcgLikxMC4pLSwzOko+MzZGNywtQFdBRkxOUlNSMj5aYVpQYEpRUk//2wBDAQ4ODhMREyYVFSZPNS01T09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT0//wAARCAAOABgDASIAAhEBAxEB/8QAHwAAAQUBAQEBAQEAAAAAAAAAAAECAwQFBgcICQoL/8QAtRAAAgEDAwIEAwUFBAQAAAF9AQIDAAQRBRIhMUEGE1FhByJxFDKBkaEII0KxwRVS0fAkM2JyggkKFhcYGRolJicoKSo0NTY3ODk6Q0RFRkdISUpTVFVWV1hZWmNkZWZnaGlqc3R1dnd4eXqDhIWGh4iJipKTlJWWl5iZmqKjpKWmp6ipqrKztLW2t7i5usLDxMXGx8jJytLT1NXW19jZ2uHi4+Tl5ufo6erx8vP09fb3+Pn6/8QAHwEAAwEBAQEBAQEBAQAAAAAAAAECAwQFBgcICQoL/8QAtREAAgECBAQDBAcFBAQAAQJ3AAECAxEEBSExBhJBUQdhcRMiMoEIFEKRobHBCSMzUvAVYnLRChYkNOEl8RcYGRomJygpKjU2Nzg5OkNERUZHSElKU1RVVldYWVpjZGVmZ2hpanN0dXZ3eHl6goOEhYaHiImKkpOUlZaXmJmaoqOkpaanqKmqsrO0tba3uLm6wsPExcbHyMnK0tPU1dbX2Nna4uPk5ebn6Onq8vP09fb3+Pn6/9oADAMBAAIRAxEAPwCC18S6TIjGaO7Qg8KY92fxFW31rQiBmSZT1yYWxWVEVC5OalZoymdpo5HfcV12NBdW0SViqX8YI/vKV/pRWFOI2P8Aq1H4UVWq6k6H/9k="
     }
   ],
-  "gallery_source_note": "16 single photos from https://kleenstripereviews.com/imagery, downloaded to public/photos/source/ and stripped of all metadata (EXIF and ICC alike; none carried GPS) into public/photos/gallery/. Two files were excluded from this array and left out of public/photos/gallery/: a Kleen Stripe wordmark graphic on a black background (819b1bf9), which is brand art rather than a job photo, and an exact duplicate (ca2f9bdb, byte-identical to b20935af). Both remain in public/photos/source/ for the record. See the checkpoint report for the two photos flagged for a third-party naming risk and the two flagged for a baked-in UI artifact.",
+  "gallery_source_note": "16 single photos from https://kleenstripereviews.com/imagery, downloaded to public/photos/source/ and stripped of all metadata (EXIF and ICC alike; none carried GPS) into public/photos/gallery/. Two files were excluded from this array and left out of public/photos/gallery/: a Kleen Stripe wordmark graphic on a black background (819b1bf9), which is brand art rather than a job photo, and an exact duplicate (ca2f9bdb, byte-identical to b20935af). Both remain in public/photos/source/ for the record. See the checkpoint report for the two photos flagged for a third-party naming risk and the two flagged for a baked-in UI artifact. Sept 2026: six more job photos supplied directly by Devin were added (metadata stripped, a baked-in Snapchat caption cropped off ada-hatch-concrete-bollards), and ada-stall-fire-station was replaced in place with his full resolution original of the same shot.",
   "photo_assignments": {
     "hero": "sealcoat-apartments-fresh-lines",
     "trust": null,
-    "note": "hero changed from wide-lot-crosshatch-winter (white lines, visible cracks, dead winter brush, fought the site's own crack-sealing pitch and the accent palette) to sealcoat-apartments-fresh-lines: yellow paint on dark asphalt, the same colour doing the same job as the accent, no defects, and lines that recede toward the garage with a clean single vanishing point for the hero reveal animation to sweep along. trust is null on purpose. Nothing in the 16 photos clearly shows Devin or the crew as a person, only a partial POV shot of a foot and shadow (crew-operating-striper-pov). The work order says to leave the trust slot as a placeholder rather than substitute something that does not show what the slot promises, so it stays a PhotoSlot until a real people photo exists."
+    "note": "hero changed from wide-lot-crosshatch-winter (white lines, visible cracks, dead winter brush, fought the site's own crack-sealing pitch and the accent palette) to sealcoat-apartments-fresh-lines: yellow paint on dark asphalt, the same colour doing the same job as the accent, no defects, and lines that recede toward the garage with a clean single vanishing point for the hero reveal animation to sweep along. trust is null on purpose. Nothing in the 16 photos clearly shows Devin or the crew as a person, only a partial POV shot of a foot and shadow (crew-operating-striper-pov). The work order says to leave the trust slot as a placeholder rather than substitute something that does not show what the slot promises, so it stays a PhotoSlot until a real people photo exists. pages maps a route to a photo painted behind that page's header. A route is only listed where a photo honestly fits it: power washing has no photo of that work, the ADA page keeps its blue access-aisle header, and the Andover, Haysville and Newton area pages have no photo from those towns (the Wichita page shows a City of Wichita fire station, the Derby page the Derby water tower).",
+    "pages": {
+      "/services/": "parking-deck-sunset-striper",
+      "/service-areas/": "ada-stalls-bigbox-winter",
+      "/reviews/": "centerline-drive-night",
+      "/parking-lot-striping-wichita/": "crosshatch-islands-sunset",
+      "/parking-lot-sealcoating-wichita/": "sealcoat-apartments-fresh-lines",
+      "/crack-sealing-and-pothole-repair-wichita/": "crack-sealed-lot-night",
+      "/restriping-and-new-layouts/": "ada-hatch-yellow-concrete-lot",
+      "/warehouse-and-interior-striping-wichita/": "warehouse-floor-stencil-2",
+      "/parking-lot-signage-and-bumper-blocks/": "ada-hatch-concrete-bollards",
+      "/parking-lot-maintenance-programs/": "double-yellow-apartments-day",
+      "/commercial-property-managers/": "basketball-court-apartments",
+      "/paving-and-construction-contractors/": "centerline-drive-night",
+      "/small-business-lots/": "custom-stencil-carwash-drive",
+      "/parking-lot-striping-wichita-ks/": "ada-stall-fire-station",
+      "/parking-lot-striping-derby-ks/": "ada-hatch-concrete-bollards"
+    }
   },
   "lead_magnet": {
     "title": "The ADA parking walk-around",
