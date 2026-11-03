@@ -38,6 +38,23 @@ function localBusiness() {
       name: a.city,
       addressRegion: a.state,
     })),
+    logo: absoluteUrl("/brand/logo-mark.png"),
+    image: absoluteUrl("/opengraph-image.jpg"),
+    // The services the site actually sells, each pointing at its own page, so a
+    // machine reading this node knows the full list without crawling every page.
+    hasOfferCatalog: {
+      "@type": "OfferCatalog",
+      name: "Services",
+      itemListElement: content.services.map((s) => ({
+        "@type": "Offer",
+        itemOffered: {
+          "@type": "Service",
+          "@id": absoluteUrl(`/${s.slug}/#service`),
+          name: s.name,
+          url: absoluteUrl(`/${s.slug}/`),
+        },
+      })),
+    },
     address: {
       // No streetAddress: business.street_address is null and the two public
       // listings disagree on the city. That conflict is tracked as a launch
