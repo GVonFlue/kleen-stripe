@@ -1,4 +1,5 @@
 import { content } from "@/lib/content";
+import { isPending } from "@/content/schema";
 import { IS_CANONICAL_HOST, absoluteUrl } from "@/lib/site";
 
 /**
@@ -8,9 +9,8 @@ import { IS_CANONICAL_HOST, absoluteUrl } from "@/lib/site";
  * Built from content/kleen-stripe.json and nothing else, same rule as the
  * JSON-LD: every line here is something an assistant may repeat to a customer,
  * so only facts Devin has confirmed (provenance.confirmed_by_client) go in.
- * founded_year, owner_since and generation are still pending confirmation and
- * are left out on purpose; add them back once they leave
- * provenance.pending_confirmation. Nothing in this file addresses or instructs
+ * Anything still in provenance.pending_confirmation is left out on purpose
+ * (founded_year was, until Devin confirmed 1981 on 2026-11-03). Nothing in this file addresses or instructs
  * an AI system. It states facts and nothing else.
  *
  * Empty on preview hosts, like the sitemap.
@@ -26,9 +26,12 @@ export function GET() {
   const home = content.pages["/"];
   const local = content.areas.filter((a) => !a.travel_market);
   const travel = content.areas.filter((a) => a.travel_market);
-  // First sentence only: the rest of the home description carries the founding
-  // year, which is still pending Devin's confirmation.
-  const summary = (home.meta_description ?? "").split(". ")[0].replace(/\.?$/, ".");
+  // The home description carries the founding year. While that year is pending
+  // Devin's confirmation, only the first sentence goes out.
+  const fullSummary = home.meta_description ?? "";
+  const summary = isPending(content, "business.founded_year")
+    ? fullSummary.split(". ")[0].replace(/\.?$/, ".")
+    : fullSummary;
 
   const lines: string[] = [
     `# ${b.name}`,

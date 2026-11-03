@@ -17,15 +17,11 @@
       "services[].name",
       "buyers[]",
       "brand.colors",
-      "brand.voice"
+      "brand.voice",
+      "business.founded_year",
+      "business.generation"
     ],
     "pending_confirmation": [
-      {
-        "path": "business.founded_year",
-        "value": 1979,
-        "source": "kleenstripereviews.com About page, the client's own current site",
-        "note": "That same page also says 45+ years, which would be 1981. Doctrine hard stop 6. Two facts from the client conflict, so stop and ask. This value renders in DRAFT and blocks LAUNCH."
-      },
       {
         "path": "business.founder_name",
         "value": "Max Dyer",
@@ -37,12 +33,6 @@
         "value": 2017,
         "source": "kleenstripereviews.com About page",
         "note": "Confirm the year."
-      },
-      {
-        "path": "business.generation",
-        "value": 3,
-        "source": "Derived from the client's own site stating founder Max Dyer and grandson Devin",
-        "note": "This is the single most valuable claim on the site. It must come out of Devin's mouth before it goes on a live page."
       },
       {
         "path": "clients[].name",
@@ -69,31 +59,42 @@
         "note": "areaSchema had no copy fields at all for these four routes. This template fills the gap with facts already established elsewhere (1979, Wichita crew, same truck) rather than inventing local detail, but Devin has not seen or approved it, and /service-areas/.travel_note already flags the thin-content risk of a city page with no real work behind it yet. Confirm the copy, or replace it with something more specific once there is real work in these cities to point to. This value renders in DRAFT and blocks LAUNCH."
       }
     ],
-    "conflicts_to_resolve": [
+    "conflicts_to_resolve": [],
+    "resolved": [
+      {
+        "field": "business.founded_year",
+        "answer": "1981",
+        "date": "2026-11-03",
+        "source": "Devin by text",
+        "note": "Devin: '81 is fine, my grandpa is still unclear to this day when he actually started it.' Matches BBB (business started 3/1/1981) and the old site's 45+ years. All copy that said 1979 now says 1981."
+      },
+      {
+        "field": "business.generation",
+        "answer": "3",
+        "date": "2026-11-03",
+        "source": "Devin by text",
+        "note": "Devin refers to the founder as his grandpa. founder_name and owner_since are still pending."
+      },
       {
         "field": "phone",
-        "values": [
-          "(316) 617-0352 from the onboarding form",
-          "(316) 993-7347 on YellowPages",
-          "(316) 409-4829 on YellowPages"
-        ],
-        "resolution": "Only the onboarding number is in content. Ask whether the other two still ring. If they are dead they are costing him calls and the listings need fixing."
+        "answer": "(316) 617-0352 is the only number that still rings",
+        "date": "2026-11-03",
+        "source": "Devin by text",
+        "note": "(316) 993-7347 and (316) 409-4829 (YellowPages) and 316-265-4715 (ForConstructionPros) are dead. Those listings need correcting off-site."
       },
       {
         "field": "address",
-        "values": [
-          "Haysville, KS 67060 on his own site and on Yelp",
-          "2203 S Hydraulic St, Wichita, KS 67211 on YellowPages"
-        ],
-        "resolution": "street_address is null and the site ships service-area-only. Two cities in public is a top-tier local ranking problem."
+        "answer": "List as Wichita",
+        "date": "2026-11-03",
+        "source": "Devin by text",
+        "note": "business.city stays Wichita. No street address confirmed, so the site stays service-area-only. Haysville listings (BBB, MapQuest, Yelp, Manta, Nextdoor) need moving to Wichita off-site."
       },
       {
-        "field": "years_in_business",
-        "values": [
-          "Founded 1979, which is 47 years",
-          "45+ years stated on the same page, which is 1981"
-        ],
-        "resolution": "years_in_business is never stored. It is always computed from founded_year so the number cannot drift."
+        "field": "business.social.google_business_profile",
+        "answer": "None set up",
+        "date": "2026-11-03",
+        "source": "Devin by text",
+        "note": "Any profile created goes under kleenstripewichita@gmail.com. Stays null until one exists."
       }
     ]
   },
@@ -102,7 +103,7 @@
     "legal_name": null,
     "owner_name": "Devin Hammann",
     "founder_name": "Max Dyer",
-    "founded_year": 1979,
+    "founded_year": 1981,
     "owner_since": 2017,
     "generation": 3,
     "phone_primary": "3166170352",
@@ -264,8 +265,8 @@
     "/": {
       "type": "home",
       "title": "Parking Lot Striping & Sealcoating, Wichita KS | Kleen Stripe",
-      "meta_description": "Commercial parking lot striping, sealcoating, ADA layouts and repairs in Wichita and across Kansas. A family crew that has been striping these lots since 1979.",
-      "h1": "Striping Wichita Lots Since 1979.",
+      "meta_description": "Commercial parking lot striping, sealcoating, ADA layouts and repairs in Wichita and across Kansas. A family crew that has been striping these lots since 1981.",
+      "h1": "Striping Wichita Lots Since 1981.",
       "blocks": [
         {
           "id": "hero",
@@ -289,7 +290,7 @@
           },
           "image_slot": "hero_before_after",
           "scope_flag": "Doctrine section 4 puts the give as the homepage primary CTA on reciprocity grounds. Logan's signed brief puts the quote request first. The scope wins and the conflict is flagged, per the doctrine preamble.",
-          "note": "Checkpoint 1 decision 1: merges the confirmed fact (1979) into the headline itself, since there is no proof number to let a soft category headline survive on its own (doctrine section 5). The year is its own gated field. fallback_headline is the old soft option, used only if founded_year is ever unconfirmed.",
+          "note": "Checkpoint 1 decision 1: merges the confirmed fact (1981) into the headline itself, since there is no proof number to let a soft category headline survive on its own (doctrine section 5). The year is its own gated field. fallback_headline is the old soft option, used only if founded_year is ever unconfirmed.",
           "aside": {
             "lines": [
               "Family run.",
@@ -440,7 +441,7 @@
         {
           "id": "trust",
           "heading": "Three generations, one trade",
-          "body": "Max Dyer started this with one truck and one striping machine in Wichita in 1979. His grandson Devin took it over in 2017 and it still runs the same way, which is to say the person who quotes your lot is the person standing on it while the work happens.",
+          "body": "Max Dyer started this with one truck and one striping machine in Wichita in 1981. His grandson Devin took it over in 2017 and it still runs the same way, which is to say the person who quotes your lot is the person standing on it while the work happens.",
           "requires": [
             "business.founder_name",
             "business.founded_year",
@@ -482,7 +483,7 @@
           "columns": [
             {
               "heading": "Devin, not a dispatcher",
-              "body": "Devin Hammann quotes the lot and he is on it when the crew stripes it. Third generation on the same machine his grandfather started with in 1979.",
+              "body": "Devin Hammann quotes the lot and he is on it when the crew stripes it. Third generation on the same machine his grandfather started with in 1981.",
               "requires": [
                 "business.founder_name",
                 "business.founded_year",
@@ -567,8 +568,8 @@
     },
     "/about/": {
       "type": "about",
-      "title": "About Kleen Stripe | Family-Run Striping in Wichita Since 1979",
-      "meta_description": "Max Dyer started Kleen Stripe in Wichita in 1979 with one truck. His grandson Devin runs it now. Parking lot striping and maintenance across Kansas.",
+      "title": "About Kleen Stripe | Family-Run Striping in Wichita Since 1981",
+      "meta_description": "Max Dyer started Kleen Stripe in Wichita in 1981 with one truck. His grandson Devin runs it now. Parking lot striping and maintenance across Kansas.",
       "h1": "One truck, one striping machine, and a phone book",
       "requires": [
         "business.founded_year",
@@ -577,7 +578,7 @@
         "business.generation"
       ],
       "body": [
-        "Max Dyer started Kleen Stripe in Wichita in 1979 with one truck and one striping machine. There was no marketing to it. He striped a lot, the property manager next door saw it, and that was the next job.",
+        "Max Dyer started Kleen Stripe in Wichita in 1981 with one truck and one striping machine. There was no marketing to it. He striped a lot, the property manager next door saw it, and that was the next job.",
         "Devin took it over in 2017. He is the third generation on the machine, and he still quotes the work himself, which means the person who tells you what it costs is the person who has to stand on the lot and do it. That arrangement keeps everybody honest.",
         "The trade has changed in the ways that matter. ADA requirements got teeth, warehouses started wanting floors marked to the inch, and national franchises showed up in Wichita with call centers. What has not changed is that a lot either has straight lines on it or it does not, and you can see which from the street."
       ],
@@ -672,7 +673,7 @@
       "name": "Parking Lot Striping",
       "money_page": true,
       "title": "Parking Lot Striping in Wichita, KS | Kleen Stripe",
-      "meta_description": "Commercial parking lot striping in Wichita and across Kansas. Layouts, restripes, ADA stalls, fire lanes and custom stencils by a family crew since 1979.",
+      "meta_description": "Commercial parking lot striping in Wichita and across Kansas. Layouts, restripes, ADA stalls, fire lanes and custom stencils by a family crew since 1981.",
       "h1": "Parking lot striping in Wichita",
       "lede": "You get straight lines, square corners, and stalls that line up with the ones beside them. That sounds like a low bar until you have paid somebody who could not clear it.",
       "scope": [
@@ -1137,7 +1138,7 @@
   ],
   "area_page_template": {
     "title_template": "Parking Lot Striping in {{city}}, {{state}} | Kleen Stripe",
-    "meta_description_template": "Commercial parking lot striping, sealcoating and ADA layouts in {{city}}, Kansas from the Wichita crew that has been striping lots since 1979.",
+    "meta_description_template": "Commercial parking lot striping, sealcoating and ADA layouts in {{city}}, Kansas from the Wichita crew that has been striping lots since 1981.",
     "h1_template": "Parking lot striping in {{city}}, {{state}}",
     "lede_template": "The crew that stripes Wichita lots covers {{city}} the same way, on the same truck, on the same schedule.",
     "body": [
